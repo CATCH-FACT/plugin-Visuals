@@ -141,7 +141,7 @@ function draw(data, bounds) {
       .attr("transform", vis.attr("transform"));
   var exitGroupNode = exitGroup.node();
   text.exit().each(function() {
-    exitGroupNode.removeChild(this);
+    exitGroupNode.appendChild(this);
   });
   exitGroup.transition()
       .duration(1000)
