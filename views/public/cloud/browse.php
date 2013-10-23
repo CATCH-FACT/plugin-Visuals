@@ -16,10 +16,9 @@ echo head(array('title' => __('Browse Wordcloud'),
 
 <div id="primary">
 
-    <p>Resultaten zijn gebaseerd op de volledige tekst van de gevonden Items.</p>
     <link rel="image_src" href="amazing.png">
     <div id="vis"></div>
-
+    <p>Resultaten zijn gebaseerd op de <b>volledige tekst</b> van de gevonden Items.</p>
     <form id="form">
       <p style="position: absolute; right: 0; top: 0" id="status"></p>
       <div style="text-align: center">
@@ -66,7 +65,7 @@ echo head(array('title' => __('Browse Wordcloud'),
     <hr style="clear: both">
 
     </form>
-    <script type="text/javascript" src="http://127.0.0.1/vb/plugins/Visuals/views/shared/javascripts/cloudifier.js"></script>
+    <script type="text/javascript" src="<?php echo src("cloudifier", "javascripts", 'js'); ?>"></script>
 
 </div><!-- end primary -->
 <?php echo foot(); ?>
