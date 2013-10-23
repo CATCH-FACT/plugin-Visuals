@@ -28,7 +28,7 @@ echo head(array('title' => __('Browse Wordcloud'),
             <p><textarea id="text">
               <?php print $this->itemCloud() ?>
           </textarea>
-          <button id="go" type="bla">RELOAD</button>
+          <button type='button' id="go">RELOAD</button>
           </div>
         </div>        
     <hr>

@@ -137,16 +137,21 @@ function draw(data, bounds) {
   text.style("font-family", function(d) { return d.font; })
       .style("fill", function(d) { return fill(d.text.toLowerCase()); })
       .text(function(d) { return d.text; });
+
   var exitGroup = background.append("g")
       .attr("transform", vis.attr("transform"));
+
   var exitGroupNode = exitGroup.node();
+
   text.exit().each(function() {
-    exitGroupNode.appendChild(this);
+      exitGroupNode.appendChild(this);
   });
+
   exitGroup.transition()
       .duration(1000)
       .style("opacity", 1e-6)
       .remove();
+
   vis.transition()
       .delay(1000)
       .duration(750)
