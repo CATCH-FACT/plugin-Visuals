@@ -85,14 +85,16 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
      */
     function link_to_wordcloud()
     {
-        $uri = 'visuals/cloud';
-        $props = $uri . (!empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '');
-        return $props;
+        if ($user = current_user()){
+            $uri = 'visuals/cloud';
+            $props = $uri . (!empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '');
+            return $props;
+        }
     }
 
     public function filterPublicNavigationItems($navArray){
         $navArray['Wordcloud'] = array(
-                                        'label'=>__('Results as Wordcloud'),
+                                        'label'=>__('Resultaten visueel'),
                                         'uri' => url($this->link_to_wordcloud())
                                         );
         return $navArray;        
