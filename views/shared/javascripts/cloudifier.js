@@ -36,14 +36,21 @@ d3.select("#download-png").on("click", downloadPNG);
 d3.select(window).on("hashchange", hashchange);
 d3.select(window).on("load", hashchange);
 
+d3.select("#go")
+    .on("click", function() {
+        load(d3.select("#text").property("value"));
+        d3.event.preventDefault();
+    });
+
 var form = d3.select("#form")
-    .on("submit", function() {
+    .on("change", function() {
       load(d3.select("#text").property("value"));
       d3.event.preventDefault();
     });
     
 form.selectAll("input[type=number]")
     .on("click.refresh", function() {
+      load(d3.select("#text").property("value"));
       if (this.value === this.defaultValue) return;
       generate();
       this.defaultValue = this.value;

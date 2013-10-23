@@ -28,13 +28,13 @@ echo head(array('title' => __('Browse Wordcloud'),
             <p><textarea id="text">
               <?php print $this->itemCloud() ?>
           </textarea>
-          <button type='button' id="go">RELOAD</button>
+          <button type='button' id="go">HERLADEN</button>
           </div>
         </div>        
     <hr>
 
     <div style="float: right; text-align: right">
-      <p><label for="max">Number of words:</label> <input type="number" value="250" min="1" id="max">
+      <p><label for="max">Maximum aantal woorden:</label> <input type="number" value="250" min="1" id="max">
       <p><label>Download:</label>
         <a id="download-svg" href="#" target="_blank">SVG</a> |
         <a id="download-png" href="#" target="_blank">PNG</a>
@@ -58,9 +58,9 @@ echo head(array('title' => __('Browse Wordcloud'),
     </div>
 
     <div id="angles">
-      <p><input type="number" id="angle-count" value="5" min="1"> <label for="angle-count">orientations</label>
-        <label for="angle-from">from</label> <input type="number" id="angle-from" value="-60" min="-90" max="90"> °
-        <label for="angle-to">to</label> <input type="number" id="angle-to" value="60" min="-90" max="90"> °
+      <p><input type="number" id="angle-count" value="5" min="1"> <label for="angle-count">orientaties</label>
+        <label for="angle-from">van</label> <input type="number" id="angle-from" value="-60" min="-90" max="90"> °
+        <label for="angle-to">tot</label> <input type="number" id="angle-to" value="60" min="-90" max="90"> °
     </div>
 
     <hr style="clear: both">
