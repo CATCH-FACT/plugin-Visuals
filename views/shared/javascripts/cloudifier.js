@@ -1,6 +1,6 @@
 var fill = d3.scale.category20b();
 
-var w = 1000,
+var w = 800,
     h = 600;
 
 var words = [],
@@ -10,7 +10,7 @@ var words = [],
     keyword = "",
     tags,
     fontSize,
-    maxLength = 30,
+    maxLength = 20,
     fetcher = d3.select("#text").property("value"),
     statusText = d3.select("#status");
 
@@ -104,7 +104,7 @@ function generate() {
   layout
       .font(d3.select("#font").property("value"))
       .spiral(d3.select("input[name=spiral]:checked").property("value"));
-  fontSize = d3.scale[d3.select("input[name=scale]:checked").property("value")]().range([10, 100]);
+  fontSize = d3.scale[d3.select("input[name=scale]:checked").property("value")]().range([10, 400]);
   if (tags.length) fontSize.domain([+tags[tags.length - 1].value || 1, +tags[0].value]);
   complete = 0;
   statusText.style("display", null);
@@ -119,10 +119,10 @@ function progress(d) {
 function draw(data, bounds) {
   statusText.style("display", "none");
   scale = bounds ? Math.min(
-      w / Math.abs(bounds[1].x - w / 2),
-      w / Math.abs(bounds[0].x - w / 2),
-      h / Math.abs(bounds[1].y - h / 2),
-      h / Math.abs(bounds[0].y - h / 2)) / 2 : 1;
+      w / Math.abs(bounds[1].x - w / 2.2),
+      w / Math.abs(bounds[0].x - w / 2.2),
+      h / Math.abs(bounds[1].y - h / 2.2),
+      h / Math.abs(bounds[0].y - h / 2.2)) / 2 : 1;
   words = data;
   var text = vis.selectAll("text")
       .data(words, function(d) { return d.text.toLowerCase(); });
@@ -130,12 +130,16 @@ function draw(data, bounds) {
       .duration(1000)
       .attr("transform", function(d) { return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")"; })
       .style("font-size", function(d) { return d.size + "px"; });
-  text.enter().append("text")
+  text.enter()
+      .append("text")
       .attr("text-anchor", "middle")
       .attr("transform", function(d) { return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")"; })
+      .attr('xlink:href', function(d) {return "visuals/cloud?tag=" + d.text; })
       .style("font-size", function(d) { return d.size + "px"; })
       .on("click", function(d) {
-        load(d.text);       //loading text here
+//          words.shift();
+//          load(d.text.toUpperCase());
+            window.location = "cloud?tag=" + d.text;
       })
       .style("opacity", 1e-6)
       .transition()
@@ -143,7 +147,7 @@ function draw(data, bounds) {
       .style("opacity", 1);
   text.style("font-family", function(d) { return d.font; })
       .style("fill", function(d) { return fill(d.text.toLowerCase()); })
-      .text(function(d) { return d.text; });
+      .text(function(d) { return d.text; })
 
   var exitGroup = background.append("g")
       .attr("transform", vis.attr("transform"));
@@ -224,7 +228,7 @@ d3.select("#random-palette").on("click", function() {
   var angles = d3.select("#angles").append("svg")
       .attr("width", 2 * (r + px))
       .attr("height", r + 1.5 * py)
-    .append("g")
+      .append("g")
       .attr("transform", "translate(" + [r + px, r + py] +")");
 
   angles.append("path")
@@ -240,14 +244,14 @@ d3.select("#random-palette").on("click", function() {
 
   angles.selectAll("text")
       .data([-90, 0, 90])
-    .enter().append("text")
+      .enter().append("text")
       .attr("dy", function(d, i) { return i === 1 ? null : ".3em"; })
       .attr("text-anchor", function(d, i) { return ["end", "middle", "start"][i]; })
       .attr("transform", function(d) {
         d += 90;
         return "rotate(" + d + ")translate(" + -(r + 10) + ")rotate(" + -d + ")translate(2)";
       })
-      .text(function(d) { return d + "Â°"; });
+      .text(function(d) { return d + "°"; });
 
   var radians = Math.PI / 180,
       from,
@@ -255,8 +259,8 @@ d3.select("#random-palette").on("click", function() {
       count,
       scale = d3.scale.linear(),
       arc = d3.svg.arc()
-        .innerRadius(0)
-        .outerRadius(r);
+                .innerRadius(0)
+                .outerRadius(r);
 
   d3.selectAll("#angle-count, #angle-from, #angle-to")
       .on("change", getAngles)

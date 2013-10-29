@@ -21,15 +21,5 @@ class Visuals_CloudController extends Omeka_Controller_AbstractActionController
         $records = $this->_helper->db->findBy($params, $limit);
         $this->view->totalItems = $table->count($params);
         $this->view->items = $records;
-        
-#        $params = array('page'  => $currentPage,
-#                'per_page'      => $limit,
-#                'total_results' => $this->view->totalItems);
-        
-#        Zend_Registry::set('cloud_params', $params);
-        
-        // Make the pagination values accessible from pagination_links().
-#        Zend_Registry::set('pagination', $params);
-#        parent::browseAction();
     }
 }
