@@ -7,7 +7,7 @@ echo head(array('title' => __('Browse Wordcloud'),
                 'bodyclass' => 'browse')); 
 ?>
 
-<h1><?php echo __('Browse Wordcloud');?> (Experimenteel) (<?php echo $totalItems; ?> <?php echo __('total');?>)</h1>
+<h1><?php echo __('Browse Wordcloud');?> (Experimenteel) (<?php echo $totalItems; ?> <?php echo __('total');?>, Maximaal <?php echo get_option('visuals_restrict_results'); ?> <?php echo __('gebruikt voor visualisatie');?>)</h1>
 
 <nav class="items-nav navigation" id="secondary-nav">
     <?php echo public_nav_items(); ?>
