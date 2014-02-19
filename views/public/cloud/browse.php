@@ -26,6 +26,8 @@ $cloudsource = isset($_GET['cloudsource']) ? $_GET['cloudsource'] : "Tag";
             <option value="Item Type Metadata,Text"><?php print __("Text"); ?> </option>
             <option value="Tag"><?php print __("Tags"); ?> </option>
             <option value="Dublin Core,Description"><?php print __("Description"); ?> </option>
+            <option value="Item Type Metadata,Named Entity Location"><?php print __("Named Entity Location"); ?> </option>
+            <option value="Item Type Metadata,Named Entity"><?php print __("Named Entity"); ?> </option>
         </select>
         <script type="text/javascript">
             document.getElementById('cloudsource').value = "<?php echo $cloudsource;?>";
