@@ -16,12 +16,19 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
             'config',
 #            'define_acl',
 #            'define_routes',
-#            'public_items_show',
+            'public_items_show',
 #            'public_items_search',
 #            'items_browse_sql',
             'public_head',
             );
 
+
+
+    public function hookPublicItemsShow($args){
+//        get_view()->addHelperPath(dirname(__FILE__) . '/helpers', 'Visuals_View_Helper_');
+#        $view = $args['view'];
+#        $view->addHelperPath(VISUALS_PLUGIN_DIR . '/helpers', 'Visuals_View_Helper_');
+    }
 
     public function hookPublicHead($args){
         get_view()->addHelperPath(dirname(__FILE__) . '/helpers', 'Visuals_View_Helper_');

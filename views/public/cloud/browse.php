@@ -1,6 +1,6 @@
 <?php 
 queue_css_file('cloud');
-queue_js_file('d3');
+queue_js_file('d3.min');
 queue_js_file('d3.layout.cloud');
 echo head(array('title' => __('Browse Wordcloud'),
                 'bodyid'=>'cloud',
