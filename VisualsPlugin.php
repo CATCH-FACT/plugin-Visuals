@@ -22,18 +22,58 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
             'public_head',
             );
 
-
-
     public function hookPublicItemsShow($args){
-//        get_view()->addHelperPath(dirname(__FILE__) . '/helpers', 'Visuals_View_Helper_');
-#        $view = $args['view'];
-#        $view->addHelperPath(VISUALS_PLUGIN_DIR . '/helpers', 'Visuals_View_Helper_');
+        print '<div id="item-nodes" class="element">';
+        print '     <h2>' . __("Vergelijkbare verhalen") . '</h2>';
+//        print '     <div id="item-network" class="network">';
+//        print "     </div>";
+        print "</div>";
     }
 
     public function hookPublicHead($args){
         get_view()->addHelperPath(dirname(__FILE__) . '/helpers', 'Visuals_View_Helper_');
-#        $view = $args['view'];
-#        $view->addHelperPath(VISUALS_PLUGIN_DIR . '/helpers', 'Visuals_View_Helper_');
+        $view = get_view();
+        
+        $data_proxy =  js_escape(url('/admin/visuals/proxy'));
+        
+        //only queue when in item view:
+        if(isset($view->item)) {
+            $js_code = "window.onload = function () {
+
+                var search_proxy = " . $data_proxy . ";
+
+                var waiting_time = 50;
+
+                var item_id =\"" . $view->item->id . "\";
+
+                var vm = new ViewModel(item_id, search_proxy);
+                ko.applyBindings(vm);
+
+                var nodeman = new NodeViewer(vm, '#item-nodes');
+                nodeman.init();
+
+            // initial search in solr db
+                vm.id_search_query(item_id);
+                vm.doIdSearch();
+
+            // search with a depth of 1
+                setTimeout(function(){
+                    NeighborNeighbor(1, 20, 2, vm);
+                }, waiting_time);
+
+                if (getUrlParameter('reconnect')){
+                    setTimeout(function(){
+                        ConnectNeighbors(vm);
+                    }, waiting_time + 3000);
+                }
+            }";
+            queue_js_file('knockout');
+            queue_js_file('d3.min');
+            queue_js_file('nodes_main');
+            queue_js_file('nodes');
+            queue_css_file('nodes');
+            queue_js_string($js_code);
+        }
     }
             
     protected $_filters = array(
