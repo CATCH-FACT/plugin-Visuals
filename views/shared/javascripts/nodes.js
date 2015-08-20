@@ -8,7 +8,7 @@ function NodeViewer(vm, selectString){
 //        var pinging_link = [];
 
         
-        var select_width = jQuery(selectString).width() - 25;
+        var select_width = jQuery(selectString).width() - 30;
 
         var w = select_width, //start dimensions
             h = 300;
@@ -22,8 +22,8 @@ function NodeViewer(vm, selectString){
             .linkDistance(10)
             .linkStrength(1)
             .distance(0)
-            .charge(-500)
-            .gravity(0.1)
+            .charge(-1400)
+            .gravity(0.4)
             .friction(0.8)
             .theta(1)
             .size([w, h]);
@@ -64,22 +64,15 @@ function NodeViewer(vm, selectString){
 
         updateWindow();
         window.onresize = updateWindow;
-/*
-        function keyflip_down() {
-            shiftKey = d3.event.shiftKey || d3.event.metaKey;
-        }
-
-        function keyflip_up() {
-            shiftKey = d3.event.shiftKey || d3.event.metaKey;
-            vm.doFacetSearch();
-        }
-*/
 
         function updateWindow(){
             w = jQuery(selectString).width() - 30;
             x.domain([0, w]);
             y.domain([0, h]); //reset the domains for the selectionbox
             svg.attr("width", w).attr("height", h); //reset the main svg
+            vm.node_params()["gravity"].value(0.4);
+            vm.node_params()["charge"].value(-1500);
+            vm.node_params.valueHasMutated();
         }
 
         function zoomed() {
@@ -374,12 +367,12 @@ function NodeViewer(vm, selectString){
             force.on("tick", function() {
 
                 node.attr("transform", function(d) { 
-                    return "translate(" + Math.max(0, Math.min(w+50, d.x)) + "," + Math.max(20, Math.min(h-20, d.y)) + ")"; });
+                    return "translate(" + Math.max(0, Math.min(w+20, d.x)) + "," + Math.max(20, Math.min(h-20, d.y)) + ")"; });
 
-                link.attr("x1", function(d) { return Math.max(0, Math.min(w+50, d.source.x)); })
-                    .attr("y1", function(d) { return Math.max(20, Math.min(h, d.source.y)); })
-                    .attr("x2", function(d) { return Math.max(0, Math.min(w+50, d.target.x)); })
-                    .attr("y2", function(d) { return Math.max(20, Math.min(h, d.target.y)); });
+                link.attr("x1", function(d) { return Math.max(0, Math.min(w+20, d.source.x)); })
+                    .attr("y1", function(d) { return Math.max(20, Math.min(h-20, d.source.y)); })
+                    .attr("x2", function(d) { return Math.max(0, Math.min(w+20, d.target.x)); })
+                    .attr("y2", function(d) { return Math.max(20, Math.min(h-20, d.target.y)); });
             //  faster but not so good.
 /*                link.attr("x1", function(d) { return d.source.x; })
                     .attr("y1", function(d) { return d.source.y; })
