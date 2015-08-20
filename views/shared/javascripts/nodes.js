@@ -7,10 +7,11 @@ function NodeViewer(vm, selectString){
 //        var pinging = [];
 //        var pinging_link = [];
 
-        var w = 300, //start dimensions
-            h = 300,
-            lw = 0, 
-            lh = 0;
+        
+        var select_width = jQuery(selectString).width() - 25;
+
+        var w = select_width, //start dimensions
+            h = 300;
 
         var zoom = d3.behavior.zoom()
             .scale(100)
@@ -21,10 +22,10 @@ function NodeViewer(vm, selectString){
             .linkDistance(10)
             .linkStrength(1)
             .distance(0)
-            .charge(-200)
+            .charge(-500)
             .gravity(0.1)
             .friction(0.8)
-            .theta(0.5)
+            .theta(1)
             .size([w, h]);
 //            .on("tick", tick);
 
@@ -61,8 +62,8 @@ function NodeViewer(vm, selectString){
                         .selectAll(".node");
 
 
-//        updateWindow();
-//        window.onresize = updateWindow;
+        updateWindow();
+        window.onresize = updateWindow;
 /*
         function keyflip_down() {
             shiftKey = d3.event.shiftKey || d3.event.metaKey;
@@ -73,15 +74,14 @@ function NodeViewer(vm, selectString){
             vm.doFacetSearch();
         }
 */
-/*
+
         function updateWindow(){
-            w = window.innerWidth || window.documentElement.clientWidth || window.getElementsByTagName('body')[0].clientWidth;
-            h = window.innerHeight|| window.documentElement.clientHeight|| window.getElementsByTagName('body')[0].clientHeight;
+            w = jQuery(selectString).width() - 30;
             x.domain([0, w]);
             y.domain([0, h]); //reset the domains for the selectionbox
             svg.attr("width", w).attr("height", h); //reset the main svg
         }
-*/
+
         function zoomed() {
             vm.node_params()["gravity"].value(Math.min((d3.event.scale + 600)/6000), 0.2);
             vm.node_params()["charge"].value(-(d3.event.scale));
