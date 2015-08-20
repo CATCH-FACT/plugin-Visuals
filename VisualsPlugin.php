@@ -31,10 +31,12 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
     }
 
     public function hookPublicHead($args){
-        get_view()->addHelperPath(dirname(__FILE__) . '/helpers', 'Visuals_View_Helper_');
+        
         $view = get_view();
         
-        $data_proxy =  js_escape(url('/admin/visuals/proxy'));
+        $view->addHelperPath(dirname(__FILE__) . '/helpers', 'Visuals_View_Helper_');
+        
+        $data_proxy =  js_escape(url('/visuals/proxy'));
         
         //only queue when in item view:
         if(isset($view->item)) {
@@ -60,12 +62,6 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
                 setTimeout(function(){
                     NeighborNeighbor(1, 20, 2, vm);
                 }, waiting_time);
-
-                if (getUrlParameter('reconnect')){
-                    setTimeout(function(){
-                        ConnectNeighbors(vm);
-                    }, waiting_time + 3000);
-                }
             }";
             queue_js_file('knockout');
             queue_js_file('d3.min');
