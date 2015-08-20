@@ -353,8 +353,8 @@ var node_params = {
 
 function ViewModel(item_id, search_proxy) {
     
-    console.log("viewmodel started!");
-    console.log(item_id);
+//    console.log("viewmodel started!");
+//    console.log(item_id);
     
     var self = this;
     
@@ -475,8 +475,8 @@ function ViewModel(item_id, search_proxy) {
     };
 
     self.doIdSearch = function () {
-        console.log("ID SEARCH");
-        console.log(self.id_search_query());
+//        console.log("ID SEARCH");
+//        console.log(self.id_search_query());
         
         self.clearData();
         ids = self.id_search_query().split(/,[ \n]*/);
@@ -498,7 +498,7 @@ function ViewModel(item_id, search_proxy) {
     }
 
     self.doIdAdd = function () {
-        console.log("searching id number");
+//        console.log("searching id number");
         UpdateNetworkData(search_proxy + self.id_search_query(), true, self);
     };
 
@@ -581,7 +581,7 @@ function ViewModel(item_id, search_proxy) {
 
 
 function removeLinks(item, vm){
-    console.log("removing links: " + item.node_id);
+//    console.log("removing links: " + item.node_id);
     for (link in vm.network_graph().links){
 //        console.log(vm.network_graph().links[link]);
         if ((vm.network_graph().links[link].source.id == item.id) || (vm.network_graph().links[link].target.id == item.id)) {
@@ -634,7 +634,7 @@ function search_id(needle, haystack) {
     }
     for (var child in haystack.children){
         // look for the entry with a matching `code` value
-        console.log(haystack.children[child].id);
+//        console.log(haystack.children[child].id);
         if (haystack.children[child].id == needle){
             // we found it
             return haystack.children[child];
@@ -645,7 +645,7 @@ function search_id(needle, haystack) {
             }
         }
     }
-    console.log(needle + " not found");
+//    console.log(needle + " not found");
     return null; //nope
 }
 
@@ -654,9 +654,9 @@ function NeighborNeighborSelected(n, max_neighbor_results, min_neighbor_score, v
         existing_network_graph = vm.network_graph();
         selected_nodes = vm.selected_nodes();
         for (var i = 0; i < n ; i++) {
-            console.log("expanding all nodes - " + i);
+//            console.log("expanding all nodes - " + i);
             for (item in selected_nodes){
-                console.log(item);
+//                console.log(item);
                 NeighborSearch(existing_network_graph.nodes[item], max_neighbor_results, min_neighbor_score, vm)
             }
         }
@@ -668,10 +668,10 @@ function NeighborNeighbor(n, max_neighbor_results, min_neighbor_score, vm){
     if (vm.network_graph().nodes.length < 150){ //saving your computer
         existing_network_graph = vm.network_graph();
         for (var i = 0; i < n ; i++) {
-            console.log("expanding all nodes - " + i);
-            console.log(existing_network_graph);
+//            console.log("expanding all nodes - " + i);
+//            console.log(existing_network_graph);
             for (item in existing_network_graph.nodes){
-                console.log("rummaging...");
+//                console.log("rummaging...");
                 NeighborSearch(existing_network_graph.nodes[item], max_neighbor_results, min_neighbor_score, vm)
             }
         }
@@ -760,7 +760,7 @@ function create_comparison_search_argument_from_item(item, id, vm){
 }
 
 function ConnectNeighbors(vm){
-    console.log("connecting nodes");
+//    console.log("connecting nodes");
     existing_network_graph = vm.network_graph();
     node_ids = returnNodeIds(existing_network_graph.nodes);
     existing_network_graph.links = []; //complete refresh
@@ -824,7 +824,7 @@ function RemoveSelectedNodes(vm){
     existing_network_graph = vm.network_graph();
 
     //first identify:
-    console.log(existing_network_graph);
+//    console.log(existing_network_graph);
     for (var q = 0; q < selected_nodes.length; q++) { //not surewhy, but this has to be repeated a bunch of times
         for (var i = 0; i < existing_network_graph.nodes.length; i++) {
             for (var j = 0; j < selected_nodes.length; j++) {
@@ -925,7 +925,7 @@ function d3_format_facets(raw_facets){
 
 
 function UpdateFacetData(facet_query, vm){
-    console.log(facet_query);
+//    console.log(facet_query);
     jQuery.getJSON(facet_query, function(response) {
 //        var this_facets_results = vm.facets_results;
         formatted_response = d3_format_facets(response.facet_counts.facet_fields);

@@ -224,7 +224,7 @@ function NodeViewer(vm, selectString){
             }
             if (vm.selectedLegendOptionValue() == "item_type"){
                 if (d.item_type){
-                    console.log(d.item_type);
+//                    console.log(d.item_type);
                     return legend_colors[vm.selectedLegendOptionValue()][d.item_type].color;
                 }
             }
@@ -390,7 +390,7 @@ function NodeViewer(vm, selectString){
 
         function right_click_node(item_data, index) {
             //handle right click
-            console.log("right_clicking: " + index);
+//            console.log("right_clicking: " + index);
             //stop showing browser menu            
             d3.event.preventDefault();
 //            dragstop(item_data);
@@ -411,7 +411,7 @@ function NodeViewer(vm, selectString){
         // Toggle children on click.
         function left_click_link(item_data) {
             d3.event.preventDefault();
-            console.log(item_data);
+//            console.log(item_data);
             
             var even = true;
             
@@ -558,7 +558,7 @@ function NodeViewer(vm, selectString){
         }
 
         function dbl_click(d) {
-            console.log("dblclick");
+//            console.log("dblclick");
             d3.event.preventDefault();
 //            d3.select(this).classed("fixed", d.fixed = false);
         }
@@ -570,7 +570,7 @@ function NodeViewer(vm, selectString){
 
         function dragstart(d) {
 //            d3.event.preventDefault();
-            console.log("dragstart");
+//            console.log("dragstart");
             d3.select(this).classed("fixed", d.fixed = true);
         }
 
@@ -666,7 +666,7 @@ function NodeViewer(vm, selectString){
         });
 
         vm.metadatas_to_query()[0].selected.subscribe( function (){
-            console.log("UPTED");
+//            console.log("UPTED");
         });
 
         vm.selectedLegendOptionValue.subscribe( function (){
