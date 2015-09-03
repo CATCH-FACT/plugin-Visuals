@@ -1,7 +1,3 @@
-//var solr_search_proxy = 'data_proxy.php?s';
-//var neighbor_search_proxy = 'data_proxy.php';
-//var facet_proxy = 'data_proxy.php?f'
-
 var metadatas_to_query = [  {key: "title",          score_value: 1,     selected: false},
                             {key: "subject",        score_value: 2,     selected: true},
                             {key: "creator",	    score_value: 1,     selected: false},
@@ -20,11 +16,9 @@ var metadatas_to_query = [  {key: "title",          score_value: 1,     selected
                             {key: "named_entity_location",	score_value: 1,     selected: true},
                             {key: "place_of_action",   score_value: 1,     selected: true},
                             {key: "corpus",	        score_value: 1,     selected: false},
-                            {key: "word_count",	score_value: 0,     selected: false},      //NEW
+                            {key: "word_count",	score_value: 1,     selected: false},      //NEW
                             {key: "word_count_group",   score_value: 1,     selected: false},      //NEW
-                            {key: "tags",           score_value: 1.2,     selected: true},
-                            {key: "text_length",      score_value: 1,     selected: false},
-                            {key: "text_length_group",  score_value: 1,     selected: false},
+                            {key: "tag",           score_value: 1.2,     selected: true},
                             {key: "location",	    score_value: 1,     selected: true},
                             {key: "sublocality",	score_value: 1,     selected: false},
                             {key: "locality",	    score_value: 1,     selected: false},
@@ -40,7 +34,7 @@ var metadatas_to_show = ["identifier", "title", "item_type", "subject",
                         "collector", "creator", "contributor", "date",
                         "subgenre", "type", "language", "literary", "extreme",
                         "tags", "named_entity","named_entity_location","place_of_action", "motif", 
-                        "corpus","text_length","text_length_group", "locality", "description", "text"];
+                        "corpus","word_count","word_count_group", "locality", "description", "text"];
 
 function makeid(n){
     var text = "";
@@ -80,7 +74,7 @@ function array_color_generator(arr){
     return group_colors;
 }
 
-text_length_groups =["<25",
+word_count_groups =["<25",
                     "25-100",
                     "100-250",
                     "250-500",
@@ -88,7 +82,7 @@ text_length_groups =["<25",
                     ">1000",
                     "other"];
 
-text_length_group_colors = array_color_generator_darker(text_length_groups, "orangered");
+word_count_group_colors = array_color_generator_darker(word_count_groups, "orangered");
 
 languages = ["Standaardnederlands",
             "Fries (Woudfries)",
@@ -290,7 +284,7 @@ literary_colors = { "ja": {class_code: "XABCDEFGH", color: "#FF0000"},
                     "nee (bewerkt)": {class_code: "XDEFGHIJK", color: "#AAFFAA"},
                     "other": {class_code: "XEFGHIJKL", color: "#FFFFE0"}};
 
-legendOptionValues = ["subgenre", "type", "language", "literary", "extreme", "text_length_group", "item_type"];
+legendOptionValues = ["subgenre", "type", "language", "literary", "extreme", "word_count_group", "item_type"];
 selectedLegendOptionValue = ["subgenre"];
 
 legend_colors = {"subgenre":        subgenre_colors, 
@@ -298,7 +292,7 @@ legend_colors = {"subgenre":        subgenre_colors,
                 "language":         language_colors, 
                 "literary":         literary_colors, 
                 "extreme":          extreme_colors, 
-                "text_length_group":text_length_group_colors,
+                "word_count_group": word_count_groups,
                 "item_type":        item_type_colors};
 
 ///this should all be generated on the fly, with the languages present in the retrieved set of items
@@ -459,10 +453,10 @@ function ViewModel(item_id, search_proxy) {
         self.clearData();
         
         var collection = "collection_id:1";
-        var return_fields = "fl=id,identifier";
+        var return_fields = "fl=modelid,identifier";
         
         var args = {collection_id : 1,
-                    fl : "id,identifier",
+                    fl : "modelid,identifier",
                     q : self.solr_search_command(),
                     "rows": self.max_nodes_to_load()
                     }
@@ -483,7 +477,7 @@ function ViewModel(item_id, search_proxy) {
         for (id in ids){
             var arguments = {
                 "fl": "score,*",
-                "q": "id:" + ids[id],
+                "q": "modelid:" + ids[id],
                 "rows": self.max_nodes_to_load()
             };
             setTimeout(UpdateNetworkDataPOST(search_proxy, arguments , true, self), 500);
@@ -584,7 +578,7 @@ function removeLinks(item, vm){
 //    console.log("removing links: " + item.node_id);
     for (link in vm.network_graph().links){
 //        console.log(vm.network_graph().links[link]);
-        if ((vm.network_graph().links[link].source.id == item.id) || (vm.network_graph().links[link].target.id == item.id)) {
+        if ((vm.network_graph().links[link].source.modelid == item.modelid) || (vm.network_graph().links[link].target.modelid == item.modelid)) {
             vm.network_graph().links.splice(link, 1);
         }
     }
@@ -602,7 +596,7 @@ function get_solr_id_list(url, solr_params){
             if (response.response.docs.length > 0){ //if there is a response
                 found_nodes = response.response.docs;
                 for (node in found_nodes){
-                    search_ids.push(found_nodes[node].id);
+                    search_ids.push(found_nodes[node].modelid);
                 }
                 search_string = search_ids.join(",");
             }
@@ -628,14 +622,14 @@ function search(_for, _in) {
 
 function search_id(needle, haystack) {
     // iterate over each element in the array
-    if (haystack.id == needle){ //start at the root
+    if (haystack.modelid == needle){ //start at the root
         // we found it
         return haystack;
     }
     for (var child in haystack.children){
         // look for the entry with a matching `code` value
-//        console.log(haystack.children[child].id);
-        if (haystack.children[child].id == needle){
+//        console.log(haystack.children[child].modelid);
+        if (haystack.children[child].modelid == needle){
             // we found it
             return haystack.children[child];
         }      
@@ -705,7 +699,7 @@ function retrieve_existing_ids_from_pool(vm){
     if (vm.network_graph().nodes.length > 0){ //if there is a network
         nodes = vm.network_graph().nodes;
         for (node in nodes){
-            search_ids.push(nodes[node].id);
+            search_ids.push(nodes[node].modelid);
         }
     }
     search_string = search_ids.join(" OR id:");
@@ -723,7 +717,7 @@ function create_search_arguments_from_item_id_return(item, max_neighbor_results,
         start: 0,
 //        fq: "id:" + retrieve_existing_ids_from_pool(vm),
         rows: max_neighbor_results,
-        fl: "score,id",
+        fl: "score,modelid",
         q: neighbor_search_query
     }
 
@@ -753,7 +747,7 @@ function create_comparison_search_argument_from_item(item, id, vm){
     var neighbor_search_query = or_pre_query.join(" OR ");// + counter_identical_return;
     var neighbor_search_arguments = {
         q: neighbor_search_query,
-        fq: "id:" + id,
+        fq: "modelid:" + id,
         
     };
     return neighbor_search_arguments;
@@ -779,10 +773,10 @@ function ConnectNeighbors(vm){
                     changed = true;
                     found_nodes = response.response.docs;
                     for (node in found_nodes){
-                        if (existing_network_graph.nodes[i].id == found_nodes[node].id){ } //when the id's are the same (link to itself) do nothing
-                        else if (jQuery.inArray(found_nodes[node].id, node_ids)){ 
+                        if (existing_network_graph.nodes[i].modelid == found_nodes[node].modelid){ } //when the id's are the same (link to itself) do nothing
+                        else if (jQuery.inArray(found_nodes[node].modelid, node_ids)){ 
                             if (found_nodes[node].score > vm.min_neighbor_score() ){ //if the document score is high enough
-                                found_node_internal_id = returnInternalNodeIdById(found_nodes[node].id, existing_network_graph.nodes);
+                                found_node_internal_id = returnInternalNodeIdById(found_nodes[node].modelid, existing_network_graph.nodes);
                                 if (found_node_internal_id){ //extra check
                                     //ADD!!: try to search for reverse link. if found, take highest scoring link.
                                     var push_link = {"source": existing_network_graph.nodes[i].node_id, "target": found_node_internal_id, "score": found_nodes[node].score};
@@ -861,14 +855,14 @@ function RemoveSelectedNodes(vm){
 function returnNodeIds(nodes){
     node_ids = [];
     for (node in nodes){
-        node_ids.push(nodes[node].id);
+        node_ids.push(nodes[node].modelid);
     }
     return node_ids;
 }
 
 function returnInternalNodeIdById(id, nodes){
     for (nodeid in nodes){
-        if (nodes[nodeid].id == id){
+        if (nodes[nodeid].modelid == id){
             return nodes[nodeid].node_id; //of gewoon node?
         }
     }
@@ -877,11 +871,11 @@ function returnInternalNodeIdById(id, nodes){
 
 function singleNodeinLinkList(i, linkList){ //only one way searching
     for (l in linkList){
-        if (i.id == linkList[l].source.id){
-            return i.id;
+        if (i.modelid == linkList[l].source.modelid){
+            return i.modelid;
         }
-        if (i.id == linkList[l].target.id){
-            return i.id;
+        if (i.modelid == linkList[l].target.modelid){
+            return i.modelid;
         }
     }
     return false;
@@ -889,10 +883,10 @@ function singleNodeinLinkList(i, linkList){ //only one way searching
 
 function inLinkList(i, i2, linkList){ //only one way searching
     for (l in linkList){
-        if ((i.id in linkList[l].source) && (i2.id in linkList[l].target)){
+        if ((i.modelid in linkList[l].source) && (i2.modelid in linkList[l].target)){
             return true;
         }
-        if ((i2.id in linkList[l].source) && (i.id in linkList[l].target)){
+        if ((i2.modelid in linkList[l].source) && (i.modelid in linkList[l].target)){
             return true;
         }
     }
@@ -901,7 +895,7 @@ function inLinkList(i, i2, linkList){ //only one way searching
 
 function inNodesList(item, list){
     for (l in list){
-        if (item.id == list[l].id){
+        if (item.modelid == list[l].modelid){
             return true;
         }
     }

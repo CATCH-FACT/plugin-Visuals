@@ -60,7 +60,7 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
 
             // search with a depth of 1
                 setTimeout(function(){
-                    NeighborNeighbor(1, 20, 2, vm);
+                    NeighborNeighbor(1, 22, 1.4, vm);
                 }, waiting_time);
             }";
             queue_js_file('knockout');

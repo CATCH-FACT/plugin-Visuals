@@ -29,19 +29,6 @@ function NodeViewer(vm, selectString){
             .size([w, h]);
 //            .on("tick", tick);
 
-
-/*        var force = d3.layout.force()
-            .linkDistance(vm.node_params()["linkDistance"].value())
-//            .linkStrength(vm.node_params()["linkStrength"].value())
-            .distance(vm.node_params()["distance"].value())
-            .charge(vm.node_params()["charge"].value())
-            .gravity(vm.node_params()["gravity"].value())
-            .friction(vm.node_params()["friction"].value())
-            .theta(vm.node_params()["theta"].value())
-            .size([w, h]);
-//            .on("tick", tick);
-*/
-
         var x = d3.scale.identity().domain([0, w])
         var y = d3.scale.identity().domain([0, h])
 
@@ -49,8 +36,8 @@ function NodeViewer(vm, selectString){
             .attr("tabindex", 1)
             .each(function() { this.focus(); })        
             .append("svg")
-            .attr("width", 350)
-            .attr("height", 300)
+            .attr("width", w)
+            .attr("height", h)
             .call(zoom);
         
         var link = svg.append("g")
@@ -61,6 +48,19 @@ function NodeViewer(vm, selectString){
                         .attr("class", "nodes")
                         .selectAll(".node");
 
+
+        var tooltip = d3.select(selectString)
+            .append("div")
+            .attr("class", "tooltip")
+            .style("position", "absolute")
+            .style("background", "#FFE4E1")
+            .style("z-index", "100")
+            .style("visibility", "hidden")
+            .style("width", "180px")
+            .style("border", "2px")
+            .style("border-color", "black")
+            .style("border-radius", "25px")
+            .text("");
 
         updateWindow();
         window.onresize = updateWindow;
@@ -132,7 +132,7 @@ function NodeViewer(vm, selectString){
                 return vm.nodes_size();
             }
             else {
-                return (vm.nodes_size()/10) * Math.min(Math.max(Math.sqrt(d.text_length), 10), vm.max_nodes_size()) || 5;
+                return (vm.nodes_size()/10) * Math.min(Math.max(Math.sqrt(d.word_count), 10), vm.max_nodes_size()) || 5;
             }
         }
 
@@ -141,7 +141,7 @@ function NodeViewer(vm, selectString){
                 return vm.nodes_size();
             }
             else {
-                return (vm.nodes_size()/8) * Math.min(Math.max(Math.sqrt(d.text_length), 15), vm.max_nodes_size()) || 12;
+                return (vm.nodes_size()/8) * Math.min(Math.max(Math.sqrt(d.word_count), 15), vm.max_nodes_size()) || 12;
             }
         }
 
@@ -166,8 +166,8 @@ function NodeViewer(vm, selectString){
             else if (vm.selectedLegendOptionValue() == "language"){
                 return (d.language ? "node " + legend_colors[vm.selectedLegendOptionValue()][d.language[0]].class_code : "node other");
             }
-            else if (vm.selectedLegendOptionValue() == "text_length_group"){
-                return (d.text_length_group ? "node " + legend_colors[vm.selectedLegendOptionValue()][d.text_length_group].class_code : "node other");
+            else if (vm.selectedLegendOptionValue() == "word_count_group"){
+                return (d.word_count_group ? "node " + legend_colors[vm.selectedLegendOptionValue()][d.word_count_group].class_code : "node other");
             }
             else return "node other"; //none
         }
@@ -236,9 +236,9 @@ function NodeViewer(vm, selectString){
                     return legend_colors[vm.selectedLegendOptionValue()][d.language[0]].color;
                 }
             }
-            if (vm.selectedLegendOptionValue() == "text_length_group"){
-                if (d.text_length_group){
-                    return legend_colors[vm.selectedLegendOptionValue()][d.text_length_group].color;
+            if (vm.selectedLegendOptionValue() == "word_count_group"){
+                if (d.word_count_group){
+                    return legend_colors[vm.selectedLegendOptionValue()][d.word_count_group].color;
                 }
             }
             return subgenre_colors["none"]; //none
@@ -257,7 +257,7 @@ function NodeViewer(vm, selectString){
                     return link.score / 15;
                 });
 
-            force_drag = force.drag().on("dragstart", dragstart); //interferes with doubleclick!! AARGGH
+//            force_drag = force.drag().on("dragstart", dragstart); //interferes with doubleclick!! AARGGH
 
             // Update links.
             link = link.data(graph.links);
@@ -265,22 +265,17 @@ function NodeViewer(vm, selectString){
             link.exit().transition().remove();
 
             link.transition()
-/*                .attr("opacity", function(d) { 
-                    return Math.max(d.score, 1.0) * 0.2;
-                })*/
                 .attr("stroke-width", stroke_width)
                 .attr("stroke", stroke_color);
 
             link.enter()
                 .append("line", ".node")
                 .attr("class", "link")
-/*                .attr("opacity", function(d) { 
-                    return Math.max(d.score, 1.0) * 0.15;
-                })*/
                 .attr("stroke-width", stroke_width)
                 .attr("stroke", stroke_color);
                 
             link.on("mouseover", function(d){
+                    mouse_over_link(d);
                     d3.select(this)
                         .transition()
                         .ease("elastic")
@@ -295,14 +290,16 @@ function NodeViewer(vm, selectString){
                     d3.select(this)
                         .transition()
                         .ease("elastic")
-/*                        .attr("opacity", function(d) { 
-                            return Math.max(d.score, 1.0) * 0.2;
-                        })*/
                         .attr("stroke-width", stroke_width)
                         .attr("stroke", stroke_color);
+                    tooltip.style("visibility", "hidden");
                 })
-                .on("click", left_click_link)
-                .on("dblclick", remove_link_click);
+                .on("mousemove", function(){
+                    tooltip.style("top", (event.pageY-10)+"px")
+                           .style("left",(event.pageX-90)+"px");
+                });
+//                .on("click", left_click_link)
+//                .on("dblclick", remove_link_click);
                     
             // Update nodes.
             node = node.data(graph.nodes);
@@ -326,15 +323,15 @@ function NodeViewer(vm, selectString){
                 .on("click", left_click_node_wait)
                 .on("contextmenu", context_menu)
                 .on("dblclick", dbl_click)
-                .call(force_drag);
+//                .call(force_drag);
             
             nodeEnter
                 .append("circle")
                 .attr("r", node_size);
 
             nodeEnter.append("text")
-                .attr("dy", ".35em")
-                .text(node_text); //html no function with transition?
+                .attr("dy", ".35em");
+//                .text(node_text); //html no function with transition?
 //                .html(function(d) { return d.identifier + (d.title ? ": " + d.title : ""); });
             
             node.transition()
@@ -344,7 +341,7 @@ function NodeViewer(vm, selectString){
                 .attr("r", node_size);
 
             node.select("text").transition()
-                .text(node_text); //html no function with transition?
+//                .text(node_text); //html no function with transition?
             
             node.select("circle")
                 .style("fill", node_color)
@@ -353,12 +350,18 @@ function NodeViewer(vm, selectString){
                         .transition()
                         .ease("elastic")
                         .attr("r", node_size_mouse_over);
+                    mouse_over_node(d);
                 })
                 .on("mouseout", function(d){
                     d3.select(this)
                         .transition()
                         .ease("elastic")
                         .attr("r", node_size);
+                    tooltip.style("visibility", "hidden");
+                })
+                .on("mousemove", function(){
+                    tooltip.style("top", (event.pageY-10)+"px")
+                           .style("left",(event.pageX-90)+"px");
                 });
                 
                   
@@ -373,11 +376,6 @@ function NodeViewer(vm, selectString){
                     .attr("y1", function(d) { return Math.max(20, Math.min(h-20, d.source.y)); })
                     .attr("x2", function(d) { return Math.max(0, Math.min(w+20, d.target.x)); })
                     .attr("y2", function(d) { return Math.max(20, Math.min(h-20, d.target.y)); });
-            //  faster but not so good.
-/*                link.attr("x1", function(d) { return d.source.x; })
-                    .attr("y1", function(d) { return d.source.y; })
-                    .attr("x2", function(d) { return d.target.x; })
-                    .attr("y2", function(d) { return d.target.y; });*/
             });
         }
 
@@ -401,68 +399,51 @@ function NodeViewer(vm, selectString){
             
         }
 
-        // Toggle children on click.
-        function left_click_link(item_data) {
-            d3.event.preventDefault();
-//            console.log(item_data);
+        function mouse_over_node(item_data){
+            print_this = '<b><p style="font-size:12px; display:inline">' + (item_data.title ? "<b>" + item_data.title + "</b><br>" : "") + "</p></b> "
+                        + '<p style="color:green; font-size:12px; display:inline">' + "<i>" + (item_data.language ? item_data.language : "") + " "
+                        + (item_data.subgenre ? item_data.subgenre + "<br>" : ""  + " :) ") + "</i></p><br>";
+            tooltip.style("visibility", "visible")
+                .html(print_this);
+/*                    (d.title ? "<b>" + d.title + "</b><br>" : "") + 
+                      "<i>" + (d.language ? d.language : "") + " " + (d.subgenre ? d.subgenre + "<br>" : ""  + " :) ") + "</i>" +
+                      (d.named_entity ? d.named_entity : ""));*/
             
-            var even = true;
-            
-            //make link ping, not nodes
-/*
-            pinging[0] = item_data.source;
-            pinging[1] = item_data.target;
-            ping();
-            pinging_link[0] = item_data
-            ping_link();
-*/            
-            var list = d3.select("#tabs-1");
-            
-            list.selectAll("li").remove();
-            
-            list.append("li")
-                .attr("class", "linkTypeLabel")
-                .html("<b>Score:</b> " + item_data.score);
-            
-            $.each(vm.metadatas_to_query(), function(metaindex, metavalue){
-                even = !even;
-                var print_this = [];
-                if ((item_data["source"][metavalue.key]) || (item_data["target"][metavalue.key])){
-                    same = [];
-                    source = [];
-                    target = [];
-                    if (item_data["source"][metavalue.key] instanceof Array && item_data["target"][metavalue.key] instanceof Array){
-                        source = jQuery.extend(true, [], item_data["source"][metavalue.key]);
-                        target = jQuery.extend(true, [], item_data["target"][metavalue.key]);
-                        for (item_s in item_data["source"][metavalue.key]){
-                            for (item_t in item_data["target"][metavalue.key]){
-                                if (item_data["source"][metavalue.key][item_s] == item_data["target"][metavalue.key][item_t]){
-                                    same.push(item_data["source"][metavalue.key][item_s]);
-                                    source.splice($.inArray(item_data["source"][metavalue.key][item_s], source), 1);
-                                    target.splice($.inArray(item_data["target"][metavalue.key][item_t], target), 1);
+        }
+
+        function mouse_over_link(item_data){
+            var print_this = "<b>Gelijke waarden:<b><br>";
+            jQuery.each(vm.metadatas_to_query(), function(metaindex, metavalue){
+                if (metavalue.selected()){
+                    if ((item_data["source"][metavalue.key]) || (item_data["target"][metavalue.key])){
+                        same = [];
+                        //array values
+                        if (item_data["source"][metavalue.key] instanceof Array && item_data["target"][metavalue.key] instanceof Array){ 
+                            for (item_s in item_data["source"][metavalue.key]){
+                                for (item_t in item_data["target"][metavalue.key]){
+                                    if (item_data["source"][metavalue.key][item_s] == item_data["target"][metavalue.key][item_t]){
+                                        same.push(item_data["source"][metavalue.key][item_s]);
+                                    }
                                 }
                             }
                         }
-                    }
-                    else{
-                        if (item_data["source"][metavalue.key] == item_data["target"][metavalue.key]){
-                            same.push(item_data["source"][metavalue.key]);
+                        else{ //for single values
+                            if (item_data["source"][metavalue.key] == item_data["target"][metavalue.key]){
+                                same.push(item_data["source"][metavalue.key]);
+                            }
                         }
-                        else{
-                            source.push(item_data["source"][metavalue.key]);
-                            target.push(item_data["target"][metavalue.key]);
+                        if (same.length > 0){
+                            print_this += '<b><p style="font-size:12px; display:inline">' + metavalue.key + ":</p></b> "
+                            + '<p style="color:green; font-size:12px; display:inline">' + same.join(" | ") + "</p><br>";
                         }
                     }
-                    print_this = "<b>" + metavalue.key + ":</b>"
-                    if (same.length > 0){   print_this += " <p style=\"color:green\">" + same.join(" | ") + "</p><hr>"; }
-                    if (source.length > 0){ print_this += "<p style=\"color:red\">" + source.join(" | ") + "</p>"; }
-                    if (target.length > 0){ print_this += "<hr><p style=\"color:red\">" + target.join(" | ") + "</p><hr>"; }
-                    list.append("li")
-                        .attr("class", "linkTypeLabel")
-                        .html(print_this);
                 }
             });
+            tooltip.style("visibility", "visible")
+                    .html(print_this);
         }
+
+        // Toggle children on click.
 
         // Toggle children on click.
         function left_click_node(item_data) {
@@ -477,15 +458,15 @@ function NodeViewer(vm, selectString){
             
             list.selectAll("li").remove();
 
-            list.append("li").attr("class", "linkTypeLabel").html("<b>calculate all links: <button>" + item_data.id + "</button>");
+            list.append("li").attr("class", "linkTypeLabel").html("<b>calculate all links: <button>" + item_data.modelid + "</button>");
             
             list.append("li").attr("class", "linkTypeLabel").html("<button class=\"cons_search_button\">New search</button>");
 
-            list.append("li").attr("class", "linkTypeLabel").html("<b>URL: </b> " + "<a target=\"folktale\" href=\"http://www.verhalenbank.nl/items/show/" + item_data.id + "\">" + item_data.id + " - " + item_data.identifier + " - " + item_data.title + "</a>");
+            list.append("li").attr("class", "linkTypeLabel").html("<b>URL: </b> " + "<a target=\"folktale\" href=\"http://www.verhalenbank.nl/items/show/" + item_data.modelid + "\">" + item_data.modelid + " - " + item_data.identifier + " - " + item_data.title + "</a>");
             
             d3.select('.cons_search_button')
                 .on('click', function() {
-                    vm.ConsSearch(item_data.id);
+                    vm.ConsSearch(item_data.modelid);
             });
             
             var even = true;
@@ -522,7 +503,7 @@ function NodeViewer(vm, selectString){
                     .attr("text-decoration", "underline");
             }
             if (d.selected){
-                window.open("http://www.verhalenbank.nl/items/show/" + d.id, '_blank', '');
+                window.open("http://www.verhalenbank.nl/items/show/" + d.modelid, '_blank', '');
                 d3.select(this).classed("visited", true);
 /*                console.log("selected");
                 d3.select(this)
@@ -531,11 +512,11 @@ function NodeViewer(vm, selectString){
                    .append("a")
                    .attr("target", "_blank") //set the link to open in an unnamed tab
                     .attr("xlink:show", "new")
-                    .attr("xlink:href", function(d) {return "http://www.verhalenbank.nl/items/show/" + d.id})
+                    .attr("xlink:href", function(d) {return "http://www.verhalenbank.nl/items/show/" + d.modelid})
                     .text(function (d) {
                               return (d.language ? d.language : "") + " " + (d.subgenre ? d.subgenre : ""); //link text content
                           });
-//                .append("li").attr("class", "linkTypeLabel").html("<a target=\"folktale\" href=\"http://www.verhalenbank.nl/items/show/" + d.id + "\">" + (d.language ? d.language : "") + " " + (d.subgenre ? d.subgenre : "") + "</a>");
+//                .append("li").attr("class", "linkTypeLabel").html("<a target=\"folktale\" href=\"http://www.verhalenbank.nl/items/show/" + d.modelid + "\">" + (d.language ? d.language : "") + " " + (d.subgenre ? d.subgenre : "") + "</a>");
 */
             }
             if (d.fixed) d3.select(this).classed("fixed", d.fixed = false);
@@ -667,6 +648,5 @@ function NodeViewer(vm, selectString){
 //            setLegendList();
         });
         
-
     }
 }
