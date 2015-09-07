@@ -34,10 +34,11 @@ function NodeViewer(vm, selectString){
 
         var svg = d3.select(selectString)
             .attr("tabindex", 1)
-            .each(function() { this.focus(); })        
+//            .each(function() { this.focus(); })        
             .append("svg")
             .attr("width", w)
             .attr("height", h)
+            .style("transform", "translateZ(0px)")
             .call(zoom);
         
         var link = svg.append("g")
@@ -47,7 +48,6 @@ function NodeViewer(vm, selectString){
         var node = svg.append("g")
                         .attr("class", "nodes")
                         .selectAll(".node");
-
 
         var tooltip = d3.select(selectString)
             .append("div")
@@ -257,7 +257,7 @@ function NodeViewer(vm, selectString){
                     return link.score / 15;
                 });
 
-//            force_drag = force.drag().on("dragstart", dragstart); //interferes with doubleclick!! AARGGH
+            force_drag = force.drag().on("dragstart", dragstart); //interferes with doubleclick!! AARGGH
 
             // Update links.
             link = link.data(graph.links);
@@ -295,9 +295,21 @@ function NodeViewer(vm, selectString){
                     tooltip.style("visibility", "hidden");
                 })
                 .on("mousemove", function(){
-                    tooltip.style("top", (event.pageY-10)+"px")
+                    tooltip.style("top", (event.pageY+5)+"px")
                            .style("left",(event.pageX-90)+"px");
+                })
+                .on("click", function(d){
+                        mouse_over_link(d);
+                        d3.select(this)
+                            .transition()
+                            .ease("elastic")
+                            .attr("opacity", 1)
+                            .attr("stroke", "orange")
+                            .attr("stroke-width", function(d) { 
+                                return Math.max(d.score, 5.0) * 2;
+                            });
                 });
+
 //                .on("click", left_click_link)
 //                .on("dblclick", remove_link_click);
                     
@@ -321,9 +333,16 @@ function NodeViewer(vm, selectString){
                 .append("g")
                 .attr("class", node_class) //determine color based on genre
                 .on("click", left_click_node_wait)
-                .on("contextmenu", context_menu)
-                .on("dblclick", dbl_click)
-//                .call(force_drag);
+                .call(force_drag);
+/*                .on("click", function(){
+                    console.log("click");
+                    tooltip.style("visibility", "visible");
+                    tooltip.style("top", (event.pageY-10)+"px")
+                           .style("left",(event.pageX-90)+"px");
+                })
+//                .on("contextmenu", context_menu)
+//                .on("dblclick", dbl_click)
+//                .call(force_drag);*/
             
             nodeEnter
                 .append("circle")
@@ -346,6 +365,7 @@ function NodeViewer(vm, selectString){
             node.select("circle")
                 .style("fill", node_color)
                 .on("mouseover", function(d){
+                    console.log("circle mouseover");
                     d3.select(this)
                         .transition()
                         .ease("elastic")
@@ -353,6 +373,7 @@ function NodeViewer(vm, selectString){
                     mouse_over_node(d);
                 })
                 .on("mouseout", function(d){
+                    console.log("circle mousout");
                     d3.select(this)
                         .transition()
                         .ease("elastic")
@@ -360,9 +381,38 @@ function NodeViewer(vm, selectString){
                     tooltip.style("visibility", "hidden");
                 })
                 .on("mousemove", function(){
+                    console.log("circle mousemove");
+                    tooltip.style("top", (event.pageY+5)+"px")
+                           .style("left",(event.pageX-90)+"px");
+                })
+/*                .on("click", function(d){
+                    left_click_node_wait(d);
+                    console.log("click");
+                    tooltip.style("visibility", "visible");
                     tooltip.style("top", (event.pageY-10)+"px")
                            .style("left",(event.pageX-90)+"px");
-                });
+                })
+/*                .on("touchstart", function(){
+                    console.log("touch start");
+                    tooltip.style("visibility", "visible");
+                    tooltip.style("top", (event.pageY-10)+"px")
+                           .style("left",(event.pageX-90)+"px");
+                })
+                .on("touchend", function(){
+                    console.log("touch end");
+                    tooltip.style("visibility", "hidden");
+                    tooltip.style("top", (event.pageY-10)+"px")
+                           .style("left",(event.pageX-90)+"px");
+                })*/
+                .on("contextmenu", function(){
+                    console.log("contextmenu");
+                    tooltip.style("visibility", "visible");
+                    tooltip.style("top", (event.pageY-10)+"px")
+                           .style("left",(event.pageX-90)+"px");
+                })
+                .on("dblclick", function(){
+                    console.log("dblclick");
+                })
                 
                   
 //#########################################################
@@ -496,6 +546,7 @@ function NodeViewer(vm, selectString){
         }
 
         function left_click_node_wait(d){
+            console.log("left click wait");
             if (d3.event.defaultPrevented) return; // click suppressed
             if (!d.selected){
                 d3.selectAll("text").attr("text-decoration", "null");
@@ -526,9 +577,12 @@ function NodeViewer(vm, selectString){
                 return p.selected = d === p; 
             });
             
-            setTimeout(function(){
+            tooltip.style("visibility", "visible")
+                    .html(print_this);
+            
+//            setTimeout(function(){
 //                left_click_node(d)
-            }, 200);
+//            }, 200);
         }
 
         function dbl_click(d) {
