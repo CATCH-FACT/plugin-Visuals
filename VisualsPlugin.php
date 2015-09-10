@@ -17,20 +17,35 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
 #            'define_acl',
 #            'define_routes',
             'public_items_show',
+            'admin_items_show',
 #            'public_items_search',
 #            'items_browse_sql',
             'public_head',
+            'admin_head',
             );
+
+    public function hookAdminItemsShow($args){
+        print '<div id="item-nodes" class="element" style="border-style:solid;border-width:5px;">';
+        print '     <h2>' . __("Vergelijkbare verhalen") . '</h2>';
+        print "</div>";
+    }
 
     public function hookPublicItemsShow($args){
         print '<div id="item-nodes" class="element">';
         print '     <h2>' . __("Vergelijkbare verhalen") . '</h2>';
-//        print '     <div id="item-network" class="network">';
-//        print "     </div>";
         print "</div>";
     }
 
+
     public function hookPublicHead($args){
+        $this->_headCode($args);
+    }
+
+    public function hookAdminHead($args){
+        $this->_headCode($args);
+    }        
+
+    public function _headCode($args){
         
         $view = get_view();
         
