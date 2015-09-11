@@ -318,7 +318,7 @@ var interconnect_minimum_score = 1.2; //solr score
 var max_nodes_size = 25;
 var max_nodes_to_load = 800;
 
-var max_neighbor_results = 25;
+var max_neighbor_results = 55;
 var min_neighbor_score = 1.5;
 
 //some view settings
