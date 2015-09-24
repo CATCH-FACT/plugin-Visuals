@@ -9,7 +9,7 @@ var metadatas_to_query = [  {key: "title",          score_value: 1,     selected
                             {key: "format",	        score_value: 1,     selected: false},
                             {key: "type",	        score_value: 1,     selected: true},
                             {key: "subgenre",	    score_value: 1,     selected: true},
-                            {key: "motif",	        score_value: 2,     selected: true},
+                            {key: "motif",	        score_value: 1,     selected: true},
                             {key: "literary",	    score_value: 1,     selected: true},
                             {key: "extreme",	    score_value: 1,     selected: true},
                             {key: "named_entity",	score_value: 1,     selected: true},
@@ -18,7 +18,7 @@ var metadatas_to_query = [  {key: "title",          score_value: 1,     selected
                             {key: "corpus",	        score_value: 1,     selected: false},
                             {key: "word_count",	score_value: 1,     selected: false},      //NEW
                             {key: "word_count_group",   score_value: 1,     selected: false},      //NEW
-                            {key: "tag",           score_value: 1.2,     selected: true},
+                            {key: "tag",           score_value: 1,     selected: true},
                             {key: "location",	    score_value: 1,     selected: true},
                             {key: "sublocality",	score_value: 1,     selected: false},
                             {key: "locality",	    score_value: 1,     selected: false},
@@ -29,12 +29,6 @@ var metadatas_to_query = [  {key: "title",          score_value: 1,     selected
                             {key: "text",           score_value: 1,     selected: false}
                         ];
 
-
-var metadatas_to_show = ["identifier", "title", "item_type", "subject",
-                        "collector", "creator", "contributor", "date",
-                        "subgenre", "type", "language", "literary", "extreme",
-                        "tags", "named_entity","named_entity_location","place_of_action", "motif", 
-                        "corpus","word_count","word_count_group", "locality", "description", "text"];
 
 function makeid(n){
     var text = "";
@@ -336,11 +330,11 @@ var id_in_node = false;
 var link_colors_by_score_strength = true;
 
 var node_params = {
-    charge: { min: -10000, max: 500, step: 5, value: -3000 },
+    charge: { min: -10000, max: 500, step: 5, value: -200 },
     linkDistance: { min: 0, max: 100, step: 5, value: 50 },
     distance: { min: 0, max: 1000, step: 5, value: 50 },
     linkStrength: { min: 0, max: 1, step: 0.05, value: 1 },
-    gravity: { min: -0.0, max: 0.8, step: 0.01, value: 0.1 },
+    gravity: { min: -0.0, max: 0.8, step: 0.01, value: 0.04 },
     friction: { min: 0, max: 1, step: 0.05, value: 0.8 },
     theta: { min: 0, max: 1, step: 0.05, value: 0.5 },
 };
@@ -389,8 +383,6 @@ function ViewModel(item_id, search_proxy) {
 
     self.metadatas_to_query = ko.observable(metadatas_to_query);
 
-    self.metadatas_to_show = ko.observable(metadatas_to_show);
-    
     self.subgenre_colors = ko.observable(subgenre_colors);
 
     //observable arrays for containing search/browse results
@@ -469,7 +461,6 @@ function ViewModel(item_id, search_proxy) {
     };
 
     self.doIdSearch = function () {
-//        console.log("ID SEARCH");
 //        console.log(self.id_search_query());
         
         self.clearData();
@@ -681,11 +672,11 @@ function generate_item_query(item, metadatas_to_query){
             if ((metavalue.key == index) && (metavalue.selected() == true)){
                 if (jQuery.isArray(value)){
                     jQuery.each(value, function(subindex, subvalue){
-                        or_pre_query.push(index + ':' + subvalue + '' + "^" + metavalue.score_value());
+                        or_pre_query.push(index + ':\\"' + subvalue + '\\"' + "^" + metavalue.score_value());
                     });
                 }
                 else{
-                    or_pre_query.push(index + ':' + value + '' + "^" + metavalue.score_value());
+                    or_pre_query.push(index + ':\\"' + value + '\\"' + "^" + metavalue.score_value());
                 }
             }
         });

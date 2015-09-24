@@ -21,10 +21,10 @@ function NodeViewer(vm, selectString){
         var force = d3.layout.force()
             .linkDistance(10)
             .linkStrength(1)
-            .distance(0)
-            .charge(-1400)
+            .distance(10)
+            .charge(-1200)
             .gravity(0.4)
-            .friction(0.8)
+            .friction(0.5)
             .theta(1)
             .size([w, h]);
 //            .on("tick", tick);
@@ -452,7 +452,7 @@ function NodeViewer(vm, selectString){
         function mouse_over_node(item_data){
             print_this = '<b><p style="font-size:12px; display:inline">' + (item_data.title ? "<b>" + item_data.title + "</b><br>" : "") + "</p></b> "
                         + '<p style="color:green; font-size:12px; display:inline">' + "<i>" + (item_data.language ? item_data.language : "") + " "
-                        + (item_data.subgenre ? item_data.subgenre + "<br>" : ""  + " :) ") + "</i></p><br>";
+                        + (item_data.subgenre ? item_data.subgenre + "<br>" : "") + "</i>" + (item_data.date ? item_data.date[0].substring(0, 4) : "") + "<br></p><br>";
             tooltip.style("visibility", "visible")
                 .html(print_this);
 /*                    (d.title ? "<b>" + d.title + "</b><br>" : "") + 

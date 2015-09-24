@@ -16,7 +16,8 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
             'config',
 #            'define_acl',
 #            'define_routes',
-            'public_items_show',
+//            'public_items_show',
+            'public_items_show_sidebar_top',
             'admin_items_show',
 #            'public_items_search',
 #            'items_browse_sql',
@@ -30,7 +31,7 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
         print "</div>";
     }
 
-    public function hookPublicItemsShow($args){
+    public function hookPublicItemsShowSidebarTop($args){
         print '<div id="item-nodes" class="element">';
         print '     <h2>' . __("Vergelijkbare verhalen") . '</h2>';
         print "</div>";
