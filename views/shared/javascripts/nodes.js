@@ -375,7 +375,7 @@ function NodeViewer(vm, selectString){
                 .attr('stroke', 'gray')
                 .attr('fill', "gray")
                 .attr('transform', function(k, i) { 
-                    return 'translate(10,9) scale(0.02,0.02) rotate(180)';
+                    return 'translate(-10,9) scale(-0.02,0.02) rotate(180)';
                 });
 
             node.transition()
