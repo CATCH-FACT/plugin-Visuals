@@ -12,7 +12,6 @@ function WaitViewer(vm){
             }
         });
         
-//        $(".info").toggle("explode"); //start toggled
         vm.show_help_windows.subscribe( function (){
             if (vm.show_help_windows()){
                 $(".info").toggle("explode");
@@ -220,7 +219,6 @@ function MapViewer(vm){
 
     function n_decimals(nr, n){
         if (nr){
-//            return Math.floor(nr*100)/100;
             return nr.toFixed(n);
         }
         return nr;
@@ -258,8 +256,6 @@ function MapViewer(vm){
 
                 
             // drop this into global scope
-//            chor=locatie_layer;
-
             var projection = this.getProjection(), padding = 10;
 
             function CalculateStarPoints(arms, multiplier, d){
@@ -306,7 +302,6 @@ function MapViewer(vm){
                 if (lat_lon[0] == ""){ lat_lon = [52.655694, 3.913930]}
                 d.lat_lon = lat_lon;
                 d = new google.maps.LatLng(lat_lon[0], lat_lon[1]);
-//                d = new google.maps.LatLng(d.value.latitude, d.value.longitude);
                 d = projection.fromLatLngToDivPixel(d); 
                 return d3.select(this)
                     .attr("x", ((d.x - (size/2)) + 4000) + "px")
@@ -403,8 +398,6 @@ function MapViewer(vm){
                     data = d.values.slice(pos, (pos + (amount-1)));
                     data.unshift("_NEXT");
                 }
-                
-//                borderpixels = org_r * ((100 / d.values.length) * (pos / d.values.length));
 
                 percentage = ((1 / d.values.length) * pos) + 0.000001;
                 borderpixels = org_r * percentage;
@@ -435,7 +428,6 @@ function MapViewer(vm){
                 
                 menuitemsenter = menuitems.enter()
                     .append("g")
-//                    .attr("class", "menuitem")
                     .attr("class", function(dat){
                         if (dat == "_NEXT"){
                             return "bluemenuitem";
@@ -452,10 +444,7 @@ function MapViewer(vm){
                     .transition().duration(function(d, i){
                         return 120 * i;
                     })
-                    .attr("r", 20)
-/*                    .attr('transform', function(k, i) { 
-                        return 'rotate(360)';
-        			});*/   
+                    .attr("r", 20);
 
                 menuitemsenter
         			.append("circle")
@@ -552,8 +541,6 @@ function MapViewer(vm){
                 collector_marker.enter()
                     .append("path")
                     .attr('d', symbol.size(10))
-                  //  .attr("stroke","black")
-                  //  .attr("stroke-width", "1.5px")
                     .attr("fill", object_colors["collector"])
                     .on("mouseover", function(d){
                         d3.select(this)
@@ -608,13 +595,8 @@ function MapViewer(vm){
                             return (map.getZoom() * 5) + 60;
                         }
                         return Math.min((d.values.length * 50) + (map.getZoom() * 5), 1000);
-//                        return (Math.sqrt(d.values.length) * bubble_sizes_multiplier) + map.getZoom(); //sqrt so circles don't get too large
                     }))
                     .attr("fill", function(d){
-//                        if (vm.bubbles_color_intensity()){
-//                            return d3.rgb(255, 255 - (Math.log(d.values.length) * 150), 155 - (Math.log(d.values.length) * 150));
-//                            return d3.rgb((Math.log(d.values.length) * 100), 255 - (Math.log(d.values.length) * 70), 255);
-//                        }
                         return object_colors["collector"];
                     })
                     .style("opacity", function(){
@@ -644,8 +626,6 @@ function MapViewer(vm){
                 creator_marker.enter()
                     .append("path")
                     .attr('d', symbol_tri.size(10))
-                   // .attr("stroke","black")
-                   // .attr("stroke-width", "1px")
                     .attr("fill", object_colors["creator"])
                     .on("mouseover", function(d){
                         d3.select(this)
@@ -653,7 +633,6 @@ function MapViewer(vm){
                             .ease("elastic")
                             .attr("d", symbol_tri.size(function(d){
                                 return Math.min((d.values.length * 50) + (map.getZoom() * 50), 2000);
-//                                return (d.values.length * 50) + (map.getZoom() * 50);
                             }))
                             .style("opacity", 1);
                         map.setOptions({draggableCursor:'crosshair'});
@@ -788,7 +767,6 @@ function MapViewer(vm){
                     .duration(200)
                     .delay(function(d, i){
                         return 2000 - Math.sqrt(d.values.length) * 40; //largest first!
-//                        return (i) + Math.sqrt(d.values.length) * 40;
                     })
                     .attr("r", function(d){
                         return 100;
@@ -843,8 +821,6 @@ function MapViewer(vm){
                     .attr("class", "ne_location")
                     .attr("fill", object_colors["ne_locality"])
                     .style("opacity", vm.opacity_ne_locations())
-               //     .attr("stroke","black")
-               //     .attr("stroke-width","1.2px")
                     .on("mouseover", function(d){
                         map.setOptions({draggableCursor:'crosshair'});
                         d3.select(this)
@@ -901,16 +877,13 @@ function MapViewer(vm){
                         return i + Math.sqrt(d.values.length) * 20;
                     })
                     .duration(500)
-//                    .attr("points", function(d){ return CalculateStarPoints(5, d); })
                     .style("opacity", vm.opacity_ne_locations())
                     .style("visibility", function() {
                                     return vm.show_ne_locations() ? "visible" : "hidden";
                     })
                     .attr("fill", function(d){
                         if (vm.bubbles_color_intensity()){
-//                                return d3.rgb((Math.log(d.values.length) * 35), 0, 0);
                                 return d3.rgb(255, 255 - (Math.log(d.values.length) * 35), 65 - (Math.log(d.values.length) * 35));
-//                                return d3.rgb((Math.log(d.values.length) * 35), 155 - (Math.log(d.values.length) * 35), 155 - (Math.log(d.values.length) * 35));
                         }
                         return object_colors["ne_locality"];
                     });
@@ -946,17 +919,11 @@ function MapViewer(vm){
             //data subscriptions
             vm.location_results.subscribe( function (){
                 updateLocations(vm.location_results());
-//                updateCreators(vm.creator_results());
-//                updateCollectors(vm.collector_results());
             });
             vm.creator_results.subscribe( function (){
-//                updateLocations(vm.location_results());
                 updateCreators(vm.creator_results());
-//                updateCollectors(vm.collector_results());
             });
             vm.collector_results.subscribe( function (){
-//                updateLocations(vm.location_results());
-//                updateCreators(vm.creator_results());
                 updateCollectors(vm.collector_results());
             });
             vm.ne_location_results.subscribe( function (){
@@ -991,7 +958,6 @@ function MapViewer(vm){
             //show subscriptions
             vm.show_locations.subscribe( function (){
                 vm.doLocationSearch() //more data expensive
-//                updateLocations(vm.location_results());   
             });
             vm.show_creators.subscribe( function (){
                 updateCreators(vm.creator_results());
@@ -1003,42 +969,29 @@ function MapViewer(vm){
                 updateNELocations(vm.ne_location_results());
             });
 
-/*
-            vm.subgenresChecked.subscribe( function (){
-                console.log(vm.subgenresChecked());
-            });
-            vm.menu_subgenre()[0].checked.subscribe( function (){
-                console.log(vm.menu_subgenre());
-            });           
-            vm.menu_type()[0].checked.subscribe( function (){
-                console.log(vm.menu_subgenre());
-            });           
-*/            
             //cloud
             vm.cloud_view.subscribe( function(){
-//                console.log("Clouding!");
                 cloudViewing(vm.cloud_view());
             });
             // Draw each marker as a separate SVG element.
             // We could use a single SVG, but what size would it have?
             // here we keep track of all changes in the viewmodel
             overlay.draw = function() {
-                
+                //data updaters
                 updateLocations(vm.location_results());
 //                updateCreators(vm.creator_results());
 //                updateCollectors(vm.collector_results());
 //                updateNELocations(vm.ne_location_results());
 
+                //google event listeners
                 google.maps.event.addListener(map, 'zoom_changed', function() {
                     object_layer.selectAll(".menuitems").remove();
                 });
-
-                //events for zooming
                 google.maps.event.addListener(map, 'center_changed', function() {
                     info_click_tip.style("visibility", "hidden");
                 });
                 google.maps.event.addListener(map, 'click', function() {
-//                    info_click_tip.style("visibility", "hidden");
+                    //Some code for clicking outside of menu items
                 });
             }
         }
@@ -1046,4 +999,3 @@ function MapViewer(vm){
     // Bind our overlay to the map¦
     overlay.setMap(map);
 }
-//google.maps.event.addDomListener(window, 'load', initialize);

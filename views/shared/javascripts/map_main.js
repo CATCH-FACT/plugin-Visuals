@@ -41,7 +41,6 @@ window.onload = function () {
         query = query.replace(']', "");
         final_query = query;
         if ((typeof facet !== 'undefined') && (facet != '')){
-            console.log("why?");
             final_query += " AND (" + facet + ")";
         }
     }
@@ -161,10 +160,12 @@ var menu_collectors = [ {  key: "A.A. Jaarsma",		        title: "A.A. Jaarsma", 
     				      {key: "Giselinde Kuipers",        title: "Giselinde Kuipers", icon: "",	checked: false}
     					  ];
 
-function getUrlParameter(sParam)
-{
+/*
+*   Getting URL parameters and returning them in a for loop
+*
+*/
+function getUrlParameter(sParam){
     var sPageURL = window.location.search.substring(1);
-    console.log(decodeURI(sPageURL));
     var sURLVariables = sPageURL.split('&');
     for (var i = 0; i < sURLVariables.length; i++) {
         var sParameterName = sURLVariables[i].split('=');
@@ -174,6 +175,10 @@ function getUrlParameter(sParam)
     }
 }
 
+/*
+*   The knockout model
+*   Keeps track of data, settings, menu items, and selections
+*/
 function ViewModel() {
     
     var self = this;
@@ -256,7 +261,7 @@ function ViewModel() {
     self.menu_type = ko.observableArray(menu_type);
     self.menu_language = ko.observableArray(menu_language);
     self.menu_tags = ko.observableArray(menu_tags);
-//    self.menu_collectors = ko.observableArray(menu_collectors);
+    self.menu_collectors = ko.observableArray(menu_collectors);
     
     self.subgenresChecked = ko.observableArray([]);
     self.typesChecked = ko.observableArray([]);
@@ -336,10 +341,6 @@ function ViewModel() {
         self.location_query = proxy + self.initial_facet_query();
     }
     
-    updateQuery = function(){
-	    console.log(self.menu_subgenre());
-    }
-    
     //helpsearches
     self.hs1 = function (hq) {
         self.location_query($("#hs1").val());
@@ -402,14 +403,12 @@ function ViewModel() {
                 if (self.location_query() == ''){
                     qry = '*:*';
                 }
-                UpdateLocationData('(' + qry + ')' + ' AND public:\\"true\\"', self);
+                theUltimateQuery = '(' + qry + ')' + ' AND public:\\"true\\"';
+                UpdateLocationData(theUltimateQuery.replace(/%2B/g, "+"), self);
             },10);
         }
         
-        urlPath = location.origin + location.pathname + "?facet=" + self.location_query().replace(/\)/g, '').replace(/\(/g, '').replace(/\\/g, '');
-        console.log(location);
-        console.log(urlPath);
-                
+        urlPath = location.origin + location.pathname + "?facet=" + self.location_query().replace(/\)/g, '').replace(/\(/g, '').replace(/\\/g, '');                
         window.history.pushState({"html": document.html,"pageTitle": document.title}, "", urlPath);
         
 /*        if (self.show_collectors){
@@ -488,7 +487,6 @@ function UpdateFacetData(facet_query, vm){
 }
 
 function UpdateNELocationData(ne_location_query, vm){
-//    console.log("NE LOCATION:" + ne_location_query);
     vm.waiting(true);
     vm.waiting.valueHasMutated();
     $.getJSON(ne_location_query, function(response) {
@@ -543,8 +541,6 @@ function UpdateLocationData(query, vm){
     query_object = create_search_arguments_and_return_locationdata(query)
     arg = {"rj": stringify(query_object)};
     
-//    console.log(arg);
-    
     vm.waiting(true);
     vm.waiting.valueHasMutated();
     
@@ -578,7 +574,6 @@ function UpdateCreatorData(creator_query, vm){
 
 
 function UpdateCollectorData(collector_query, vm){
-//    console.log("COLLECTOTS:" + collector_query);
     $.getJSON(collector_query, function(response) {
 //        var jq_results = vm.creator_results;
         nested_results = d3.nest()
