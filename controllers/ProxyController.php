@@ -9,4 +9,8 @@ class Visuals_ProxyController extends Omeka_Controller_AbstractActionController
     public function indexAction()
     {        
     }
+    
+    public function proxyPostAction()
+    {        
+    }
 }

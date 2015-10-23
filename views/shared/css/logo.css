@@ -1,0 +1,168 @@
+.logos {
+	padding:5px;
+	padding-left:15px;
+	padding-right:15px;
+	opacity:1;
+	box-shadow:0 0 4px rgba(0,0,0,1);
+	border:0 solid #000000;
+	border-radius:3px;
+	font-family:'Open Sans',sans-serif;
+	font-size:21px;
+	color:#fff;
+	top:0px;
+}
+
+#vkLogo{
+    height: 50px;
+    float:left;
+    background:#838383;
+}
+
+#vkLogo strong{
+    font-family:'Open Sans',sans-serif;
+	font-size:21px;
+    color:#fff;
+}
+
+#vbLogo {
+    height: 50px;
+    float:left;
+    left: 20%;
+	background:#454545;
+}
+
+/*####################################################*/
+/* handling fonts */
+
+@font-face {
+	font-family: 'VerhalenKaartIconen';
+	src:url('fonts/VerhalenKaartIconen.eot?md872l');
+	src:url('fonts/VerhalenKaartIconen.eot?md872l#iefix') format('embedded-opentype'),
+		url('fonts/VerhalenKaartIconen.ttf?md872l') format('truetype'),
+		url('fonts/VerhalenKaartIconen.woff?md872l') format('woff'),
+		url('fonts/VerhalenKaartIconen.svg?md872l#VerhalenKaartIconen') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'VerhalenKaartIconen';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Kwispel:before {
+	content: "\e806";
+	color: rgb(0, 0, 0);
+}
+.icon-Kwispel .path2:before {
+	content: "\e807";
+	margin-left: -1.0986328125em;
+	color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path3:before {
+	content: "\e808";
+	margin-left: -1.0986328125em;
+	color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path4:before {
+	content: "\e809";
+	margin-left: -1.0986328125em;
+	color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path5:before {
+	content: "\e80a";
+	margin-left: -1.0986328125em;
+	color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path6:before {
+	content: "\e80b";
+	margin-left: -1.0986328125em;
+	color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path7:before {
+	content: "\e80c";
+	margin-left: -1.0986328125em;
+	color: rgb(76, 70, 59);
+}
+.icon-Exempel .path1:before {
+	content: "\e80d";
+	color: rgb(0, 0, 0);
+}
+.icon-Exempel:before {
+	content: "\e80e";
+	margin-left: -0.716796875em;
+	color: rgb(74, 74, 74);
+}
+.icon-Limerick:before {
+	content: "\e80f";
+}
+.icon-Type:before {
+	content: "\e803";
+}
+.icon-Collector:before {
+	content: "\e804";
+}
+.icon-Language:before {
+	content: "\e601";
+}
+.icon-Subgenre:before {
+	content: "\e603";
+}
+.icon-Tag:before {
+	content: "\e605";
+}
+.icon-Broodjeaap:before {
+	content: "\e604";
+}
+.icon-Sprookje:before {
+	content: "\e802";
+}
+.icon-book2:before {
+	content: "\e801";
+}
+.icon-book3:before {
+	content: "\f007";
+}
+.icon-Mop:before {
+	content: "\e9e9";
+}
+.icon-Verhalenkaart:before {
+	content: "\e025";
+}
+.icon-Legende:before {
+	content: "\e606";
+}
+.icon-Sage:before {
+	content: "\e602";
+}
+.icon-Personal_narrative:before {
+	content: "\e810";
+}
+.icon-book:before {
+	content: "\e800";
+}
+.icon-Info:before {
+	content: "\e2a2";
+}
+.icon-Raadsel:before {
+	content: "\e30f";
+}
+.icon-Mythe:before {
+	content: "\f084";
+}
+.icon-Lied:before {
+	content: "\e805";
+}
+.icon-Personal:before {
+	content: "\e811";
+}
+
