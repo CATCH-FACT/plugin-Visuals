@@ -77,6 +77,10 @@ h1,h2,h3,h4 {
 	background:#454545;
 }
 
+#vbLogo strong a{
+    color:#fff;
+}
+
 .top_menu {
     top: 0px;
     left: 0px;
