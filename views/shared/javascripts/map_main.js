@@ -396,6 +396,8 @@ function ViewModel() {
             return urlPath.replace("visuals/map", "solr-search");
         }, this);
 
+    //!! TODO make distinction between q and facet !!
+    
     self.doSearch = function () {
         if (self.show_locations()){
             setTimeout(function(){ //easy now!
@@ -421,13 +423,11 @@ function ViewModel() {
                 UpdateCreatorData(creator_proxy + self.creator_query() + " AND " + collection_creators, self);
             },30);
         }
-        if (self.show_ne_locations){ //the future comes soon
+        if (self.show_ne_locations){ //the future is nigh
             setTimeout(function(){
                 UpdateNELocationData(ne_location_proxy + self.ne_location_query() + " AND " + collection_ne_locations, self);
             },40);
         }*/
-//        UpdateLocationData(location_proxy + self.location_query(), self);
-//        UpdateFacetData(facet_proxy + "(" + self.location_query() + ") AND " + collection_folktales + facet_addition, self);
     }
 
     self.emptySearchbox = function(){

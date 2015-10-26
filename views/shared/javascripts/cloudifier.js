@@ -44,8 +44,10 @@ d3.select("#go")
 
 var form = d3.select("#form")
     .on("change", function() {
-      load(d3.select("#text").property("value"));
-      d3.event.preventDefault();
+        
+        //load from proxy
+        load(d3.select("#text").property("value"));
+        d3.event.preventDefault();
     });
     
 form.selectAll("input[type=number]")
@@ -80,36 +82,45 @@ function flatten(o, k) {
   return text.join(" ");
 }
 
-function parseText(text) {
-  tags = {};
-  var cases = {};
-  text.split(wordSeparators).forEach(function(word) {
-    if (discard.test(word)) return;
-    word = word.replace(punctuation, "");
-    
-    if (stopWords.test(word.toLowerCase())) return;
-    if (stopWoorden.test(word.toLowerCase())) return;
-    if (stopWurden.test(word.toLowerCase())) return;
+//text is split up and counted
+function parseSolrCounts(text) {
+    tags = JSON.parse(text);
+    var cases = {};
+    tags = d3.entries(tags).sort(function(a, b) { 
+        return b.value - a.value; 
+    });
+    generate();
+}
 
-    word = word.substr(0, maxLength);
-    cases[word.toLowerCase()] = word;
-    tags[word = word.toLowerCase()] = (tags[word] || 0) + 1;
-  });
-  tags = d3.entries(tags).sort(function(a, b) { return b.value - a.value; });
-  tags.forEach(function(d) { d.key = cases[d.key]; });
-  generate();
+//text is split up and counted
+function parseText(text) {
+    tags = {};
+    var cases = {};
+    text.split(wordSeparators).forEach(function(word) {
+        if (discard.test(word)) return;
+        word = word.replace(punctuation, "");
+
+        if (stopWords.test(word.toLowerCase())) return;
+        if (stopWoorden.test(word.toLowerCase())) return;
+        if (stopWurden.test(word.toLowerCase())) return;
+
+        word = word.substr(0, maxLength);
+        cases[word.toLowerCase()] = word;
+        tags[word = word.toLowerCase()] = (tags[word] || 0) + 1;
+    });
+    tags = d3.entries(tags).sort(function(a, b) { return b.value - a.value; });
+    tags.forEach(function(d) { d.key = cases[d.key]; });
+    generate();
 }
 
 function generate() {
-  layout
-      .font(d3.select("#font").property("value"))
-      .spiral(d3.select("input[name=spiral]:checked").property("value"));
-  fontSize = d3.scale[d3.select("input[name=scale]:checked").property("value")]().range([10, 400]);
-  if (tags.length) fontSize.domain([+tags[tags.length - 1].value || 1, +tags[0].value]);
-  complete = 0;
-  statusText.style("display", null);
-  words = [];
-  layout.stop().words(tags.slice(0, max = Math.min(tags.length, +d3.select("#max").property("value")))).start();
+    layout.font(d3.select("#font").property("value")).spiral(d3.select("input[name=spiral]:checked").property("value")),
+    fontSize = d3.scale[d3.select("input[name=scale]:checked").property("value")]().range([10, 100]),
+    tags.length && fontSize.domain([ + tags[tags.length - 1].value || 1, +tags[0].value]),
+    complete = 0,
+    statusText.style("display", null),
+    words = [],
+    layout.stop().words(tags.slice(0, max = Math.min(tags.length, +d3.select("#max").property("value")))).start()
 }
 
 function progress(d) {
@@ -125,7 +136,9 @@ function draw(data, bounds) {
       h / Math.abs(bounds[0].y - h / 2.2)) / 2 : 1;
   words = data;
   var text = vis.selectAll("text")
-      .data(words, function(d) { return d.text.toLowerCase(); });
+      .data(words, function(d) { 
+          return d.text.toLowerCase(); 
+      });
   text.transition()
       .duration(1000)
       .attr("transform", function(d) { return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")"; })
@@ -208,7 +221,8 @@ function hashchange() {
 function load(f) {
   f = f || fetcher;
   fetcher = f;
-  parseText(fetcher);
+  parseSolrCounts(fetcher);
+//  parseText(fetcher);
 }
 
 d3.select("#random-palette").on("click", function() {

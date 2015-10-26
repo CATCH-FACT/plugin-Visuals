@@ -6,6 +6,10 @@ if (!defined('VISUALS_PLUGIN_DIR')) {
     define('VISUALS_PLUGIN_DIR', dirname(__FILE__));
 }
 
+if (!defined('VISUALS_DIR')) define('VISUALS_DIR', dirname(__FILE__));
+
+require_once VISUALS_DIR.'/helpers/VisualsHelpersFacet.php';
+
 class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
 {
     protected $_hooks = array(

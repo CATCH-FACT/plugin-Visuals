@@ -18,7 +18,7 @@
 
     queue_css_file('bootstrap.min');
     queue_css_file('accordeon_style');
-    queue_css_file('style', "screen and (min-device-width: 800px)");
+    queue_css_file('style_desktop', "screen and (min-device-width: 800px)");
     queue_css_file('style_mobile', "screen and (max-device-width: 799px)");
 
     queue_js_string('
