@@ -115,9 +115,10 @@ jQuery(window).load(function () {
             $q = array_key_exists("q", $_REQUEST) ? $_REQUEST["q"] : "";
             $facet = array_key_exists("facet", $_REQUEST) ? $_REQUEST["facet"] : "";
          ?>
-        <a href=" <?php echo url("") . "visuals/map?q=" . urlencode($q) . "&facet=" . urlencode($facet) ?> "><span class="icon-Verhalenkaart" style="font-size:2em"></span> on map</a>
-        |<a href=" <?php echo url("") . "visuals/cloud?q=" . urlencode($q) . "&facet=" . urlencode($facet) ?> "> as wordcloud</a> 
-<!--        |<a href=" <?php echo url("") . "visuals/network?q=" . urlencode($q) . "&facet=" . urlencode($facet) ?> "> as network</a> -->
+         <a href=" <?php echo url("") . "solr-search?q=" . urlencode($q) . "&facet=" . urlencode($facet) ?> "><span class="icon-book3" style="font-size:2em"></span> als lijst</a>
+         | <a href=" <?php echo url("") . "visuals/map?q=" . urlencode($q) . "&facet=" . urlencode($facet) ?> "><span class="icon-Verhalenkaart" style="font-size:2em"></span> op de kaart</a>
+         | <a href=" <?php echo url("") . "visuals/cloud?q=" . urlencode($q) . "&facet=" . urlencode($facet) ?> "> als wordcloud</a> 
+ <!--        |<a href=" <?php echo url("") . "visuals/network?q=" . urlencode($q) . "&facet=" . urlencode($facet) ?> "> as network</a> -->
     </div>
 </div>
 
