@@ -150,9 +150,7 @@ function draw(data, bounds) {
       .attr('xlink:href', function(d) {return "visuals/cloud?tag=" + d.text; })
       .style("font-size", function(d) { return d.size + "px"; })
       .on("click", function(d) {
-//          words.shift();
-//          load(d.text.toUpperCase());
-            window.location = "cloud?tag=" + d.text;
+            window.location = "cloud?facet=tag:\"" + d.text + "\"";
       })
       .style("opacity", 1e-6)
       .transition()
