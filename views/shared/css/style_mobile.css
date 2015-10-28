@@ -50,7 +50,7 @@ h1,h2,h3,h4 {
 	border:0 solid #000000;
 	border-radius:3px;
 	font-family:'Open Sans',sans-serif;
-	font-size:21px;
+	font-size:17px;
 	color:#fff;
 	top:5px;
 }
@@ -61,8 +61,9 @@ h1,h2,h3,h4 {
 }
 
 #vkLogo{
-    left:175px;
+    left:75px;
 	background:#838383;
+	overflow: visible;
 }
 
 .top_menu {
@@ -630,3 +631,4 @@ svg text {
 	content: "\e811";
 }
 
+    

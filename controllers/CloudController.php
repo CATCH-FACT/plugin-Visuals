@@ -43,7 +43,6 @@ class Visuals_CloudController extends Omeka_Controller_AbstractActionController
         // Execute the query.
         $results = $this->_search($start, $limit, $limitToPublicItems);
         $facets = $this->_search_facets(1000, $limitToPublicItems);
-//        _log(print_r($facets, true));
 
         // Push results to the view.
         $this->view->results = $results;
@@ -93,8 +92,6 @@ class Visuals_CloudController extends Omeka_Controller_AbstractActionController
         // Get the parameters.
         $params = $this->_getParameters();
 
-#        _log(print_r($params, true));
-
         // Construct the query.
         $query = $this->_getQuery($limitToPublicItems);
 
@@ -137,8 +134,6 @@ class Visuals_CloudController extends Omeka_Controller_AbstractActionController
         if($limitToPublicItems) {
            $query .= ' AND public:"true"';
         }
-
-//        _log($facet);
 
         $this->session->query = $query;
         $this->view->query = $this->_request->q;
