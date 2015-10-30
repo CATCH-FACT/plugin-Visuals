@@ -1,7 +1,13 @@
 var fill = d3.scale.category20b();
 
-var w = 800,
-    h = 600;
+var select_width = jQuery("#vis").width();
+var select_height = jQuery("#vis").height();
+
+var w = select_width, //start dimensions
+    h = select_height;
+    
+//var w = 800,
+//    h = 600;
 
 var words = [],
     max,
@@ -38,6 +44,16 @@ d3.select(window).on("load", hashchange);
 
 d3.select("#go")
     .on("click", function() {
+
+        select_width = jQuery("#vis").width();
+        var w = select_width; //start dimensions
+        
+        svg.attr("width", w)
+            .attr("height", h); //reset the main svg
+        layout.size([w, h]);
+        
+        vis.attr("transform", "translate(" + [w >> 1, h >> 1] + ")");
+        
         load(d3.select("#text").property("value"));
         d3.event.preventDefault();
     });
@@ -71,7 +87,7 @@ var stopWords = /^(i|me|my|myself|we|us|our|ours|ourselves|you|your|yours|yourse
     discard = /^(@|https?:)/,
     htmlTags = /(<[^>]*?>|<script.*?<\/script>|<style.*?<\/style>|<head.*?><\/head>)/g,
     matchTwitter = /^https?:\/\/([^\.]*\.)?twitter\.com/;
-        
+
 function flatten(o, k) {
   if (typeof o === "string") return o;
   var text = [];
@@ -128,6 +144,11 @@ function progress(d) {
 }
 
 function draw(data, bounds) {
+    
+  select_width = jQuery("#vis").width();
+  var w = select_width; //start dimensions
+    
+    
   statusText.style("display", "none");
   scale = bounds ? Math.min(
       w / Math.abs(bounds[1].x - w / 2.2),
@@ -161,7 +182,7 @@ function draw(data, bounds) {
       .text(function(d) { return d.text; })
 
   var exitGroup = background.append("g")
-      .attr("transform", vis.attr("transform"));
+   .attr("transform", vis.attr("transform"));
 
   var exitGroupNode = exitGroup.node();
 
