@@ -246,6 +246,10 @@ if ($facet_order) {
               <option value="Times">Times</option>
               <option value="Tahoma">Tahoma</option>
               <option value="Arial">Arial</option>
+              <option value="Courier">Courier</option>
+              <option value="Lucida Console">Lucida Console</option>
+              <option value="Herculanum">Herculanum</option>
+              <option value="Apple Chancery">Apple Chancery</option>
             </select>
       </div>
 
