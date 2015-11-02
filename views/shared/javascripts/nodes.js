@@ -387,7 +387,7 @@ function NodeViewer(vm, selectString){
             node.select("circle")
                 .style("fill", node_color)
                 .on("mouseover", function(d){
-                    console.log("circle mouseover");
+//                    console.log("circle mouseover");
                     d3.select(this)
                         .transition()
                         .ease("elastic")
@@ -395,7 +395,7 @@ function NodeViewer(vm, selectString){
                     mouse_over_node(d);
                 })
                 .on("mouseout", function(d){
-                    console.log("circle mousout");
+//                    console.log("circle mousout");
                     d3.select(this)
                         .transition()
                         .ease("elastic")
@@ -403,7 +403,7 @@ function NodeViewer(vm, selectString){
                     tooltip.style("visibility", "hidden");
                 })
                 .on("mousemove", function(){
-                    console.log("circle mousemove");
+//                    console.log("circle mousemove");
                     tooltip.style("top", (event.pageY+5)+"px")
                            .style("left",(event.pageX-90)+"px");
                 })
@@ -427,14 +427,14 @@ function NodeViewer(vm, selectString){
                            .style("left",(event.pageX-90)+"px");
                 })*/
                 .on("contextmenu", function(){
-                    console.log("contextmenu");
+//                    console.log("contextmenu");
                     tooltip.style("visibility", "visible");
                     tooltip.style("top", (event.pageY-10)+"px")
                            .style("left",(event.pageX-90)+"px");
-                })
-                .on("dblclick", function(){
-                    console.log("dblclick");
-                })
+                });
+//                .on("dblclick", function(){
+//                    console.log("dblclick");
+//                })
                 
                   
 //#########################################################

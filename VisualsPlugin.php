@@ -21,7 +21,7 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
 #            'define_acl',
 #            'define_routes',
 //            'public_items_show',
-            'public_items_show_sidebar_top',
+            'public_items_show_sidebar_ultimate_top',
             'admin_items_show',
 #            'public_items_search',
 #            'items_browse_sql',
@@ -35,7 +35,7 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
         print "</div>";
     }
 
-    public function hookPublicItemsShowSidebarTop($args){
+    public function hookPublicItemsShowSidebarUltimateTop($args){
         print '<div id="item-nodes" class="element">';
         print '     <h2>' . __("Vergelijkbare verhalen") . '</h2>';
         print "</div>";

@@ -937,7 +937,7 @@ function NeighborSearch(item, max_neighbor_results, min_neighbor_score, vm){
 
         arg = {"rj": stringify(arg)};
 
-        console.log(arg);
+//        console.log(arg);
 //        console.log(vm.search_proxy());
 
         existing_network_graph = vm.network_graph();
@@ -953,11 +953,11 @@ function NeighborSearch(item, max_neighbor_results, min_neighbor_score, vm){
             },
             success: function(response) {
 //                console.log("success!!!!!!!!!!!");
-                console.log(response);
+//                console.log(response);
                 for (i in response.response.docs){
 //                    console.log(response.response.docs[i]);
                     if ((!inNodesList(response.response.docs[i], existing_network_graph.nodes)) && (response.response.docs[i].score > vm.min_neighbor_score())){
-                        console.log(response.response.docs[i]);
+//                        console.log(response.response.docs[i]);
                         pre_node = response.response.docs[i];
                         pre_node["node_id"] = amount_nodes; //extra id for flattening
                         existing_network_graph.nodes.push(pre_node);
