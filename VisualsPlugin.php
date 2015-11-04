@@ -36,8 +36,8 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
     }
 
     public function hookPublicItemsShowSidebarUltimateTop($args){
-        print '<div id="item-nodes" class="element">';
-        print '     <h2>' . __("Vergelijkbare verhalen") . '</h2>';
+        print '<div id="item-nodes" class="element" style="padding:0px">';
+        print '     <h2 style="margin:0px">' . __("Vergelijkbare verhalen") . '</h2>';
         print "</div>";
     }
 
