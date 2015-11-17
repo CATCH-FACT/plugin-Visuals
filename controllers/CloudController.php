@@ -135,11 +135,22 @@ class Visuals_CloudController extends Omeka_Controller_AbstractActionController
            $query .= ' AND public:"true"';
         }
 
+        // Get the `free` search GET parameter (pre-turned into string)
+        $free = "{$this->_request->free}";
+
+        $to_remove_free = array('{', '}');
+        foreach ($to_remove_free as $c) {
+            $free = str_replace($c, '', $free);
+        }
+
+        // Form the composite Solr query.
+        if (!empty($free)) $query .= " AND $free";
+
         $this->session->query = $query;
         $this->view->query = $this->_request->q;
         $this->view->facet = $this->_request->facet;
+        $this->view->free = $this->_request->free;
         return $query;
-
     }
 
 
@@ -171,32 +182,4 @@ class Visuals_CloudController extends Omeka_Controller_AbstractActionController
 
     }
 
-/*    public function browseAction()
-    {        
-        $this->view->addHelperPath(VISUALS_PLUGIN_DIR . '/helpers', 'Visuals_View_Helper_');
-
-        $pluralName = $this->view->pluralize($this->_helper->db->getDefaultModelName());
-        
-        $table = $this->_helper->db->getTable();
-        
-        $params = $this->getAllParams();
-        $currentPage = $this->getParam('page', 1);
-        $limit = (int)get_option('visuals_restrict_results');
-        $records = $this->_helper->db->findBy($params, $limit);
-        $this->view->totalItems = $table->count($params);
-        $this->view->items = $records;
-     }
-
-    
-    public function indexAction()
-    {        
-        $this->view->addHelperPath(VISUALS_PLUGIN_DIR . '/helpers', 'Visuals_View_Helper_');
-
-        $pluralName = $this->view->pluralize($this->_helper->db->getDefaultModelName());
-        
-        $table = $this->_helper->db->getTable();
-        
-        $params = $this->getAllParams();
-    }
-    */
 }
