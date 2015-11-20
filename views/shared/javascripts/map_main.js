@@ -64,8 +64,6 @@ window.onload = function () {
     vm.location_facet(facet);
     vm.location_free(free);
 
-    console.log(final_query);
-
     vm.location_query(final_query);
     
     vm.doSearch();
@@ -390,8 +388,6 @@ function ViewModel() {
                 }
                 theUltimateQuery = '(' + qry + ')' + ' AND public:\\"true\\"';
                 
-                console.log(theUltimateQuery);
-                
                 UpdateLocationData(theUltimateQuery, self);
                 
             },10);
@@ -528,8 +524,6 @@ function UpdateLocationData(query, vm){
     query_object = create_search_arguments_and_return_locationdata(query)
     arg = {"rj": stringify(query_object)};
     
-    console.log(arg);
-    
     vm.waiting(true);
     vm.waiting.valueHasMutated();
     
@@ -539,7 +533,6 @@ function UpdateLocationData(query, vm){
         method: 'POST',
         dataType: "json",
         success: function(response) {
-            console.log(response);
             nested_results = d3.nest()
                 .key(function(d) { return [d.latitude, d.longitude]; })
                 .entries(response.response.docs);
