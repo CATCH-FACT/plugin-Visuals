@@ -1,6 +1,7 @@
 $ = jQuery;
 
 window.onload = function () {
+    
     var vm = new ViewModel();
     ko.applyBindings(vm);
 
@@ -16,39 +17,49 @@ window.onload = function () {
     var popover = new Popover(vm);
     popover.init();
     
-    var final_query = "";
-    
     // Get the `query` GET parameter
-    var query = getUrlParameter("q");
+    var q = getUrlParameter("q");
     // Get the `facet` GET parameter
     var facet = getUrlParameter("facet");
+    // Get the `free` GET parameter
+    var free = getUrlParameter("free");
     
     if (typeof facet !== 'undefined'){
-        facet = facet.replace(/%3A/g, ':').replace(/%22/g, '\\"').replace(/%20/g, ' ').replace(/%2C/g, ',').replace(/%28/g, '(').replace(/%29/g, ')').replace(/\+/g, ' ');
+        facet = decodeURI(facet).replace(/%3A/g, ':').replace(/\+/g, ' ');
     }
     
-    if ((typeof query == 'undefined') || (query == '')) {
-        if ((typeof facet == 'undefined') || (facet == '')){
-            final_query = '';
-        }
-        else{
-            final_query += facet;
-        }
+    if (typeof free !== 'undefined'){
+        free = decodeURI(free).replace(/%3A/g, ':').replace(/\+/g, ' ');
+    }
+    
+    var final_query = '';
+    var and = '';
+    
+    if ((typeof q == 'undefined') || (q == '')) {
     }
     else{
-        query = query.replace(':', ' ');
-        query = query.replace('[', "");
-        query = query.replace(']', "");
-        final_query = query;
-        if ((typeof facet !== 'undefined') && (facet != '')){
-            final_query += " AND (" + facet + ")";
-        }
+        final_query = q.replace(':', ' ').replace('[', "").replace(']', "");
+        and = " AND "
     }
-
-    // Limit the query to public items if required
-//    final_query += ' AND public:\\"true\\"';
+    if ((typeof facet == 'undefined') || (facet == '')){
+    }
+    else{
+        final_query += and + "(" + facet + ")";
+        and = " AND "
+    }
+    if ((typeof free == 'undefined') || (free == '')){
+    }
+    else{
+        //remove {} here for proper return URL
+        final_query += and + "(" + free.replace(/\{/g, '').replace(/\}/g, '') + ")";
+    }
     
+    vm.location_q(q);
+    vm.location_facet(facet);
+    vm.location_free(free);
+
     vm.location_query(final_query);
+    
     vm.doSearch();
 }
 
@@ -330,6 +341,9 @@ function ViewModel() {
     self.get_proxy = ko.observable(get_proxy);
     
     self.location_query = ko.observable(initial_location_query);
+    self.location_q = ko.observable("");
+    self.location_facet = ko.observable("");
+    self.location_free = ko.observable("");
     
     self.current_query = ko.observable("");
     
@@ -392,26 +406,32 @@ function ViewModel() {
     }
 
     self.exitLink = ko.computed(function() {
-            urlPath = location.origin + location.pathname + "?facet=" + self.location_query().replace(/\)/g, '').replace(/\(/g, '').replace(/\\/g, '');
+            urlPath = location.origin + location.pathname 
+                        + "?facet=" + self.location_facet().replace(/\)/g, '').replace(/\(/g, '').replace(/\\/g, '')
+                         + "&free=" + self.location_free();
             return urlPath.replace("visuals/map", "solr-search");
         }, this);
 
     //!! TODO make distinction between q and facet !!
     
     self.doSearch = function () {
+        
         if (self.show_locations()){
+            
             setTimeout(function(){ //easy now!
                 var qry = self.location_query()
                 if (self.location_query() == ''){
                     qry = '*:*';
                 }
                 theUltimateQuery = '(' + qry + ')' + ' AND public:\\"true\\"';
-                UpdateLocationData(theUltimateQuery.replace(/%2B/g, "+"), self);
+
+                UpdateLocationData(theUltimateQuery, self);
+                
             },10);
         }
         
-        urlPath = location.origin + location.pathname + "?facet=" + self.location_query().replace(/\)/g, '').replace(/\(/g, '').replace(/\\/g, '');                
-        window.history.pushState({"html": document.html,"pageTitle": document.title}, "", urlPath);
+//        urlPath = location.origin + location.pathname + "?facet=" + self.location_query().replace(/\)/g, '').replace(/\(/g, '').replace(/\\/g, '');                
+//        window.history.pushState({"html": document.html,"pageTitle": document.title}, "", urlPath);
         
 /*        if (self.show_collectors){
             setTimeout(function(){

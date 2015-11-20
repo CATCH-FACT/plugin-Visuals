@@ -33,9 +33,6 @@
     echo head_css();
     echo head_js();
 
-    /*echo head(array('title' => __('Verhalenkaart'),
-                    'bodyid'=>'verhalenkaart',
-                    'bodyclass' => 'none')); */
     ?>
 
     <script>
@@ -62,6 +59,7 @@
             <?php 
                 $q = array_key_exists("q", $_REQUEST) ? $_REQUEST["q"] : "";
                 $facet = array_key_exists("facet", $_REQUEST) ? $_REQUEST["facet"] : "";
+                $free = array_key_exists("free", $_REQUEST) ? $_REQUEST["free"] : "";
              ?>
              
              <div class="logowrapper">
@@ -72,7 +70,7 @@
                  <div class="logos" id="vbLogo">
                      <span class="icon-book3"></span>
                      <strong><a data-bind="attr: { href: exitLink}">Bank</a></strong>
-<!--                      <strong><a href=" <?php echo url("") . "solr-search?q=" . urlencode($q) . "&facet=" . urlencode($facet) ?> ">Bank</a></strong> -->
+<!--                      <strong><a href=" <?php echo url("") . "solr-search?q=" . urlencode($q) . "&facet=" . urlencode($facet) . "&facet=" . urlencode($facet); ?> ">Bank</a></strong> -->
                  </div>
              </div>
 
