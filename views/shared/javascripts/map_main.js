@@ -27,9 +27,15 @@ window.onload = function () {
     if (typeof facet !== 'undefined'){
         facet = decodeURI(facet).replace(/%3A/g, ':').replace(/\+/g, ' ');
     }
+    else{
+        facet = "";
+    }
     
     if (typeof free !== 'undefined'){
         free = decodeURI(free).replace(/%3A/g, ':').replace(/\+/g, ' ');
+    }
+    else{
+        free = "";
     }
     
     var final_query = '';
@@ -44,19 +50,21 @@ window.onload = function () {
     if ((typeof facet == 'undefined') || (facet == '')){
     }
     else{
-        final_query += and + "(" + facet + ")";
+        final_query += and + "(" + facet.replace(/"/g, '\\"') + ")";
         and = " AND "
     }
     if ((typeof free == 'undefined') || (free == '')){
     }
     else{
         //remove {} here for proper return URL
-        final_query += and + "(" + free.replace(/\{/g, '').replace(/\}/g, '') + ")";
+        final_query += and + "(" + free.replace(/\{/g, '').replace(/\}/g, '').replace(/"/g, '\\"') + ")";
     }
     
     vm.location_q(q);
     vm.location_facet(facet);
     vm.location_free(free);
+
+    console.log(final_query);
 
     vm.location_query(final_query);
     
@@ -360,55 +368,12 @@ function ViewModel() {
         self.location_query($("#hs1").val());
         self.doSearch();
     }
-    self.hs2 = function (hq) {
-        self.location_query($("#hs2").val());
-        self.doSearch();
-    }
-    self.hs3 = function (hq) {
-        self.location_query($("#hs3").val());
-        self.doSearch();
-    }
-    self.hs4 = function (hq) {
-        self.location_query($("#hs4").val());
-        self.doSearch();
-    }
-    self.hs5 = function (hq) {
-        self.location_query($("#hs5").val());
-        self.doSearch();
-    }
-    self.hs6 = function (hq) {
-        self.location_query($("#hs6").val());
-        self.doSearch();
-    }
-    self.hs7 = function (hq) {
-        self.location_query($("#hs7").val());
-        self.doSearch();
-    }
-    self.hs8 = function (hq) {
-        self.location_query($("#hs8").val());
-        self.doSearch();
-    }
-    self.hs9 = function (hq) {
-        self.location_query($("#hs9").val());
-        self.doSearch();
-    }
-    self.hs10 = function (hq) {
-        self.location_query($("#hs10").val());
-        self.doSearch();
-    }
-    self.hs11 = function (hq) {
-        self.location_query($("#hs11").val());
-        self.doSearch();
-    }
-    self.hs12 = function (hq) {
-        self.location_query($("#hs12").val());
-        self.doSearch();
-    }
 
     self.exitLink = ko.computed(function() {
             urlPath = location.origin + location.pathname 
-                        + "?facet=" + self.location_facet().replace(/\)/g, '').replace(/\(/g, '').replace(/\\/g, '')
-                         + "&free=" + self.location_free();
+                        + "?q=" + self.location_q()
+                        + "&facet=" + self.location_facet().replace(/\)/g, '').replace(/\(/g, '').replace(/\\/g, '')
+                        + "&free=" + self.location_free();
             return urlPath.replace("visuals/map", "solr-search");
         }, this);
 
@@ -424,7 +389,9 @@ function ViewModel() {
                     qry = '*:*';
                 }
                 theUltimateQuery = '(' + qry + ')' + ' AND public:\\"true\\"';
-
+                
+                console.log(theUltimateQuery);
+                
                 UpdateLocationData(theUltimateQuery, self);
                 
             },10);
@@ -561,6 +528,8 @@ function UpdateLocationData(query, vm){
     query_object = create_search_arguments_and_return_locationdata(query)
     arg = {"rj": stringify(query_object)};
     
+    console.log(arg);
+    
     vm.waiting(true);
     vm.waiting.valueHasMutated();
     
@@ -570,6 +539,7 @@ function UpdateLocationData(query, vm){
         method: 'POST',
         dataType: "json",
         success: function(response) {
+            console.log(response);
             nested_results = d3.nest()
                 .key(function(d) { return [d.latitude, d.longitude]; })
                 .entries(response.response.docs);
