@@ -57,7 +57,7 @@ window.onload = function () {
     }
     else{
         //remove {} here for proper return URL
-        final_query += and + "(" + free.replace(/\{/g, '').replace(/\}/g, '').replace(/"/g, '\\"') + ")";
+        final_query += and + "(" + free.replace(/\{/g, '').replace(/\}/g, '').replace(/"/g, '\\"').replace(/-/g, ' ') + ")";
     }
     
     vm.location_q(q);
@@ -115,6 +115,9 @@ var collection_collectors = "collection_id:9";
 var collection_creators = "collection_id:4";
 var collection_main_locations = "collection_id:202";
 var collection_ne_locations = "collection_id:201";
+
+var menu_locationtype = [   {key: "narration",			title: "Vertellocatie",			icon: "",	    	checked: false},
+                            {key: "action",	    		title: "Plaats van handelen",	icon: "",	    	checked: false}];
 
 var menu_subgenre = [ {key: "sage",						title: "Sage",					icon: "icon-Sage",		checked: false},
 					  {key: "mop",						title: "Mop",  					icon: "icon-Mop",		checked: false},
@@ -201,6 +204,22 @@ function ViewModel() {
     var self = this;
     
     self.waiting = ko.observable(waiting);
+
+    self.locationtypeChecked = ko.observable(false);
+    self.switchLocationtypeChecked = ko.pureComputed({
+            read: function () {
+                return this.locationtypeChecked;
+            },
+            write: function (value) {
+                self.locationtypeChecked(!self.locationtypeChecked());
+                self.subgenreChecked(false);
+                self.typeChecked(false);
+                self.languageChecked(false);
+                self.tagChecked(false);
+                self.collectorChecked(false);
+            },
+            owner: self
+        });
     
     self.subgenreChecked = ko.observable(false);
     self.switchSubgenreChecked = ko.pureComputed({
@@ -216,6 +235,7 @@ function ViewModel() {
             },
             owner: self
         });
+        
     self.typeChecked = ko.observable(false);
     self.switchTypeChecked = ko.pureComputed({
             read: function () {
@@ -230,6 +250,7 @@ function ViewModel() {
             },
             owner: self
         });
+        
     self.languageChecked = ko.observable(false);
     self.switchLanguageChecked = ko.pureComputed({
             read: function () {
@@ -245,6 +266,7 @@ function ViewModel() {
             },
             owner: self
         });
+        
     self.tagChecked = ko.observable(false);
     self.switchTagChecked = ko.pureComputed({
             read: function () {
@@ -259,6 +281,7 @@ function ViewModel() {
             },
             owner: self
         });
+        
     self.collectorChecked = ko.observable(false);
     self.switchCollectorChecked = ko.pureComputed({
             read: function () {
@@ -274,12 +297,14 @@ function ViewModel() {
             owner: self
         });
 
+    self.menu_locationtype = ko.observableArray(menu_locationtype);
     self.menu_subgenre = ko.observableArray(menu_subgenre);
     self.menu_type = ko.observableArray(menu_type);
     self.menu_language = ko.observableArray(menu_language);
     self.menu_tags = ko.observableArray(menu_tags);
     self.menu_collectors = ko.observableArray(menu_collectors);
     
+    self.locationtypesChecked = ko.observableArray([]);
     self.subgenresChecked = ko.observableArray([]);
     self.typesChecked = ko.observableArray([]);
     self.languagesChecked = ko.observableArray([]);
@@ -393,24 +418,6 @@ function ViewModel() {
             },10);
         }
         
-//        urlPath = location.origin + location.pathname + "?facet=" + self.location_query().replace(/\)/g, '').replace(/\(/g, '').replace(/\\/g, '');                
-//        window.history.pushState({"html": document.html,"pageTitle": document.title}, "", urlPath);
-        
-/*        if (self.show_collectors){
-            setTimeout(function(){
-                UpdateCollectorData(collector_proxy + self.collector_query() + " AND " + collection_collectors, self);
-            },20);
-        }
-        if (self.show_creators){
-            setTimeout(function(){
-                UpdateCreatorData(creator_proxy + self.creator_query() + " AND " + collection_creators, self);
-            },30);
-        }
-        if (self.show_ne_locations){ //the future is nigh
-            setTimeout(function(){
-                UpdateNELocationData(ne_location_proxy + self.ne_location_query() + " AND " + collection_ne_locations, self);
-            },40);
-        }*/
     }
 
     self.emptySearchbox = function(){
@@ -519,9 +526,34 @@ function create_search_arguments_and_return_locationdata(query, vm){
     return args;
 }
 
+function create_search_arguments_and_return_action_locationdata(query, vm){
+    query = query + " AND action_longitude:[* TO *]"
+    console.log(query);
+    var args = {
+        ns: "",
+        start: 0,
+        wt: "json",
+        rows: 999999,
+        fl: "locality:action_locality,subgenre,longitude:action_longitude,latitude:action_latitude,id",
+        q: query
+    }
+    return args;
+}
+
+
 function UpdateLocationData(query, vm){
     
-    query_object = create_search_arguments_and_return_locationdata(query)
+
+    locationtype = vm.locationtypesChecked();
+    console.log(locationtype.key);
+    
+    if (locationtype.key == "action"){
+        query_object = create_search_arguments_and_return_action_locationdata(query)
+    }
+    else{
+        query_object = create_search_arguments_and_return_locationdata(query)
+    }
+    
     arg = {"rj": stringify(query_object)};
     
     vm.waiting(true);
@@ -606,6 +638,10 @@ function Popover(vm) {
 	        }
 	        return query;
 	    }
+
+	    $('body').on('click', '.menu_radio', function(){
+	        vm.doSearch();
+        });
 	    
 	    $('body').on('click', '.menu_checkbox', function(){
 	        var query = "";

@@ -70,10 +70,27 @@
                  <div class="logos" id="vbLogo">
                      <span class="icon-book3"></span>
                      <strong><a data-bind="attr: { href: exitLink}">Bank</a></strong>
-<!--                      <strong><a href=" <?php echo url("") . "solr-search?q=" . urlencode($q) . "&facet=" . urlencode($facet) . "&facet=" . urlencode($facet); ?> ">Bank</a></strong> -->
                  </div>
              </div>
 
+             <div class="locationtype"/>
+                 <div class="popover-markup" >
+                    <a href="#" class="btn btn-primary" data-bind="click: switchLocationtypeChecked" id="locButton" class="locationtype" data-placement="bottom" role="button" data-placement="bottom"> <span class="glyphicon icon-Pacman"></span></a>
+                    <div data-bind="visible: locationtypeChecked, style: { display: locationtypeChecked() ? 'block' : '' }" class="popover fade bottom in" role="tooltip" id="popoverloc" style="top: 4px; display: block;">
+                        <div class="arrow" style="top: -10%; left: 90%"></div>
+                        <h3 class="popover-title">Locatie type</h3>
+                        <div class="popover-content">
+                            <!-- ko foreach: menu_locationtype -->
+         	                    <label>
+                                    <input type="radio" class="menu_radio" data-bind="checkedValue: $data, checked: $root.locationtypesChecked"/>&nbsp
+                                    <span data-bind="css: icon"></span>&nbsp<span data-bind="text: title"></span>
+         	                    </label>
+         	                <!-- /ko -->
+                        </div>	    
+             	    </div>
+                </div>
+            </div>
+            
             <div id="menuBar"/>
             	<div class="popover-markup" >
                 	<a href="#" class="btn btn-primary" data-bind="click: switchSubgenreChecked" id="menuButton" class="subgenre" data-placement="right" role="button" data-placement="bottom"> <span class="glyphicon icon-Subgenre"></span></a>
