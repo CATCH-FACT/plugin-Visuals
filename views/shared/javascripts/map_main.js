@@ -527,8 +527,7 @@ function create_search_arguments_and_return_locationdata(query, vm){
 }
 
 function create_search_arguments_and_return_action_locationdata(query, vm){
-    query = query + " AND action_longitude:[* TO *]"
-    console.log(query);
+    query = query + " AND action_longitude:[* TO *]";
     var args = {
         ns: "",
         start: 0,
@@ -543,9 +542,8 @@ function create_search_arguments_and_return_action_locationdata(query, vm){
 
 function UpdateLocationData(query, vm){
     
-
     locationtype = vm.locationtypesChecked();
-    console.log(locationtype.key);
+    console.log(locationtype);
     
     if (locationtype.key == "action"){
         query_object = create_search_arguments_and_return_action_locationdata(query)

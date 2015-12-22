@@ -4,11 +4,13 @@
     include("config.php");
 
     $request_json = isset($_POST['rj']) ? $_POST['rj'] : false;
+    $get_parameters = isset($_SERVER["QUERY_STRING"]) ? $_SERVER["QUERY_STRING"] : false;
 
     $results = false;
     
     $url = "";
-    $url = $config['SOLR_SERVER_HOSTNAME'] . ":" . $config['SOLR_SERVER_PORT'] . $config['SOLR_SERVER_CORE_POST'];
+    $url = $config['SOLR_SERVER_HOSTNAME'] . ":" . $config['SOLR_SERVER_PORT'] . $config['SOLR_SERVER_CORE_POST'] . (isset($_SERVER["QUERY_STRING"]) ? "?" . $_SERVER["QUERY_STRING"] : false);
+//    $url = $config['SOLR_SERVER_HOSTNAME'] . ":" . $config['SOLR_SERVER_PORT'] . $config['SOLR_SERVER_CORE_POST'];
     
     if ($request_json) {
         // if magic quotes is enabled then stripslashes will be needed
