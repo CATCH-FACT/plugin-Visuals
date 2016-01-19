@@ -8,7 +8,7 @@ var w = select_width, //start dimensions
 fetcher = d3.select("#alldates").property("value");
 var data = JSON.parse(fetcher);
 
-var h = data.length * 15;
+var h = Math.max(data.length * 15, 200);
 var margins = {left: 50, right: 20, top: 20, bottom: 50};
 
 var innerHeight = h - margins.top - margins.bottom;
