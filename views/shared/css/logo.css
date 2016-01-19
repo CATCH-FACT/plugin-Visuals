@@ -41,6 +41,165 @@
 /* handling fonts */
 
 @font-face {
+    font-family: 'VerhalenKaartIconen';
+    src:    url('fonts/VerhalenKaartIconen.eot?e8nmnb');
+    src:    url('fonts/VerhalenKaartIconen.eot?e8nmnb#iefix') format('embedded-opentype'),
+        url('fonts/VerhalenKaartIconen.ttf?e8nmnb') format('truetype'),
+        url('fonts/VerhalenKaartIconen.woff?e8nmnb') format('woff'),
+        url('fonts/VerhalenKaartIconen.svg?e8nmnb#VerhalenKaartIconen') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'VerhalenKaartIconen' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-clock:before {
+    content: "\e900";
+}
+.icon-calendar:before {
+    content: "\e901";
+}
+.icon-pie-chart:before {
+    content: "\e902";
+}
+.icon-stats-dots:before {
+    content: "\e903";
+}
+.icon-stats-bars:before {
+    content: "\e904";
+}
+.icon-stats-bars2:before {
+    content: "\e905";
+}
+.icon-cloud:before {
+    content: "\e906";
+}
+.icon-spell-check:before {
+    content: "\e907";
+}
+.icon-Sprookje:before {
+    content: "\e802";
+}
+.icon-book2:before {
+    content: "\e801";
+}
+.icon-book3:before {
+    content: "\f007";
+}
+.icon-Mop:before {
+    content: "\e9e9";
+}
+.icon-Kwispel .path1:before {
+    content: "\e806";
+    color: rgb(0, 0, 0);
+}
+.icon-Kwispel .path2:before {
+    content: "\e807";
+    margin-left: -1.0986328125em;
+    color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path3:before {
+    content: "\e808";
+    margin-left: -1.0986328125em;
+    color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path4:before {
+    content: "\e809";
+    margin-left: -1.0986328125em;
+    color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path5:before {
+    content: "\e80a";
+    margin-left: -1.0986328125em;
+    color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path6:before {
+    content: "\e80b";
+    margin-left: -1.0986328125em;
+    color: rgb(74, 74, 74);
+}
+.icon-Kwispel .path7:before {
+    content: "\e80c";
+    margin-left: -1.0986328125em;
+    color: rgb(76, 70, 59);
+}
+.icon-Exempel .path1:before {
+    content: "\e80d";
+    color: rgb(0, 0, 0);
+}
+.icon-Exempel .path2:before {
+    content: "\e80e";
+    margin-left: -0.716796875em;
+    color: rgb(74, 74, 74);
+}
+.icon-Limerick:before {
+    content: "\e80f";
+}
+.icon-Type:before {
+    content: "\e803";
+}
+.icon-Collector:before {
+    content: "\e804";
+}
+.icon-Language:before {
+    content: "\e601";
+}
+.icon-Subgenre:before {
+    content: "\e603";
+}
+.icon-Tag:before {
+    content: "\e605";
+}
+.icon-Broodjeaap:before {
+    content: "\e604";
+}
+.icon-Verhalenkaart:before {
+    content: "\e025";
+}
+.icon-Legende:before {
+    content: "\e606";
+}
+.icon-Sage:before {
+    content: "\e602";
+}
+.icon-Personal_narrative:before {
+    content: "\e810";
+}
+.icon-book:before {
+    content: "\e800";
+}
+.icon-Info:before {
+    content: "\e2a2";
+}
+.icon-Raadsel:before {
+    content: "\e30f";
+}
+.icon-Mythe:before {
+    content: "\f084";
+}
+.icon-Lied:before {
+    content: "\e805";
+}
+.icon-Personal:before {
+    content: "\e811";
+}
+
+/*
+
+@font-face {
 	font-family: 'VerhalenKaartIconen';
 	src:url('fonts/VerhalenKaartIconen.eot?md872l');
 	src:url('fonts/VerhalenKaartIconen.eot?md872l#iefix') format('embedded-opentype'),
@@ -60,7 +219,7 @@
 	text-transform: none;
 	line-height: 1;
 
-	/* Better Font Rendering =========== */
+	 Better Font Rendering =========== 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -144,6 +303,9 @@
 .icon-Verhalenkaart:before {
 	content: "\e025";
 }
+.icon-Timeline:before {
+	content: "\e026";
+}
 .icon-Legende:before {
 	content: "\e606";
 }
@@ -172,3 +334,4 @@
 	content: "\e811";
 }
 
+*/

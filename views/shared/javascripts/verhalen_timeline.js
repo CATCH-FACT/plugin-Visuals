@@ -1,25 +1,60 @@
 function TimelineViewer(vm){
     this.init = function(){
         vm.location_results.subscribe( function (){
-            console.log("timeline data updated");
+//            console.log("timeline data updated");
             d3.selectAll("#timeWindow").selectAll("svg").remove(); // resetting the information screen
-            console.log("timeline removed");
-            drawTimeline( "Verhalen timeline", vm.location_results(), "#timeWindow", "", 800, 200, vm);
-            console.log("timeline re-added");
+//            console.log("timeline removed");
+
+            var dates = all_dates(vm.location_results());
+
+            console.log(dates);
+
+            //assign counts to unique dates
+            var counts = datescounts(dates);
+
+            console.log(counts);
+            
+            drawTimeline( "Verhalen timeline", counts, "#timeWindow", "", 800, 200, true);
+//            console.log("timeline re-added");
         });
     }
 }
 
+function all_dates(data_in){
+    var all_dates = new Array();
+    var re = /^\d\d\d\d-\d\d-\d\d/;
+//        console.log(data_in);
+    data_in.forEach(function(d){
+//            console.log(d);
+        d.values.forEach(function(item){
+            if (item.date){
+                var date = re.exec(item.date);
+                if (date){
+                    all_dates.push(date[0]);
+                }
+            }
+        })
+    })
+    return all_dates;
+}
 
-function drawTimeline(timelineName, in_data, selectString, colors, widthOrg, heightOrg, vm){
+function datescounts(dates){
+    var counts = {};
+    for (var i = 0; i < dates.length; i++) {
+        counts[dates[i]] = 1 + (counts[dates[i]] || 0);
+    }
+    return counts;
+}
+
+function drawTimeline(timelineName, in_data, selectString, colors, widthOrg, heightOrg, additive){
     
     var format_date_classic = d3.time.format("%Y-%m-%d");
     //console.log(format_date(new Date(2011, 0, 1))); // returns a string
 
     var top_graph_percentage = 0.75;
-    var between_space = 20;
+    var between_space = 30;
     
-    var main_margin = {top: 0, bottom: 0, right: 60, left: 10};
+    var main_margin = {top: 0, bottom: 0, right: 50, left: 20};
     var main_height = heightOrg - main_margin.top - main_margin.bottom;
     
     var top_height = main_height * top_graph_percentage; //height of upper
@@ -32,18 +67,14 @@ function drawTimeline(timelineName, in_data, selectString, colors, widthOrg, hei
     
     var parseDate = [d3.time.format("%Y-%m-%d %Y-%m-%d").parse,
                     d3.time.format("%Y-%m-%d").parse,
-                    d3.time.format("%b %Y").parse];
+                    d3.time.format("%Y-%m").parse,
+                    d3.time.format("%b %Y").parse,
+                    d3.time.format("%Y").parse];
 
-    //var parseDate = d3.time.format("%Y-%m-%d").parse
-    //var parseDate = d3.time.format("%b %Y").parse;
-
-    console.log(in_data);
-    
     var q = 0;
     
-    dates = all_dates(in_data);
-    //assign counts to unique dates
-    counts = counts(dates);
+    var counts = in_data;
+    
     //prepare for d3 ingestion
     data = d3.entries(counts);
     //parse dates to fit scale
@@ -51,16 +82,18 @@ function drawTimeline(timelineName, in_data, selectString, colors, widthOrg, hei
     //order datums by time
     data = data.sort(function(a, b) { return a.key - b.key; });
     //addition of data to make rising line
-    data.forEach(function(d) { 
-        q = q + d.value;
-        d.value = q; }, this);
+    if (additive){
+        data.forEach(function(d) { 
+            q = q + d.value;
+            d.value = q; }, this);
+    }
 
     var x = d3.time.scale().range([0, main_width]), //upper timeline
         x2 = d3.time.scale().range([0, main_width]), //lower timeline
-//        y = d3.scale.sqrt().range([height, 0]), //upper timeline
-        y = d3.scale.pow().range([top_height, 40]), //upper timeline
-        scaley = d3.scale.pow().range([top_height, 0]), //upper timeline
-        y2 = d3.scale.pow().range([bottom_height, 0]); //lower timeline
+        y = d3.scale.sqrt().range([top_height, 0]), //upper timeline
+//        y = d3.scale.pow().range([top_height, 40]), //upper timeline
+//        scaley = d3.scale.pow().range([top_height, 0]), //upper timeline
+        y2 = d3.scale.sqrt().range([bottom_height, 0]); //lower timeline
 
     var xAxis = d3.svg.axis()
                     .scale(x)
@@ -121,14 +154,14 @@ function drawTimeline(timelineName, in_data, selectString, colors, widthOrg, hei
         .attr("transform", "translate(" + bottom_margin.left + "," + bottom_margin.top + ")");
 
     var title = svg.append("text") //add a title to the circle's center
-        .attr("x", 10)
+        .attr("x", 100)
         .attr("y", 24)
         .style("font-size", "16px") 
         .style("font-weight", "bold")
         .style("position","relative")
         .text(timelineName);
 
-    //extract the dates
+    //extract the dates +ADD 10 YEARS TO DOMAIN
     x.domain(d3.extent(data.map(function(d) { return d.key; })));
     y.domain([0, d3.max(data.map(function(d) { return d.value; }))]);
     x2.domain(x.domain());
@@ -214,31 +247,5 @@ function drawTimeline(timelineName, in_data, selectString, colors, widthOrg, hei
                 return item_date;
             }
         }
-    }
-
-    function all_dates(data_in){
-        var all_dates = new Array();
-        var re = /^\d\d\d\d-\d\d-\d\d/;
-//        console.log(data_in);
-        data_in.forEach(function(d){
-//            console.log(d);
-            d.values.forEach(function(item){
-                if (item.date){
-                    var date = re.exec(item.date);
-                    if (date){
-                        all_dates.push(date[0]);
-                    }
-                }
-            })
-        })
-        return all_dates;
-    }
-
-    function counts(dates){
-        var counts = {};
-        for (var i = 0; i < dates.length; i++) {
-            counts[dates[i]] = 1 + (counts[dates[i]] || 0);
-        }
-        return counts;
     }
 }

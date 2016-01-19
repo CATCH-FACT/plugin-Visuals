@@ -1,0 +1,238 @@
+html, body, #map {
+    overflow:hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-family: 'Roboto', helvetica, sans-serif;
+    font-weight: 300;
+    color: #434343;
+    background-color: gray;
+}
+
+p {
+    margin: 4px;
+    font-size: 100%;
+    text-indent: 10px;
+    line-height: 1em;
+}
+
+.svg {
+    stroke-width: 0px;
+    border: 0px;
+}
+
+.float {
+    position: absolute;
+}
+
+#search_container {
+    margin: 4px;
+    font-size: 70%;
+    line-height: 1em;
+    min-width: 200px;
+    padding: 4px;
+    box-shadow: 5px 5px 5px #888888;
+    background: transparant;
+    top: 50px;
+    opacity: 1;
+}
+
+#viewSettings {
+    margin: 4px;
+    font-size: 70%;
+    line-height: 1em;
+    min-width: 200px;
+    padding: 4px;
+    box-shadow: 5px 5px 5px #888888;
+    background: transparant;
+    top: 50px;
+    opacity: 1;
+}
+
+
+.node circle {
+    stroke: #3182bd;
+    cursor: pointer;
+    stroke-width: 1px;
+    stroke-dasharray: 0; 
+}
+
+.selected circle{
+    stroke: red;
+    stroke-width: 3px;
+    stroke-dasharray: 0; 
+}
+
+.other{
+    fill: #666666;
+    fill-opacity: .75;
+    stroke: #000000;
+}
+
+.fixed circle{
+    stroke-dasharray: 5,5; 
+    stroke-width: 5px;
+}
+
+.node text {
+    font: 10px sans-serif;
+    pointer-events: none;
+    text-anchor: middle;
+}
+
+
+line.link {
+    fill: none;
+/*    stroke: #9ecae1;*/
+/*    stroke-width: 1.5px;*/
+}
+
+svg {
+    border: 1px solid #131313;
+}
+
+#legendList {
+    font: 11px sans-serif;
+    margin-left: 0px;
+	margin-right: 2px;
+	margin-top: 6px;
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-top: 6px;
+    padding-bottom: 6px;
+	border-top: solid 1px rgba(255,255,255,0.6);
+	list-style-position: inside;
+}
+
+li {
+    list-style: none;
+    list-style-position: inside;
+}
+
+#legendList>li {
+	padding: 2px;
+    margin: 2px;
+	padding-left: 2px;
+	margin-bottom: 0px;
+}
+
+
+#linkDetailList>li {
+	position: relative;
+	padding: 1px;
+	padding-left: 2px;
+	margin-bottom: 0px;
+}
+
+#tabs-1 {
+    overflow: auto;
+    white-space: pre-wrap;      /* CSS3 */   
+    white-space: -moz-pre-wrap; /* Firefox */    
+    white-space: -pre-wrap;     /* Opera <7 */   
+    white-space: -o-pre-wrap;   /* Opera 7 */    
+    word-wrap: break-word;      /* IE */
+    font: 11px sans-serif;
+	right: 0;
+	top: 0;
+	height: 92%;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding-left: 0px;
+	padding-top: 0px;
+	list-style: none;
+/*	list-style-position: inside;*/
+}
+
+#tabs-1>li {
+	position: relative;
+	padding: 1px;
+	padding-left: 0px;
+	margin-bottom: 0px;
+}
+
+#tabs-2 {
+    overflow: auto;
+    white-space: pre-wrap;      /* CSS3 */   
+    white-space: -moz-pre-wrap; /* Firefox */    
+    white-space: -pre-wrap;     /* Opera <7 */   
+    white-space: -o-pre-wrap;   /* Opera 7 */    
+    word-wrap: break-word;      /* IE */
+    font: 12px sans-serif;
+	right: 0;
+	top: 0;
+	height: 92%;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding-left: 0px;
+	padding-top: 0px;
+	list-style: none;
+/*	list-style-position: inside;*/
+}
+
+#waitWindow {
+    -moz-border-radius-topright: 25px 50px;
+    -moz-border-radius-bottomright: 25px 50px;
+    -moz-border-radius-topleft: 25px 50px;
+    -moz-border-radius-bottomleft: 25px 50px;
+    border-top-right-radius: 25px 50px;
+    border-bottom-right-radius: 25px 50px;
+    border-top-left-radius: 25px 50px;
+    border-bottom-left-radius: 25px 50px;
+    position: absolute;
+    background: orange;
+    left:        50%;        /* Start with top left in the center */
+    top:         50%;
+    margin-left: -50px;     /* Shift over half the width */
+    margin-top:  -50px;      /* Shift up half the height */
+    opacity: 0.7;
+    height: 100px;
+    width: 100px;
+}
+
+
+#accordion-resizer {
+    position: absolute;
+    height: 85%;
+    width: 250px;
+	max-height: 95%;
+	padding-bottom: 12px;
+}
+
+#tabs {
+    right: 0;
+    position: absolute;
+    height: 98%;
+    width: 250px;
+	max-height: 98%;
+	padding-bottom: 12px;
+}
+
+
+circle.ping{
+	stroke: #ff00ff;
+	stroke-opacity: 1;
+	stroke-width: 15px;
+	fill: none;
+	pointer-events: none;
+}
+
+line.ping{
+	stroke: #ff00ff;
+	stroke-opacity: 1;
+	stroke-width: 5px;
+	pointer-events: none;
+}
+
+
+.extent {
+  fill: #000;
+  fill-opacity: .125;
+  stroke: #fff;
+}

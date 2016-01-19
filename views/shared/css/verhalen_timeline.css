@@ -1,0 +1,66 @@
+.control{
+    padding: 5px;
+    font-size: 0.8em;
+    vertical-align: baseline;
+    font-family: 'Roboto', helvetica, sans-serif;
+    color: #434343;
+}
+
+div.mouseover{
+	position: absolute;
+	background: black;
+	background-color: rgba(0,0,0,0.5);
+	border: 1px solid #131313;
+	color: white;
+	padding: 5px 8px;
+	top: 0px;
+	left: 0px;
+/*	margin-top: 10px;*/
+	margin-left: 10px;
+	display: none;
+}
+
+.area {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+div.click_tip{
+/*    -moz-border-radius-topleft: 5px 50px;
+    -moz-border-radius-bottomleft: 15px 50px;
+    -moz-border-radius-topright: 15px 50px;
+    -moz-border-radius-bottomright: 15px 50px;
+    border-top-left-radius: 5px 50px;
+    border-bottom-left-radius: 15px 50px;
+    border-top-right-radius: 15px 50px;
+    border-bottom-right-radius: 15px 50px;*/
+/*    border: 2px;
+    border-color: lightblue;
+    border-style: ridge;*/
+    background: #444;
+    opacity: 0.94;
+    padding: 4px;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 200px;
+    position: absolute;
+/*    background: rgba(220,220,0,0.8);*/
+}
+
+.axis .minor line {
+  stroke: #777;
+  stroke-dasharray: 5,2;
+}

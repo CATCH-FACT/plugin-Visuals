@@ -206,7 +206,7 @@ function ViewModel() {
                 UpdateLocationData(omni_proxy, self.location_query() + " AND " + collection_folktales, self);
             },10);
         }
-        if (self.show_collectors){
+/*        if (self.show_collectors){
             setTimeout(function(){
                 UpdateCollectorData(collector_proxy + self.collector_query() + " AND " + collection_collectors, self);
             },20);
@@ -215,7 +215,7 @@ function ViewModel() {
             setTimeout(function(){
                 UpdateCreatorData(creator_proxy + self.creator_query() + " AND " + collection_creators, self);
             },30);
-        }
+        }*/
         if (self.show_ne_locations){ //the future comes soon
             setTimeout(function(){
                 UpdateNELocationData(ne_location_proxy + self.ne_location_query() + " AND " + collection_ne_locations, self);
@@ -298,7 +298,8 @@ function create_search_arguments_and_return_facets(query){
 function UpdateFacetData(proxy, facet_query, facet_addition, vm){
 //    console.log("facet_query");
 //    console.log(facet_query);
-    
+
+    facet_query = facet_query.replace(/"/g, '\\"');
     arg = create_search_arguments_and_return_facets(facet_query);
     arg = {"rj": stringify(arg)};
     
@@ -314,8 +315,8 @@ function UpdateFacetData(proxy, facet_query, facet_addition, vm){
         async: true, // meh
         dataType: "json",
         success: function(response) {
-            console.log("facet_query");
-            console.log(response);
+//            console.log("facet_query");
+//            console.log(response);
             formatted_response = d3_format_facets(response.facet_counts.facet_fields);
             vm.facets_results(formatted_response);
             vm.facets_results.valueHasMutated();
@@ -366,15 +367,16 @@ function create_search_arguments_and_return_locationdata(query){
 }
 
 function UpdateLocationData(proxy, location_query, vm){
-    console.log("LOCATION_QUERY: " + location_query);
+//    console.log("LOCATION_QUERY: " + location_query);
     vm.waiting(true);
     vm.waiting.valueHasMutated();
     
+    location_query = location_query.replace(/"/g, '\\"');
     arg = create_search_arguments_and_return_locationdata(location_query);
     arg = {"rj": stringify(arg)};
 
-    console.log(arg);
-    console.log(proxy);
+//    console.log(arg);
+//    console.log(proxy);
     
     jQuery.ajax({
         url: proxy,
@@ -383,7 +385,7 @@ function UpdateLocationData(proxy, location_query, vm){
         async: true, // meh
         dataType: "json",
         success: function(response) {
-            console.log(response);
+//            console.log(response);
             nested_results = d3.nest()
                 .key(function(d) { return [d.latitude, d.longitude]; })
                 .entries(response.response.docs);

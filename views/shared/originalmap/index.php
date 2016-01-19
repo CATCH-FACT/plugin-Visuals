@@ -15,10 +15,6 @@
 //    queue_js_file('bootstrap.min');
     queue_js_file('originalmap_main');
 
-    #queue_js_url('https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places');
-    #queue_css_url('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800');
-
-//    queue_css_file('bootstrap.min');
     queue_css_file('jquery-ui');
     queue_css_file('originalmap_style');
     queue_css_file('accordeon_style');
@@ -33,6 +29,17 @@
               });
           });
     ');
+
+    queue_css_file(array('iconfonts','style', 'skeleton', 'jquery-ui'));
+    queue_css_file('media/960min', 'only screen and (min-width: 960px)');
+    queue_css_file('media/768min', 'only screen and (min-width: 768px) and (max-width: 959px)');
+    queue_css_file('media/767max', 'only screen and (max-width: 767px)');
+    queue_css_file('media/479max', 'only screen and (max-width: 479px)');
+    queue_css_url('//fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic|Cabin:400,700,400italic,700italic');
+
+    queue_js_file(array('vendor/respond', 'vendor/modernizr'));
+    queue_js_file('vendor/selectivizr', 'javascripts', array('conditional' => '(gte IE 6)&(lte IE 8)'));
+    queue_js_file('globals');
 
     echo head_css();
     echo head_js();
@@ -54,6 +61,33 @@
     <?php #fire_plugin_hook('public_body', array('view'=>$this)); ?>
 
     <div id="map"></div>
+
+    <header style="">
+        <div class="container">
+            <div id="site-title" class="two columns">
+                <?php echo link_to_home_page(option('site_title'), array('target' => '_blank')); ?>
+            </div>
+
+            <nav>
+                <?php #echo common('global-nav'); ?>
+
+                <ul id="user-nav">
+                <?php if ($user = current_user()): ?>
+                    <?php
+                        $name = html_escape($user->name);
+                        if (is_allowed($user, 'edit')) {
+                            $userLink = '<a href="' . html_escape(url('users/edit/' . $user->id)) . '">' . $name . '</a>';
+                        } else {
+                            $userLink = $name;
+                        }
+                    ?>
+                    <li><?php echo __('Welcome, %s', $userLink); ?></li>
+                    <li><a href="<?php echo html_escape(url('users/logout'));?>" id="logout"><?php echo __('Log Out'); ?></a></li>
+                <?php endif; ?>
+                </ul>
+            </nav>
+        </div>
+    </header>    
     
     <div id="accordion-resizer" class="ui-widget-content">
         <div id="accordion">
@@ -179,9 +213,8 @@
         </div>
     </div>
 
-    <div class="toplayer" id="search_container_bg"></div>
     <div class="toplayer" id="search_container">
-        Q: <input id="searchBox" class="input-search" data-bind="value:location_query, valueUpdate: 'afterkeydown', event: { keypress: searchKeyboardCmd}" style='width:90%'/>
+        <input id="searchBox" class="input-search" data-bind="value:location_query, valueUpdate: 'afterkeydown', event: { keypress: searchKeyboardCmd}" style='min-width:100px; width:90%'/>
         <center>
         <button class="search_button" data-bind="click:doSearch">Search</button>
         <button class="reset_button" data-bind="click:emptySearchbox">Reset</button>
