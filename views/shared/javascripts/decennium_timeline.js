@@ -35,7 +35,7 @@ var data = JSON.parse(fetcher);
 var keyz = Object.keys( data ).map(function ( key ) { return key; });
 var keyzmin = Math.min.apply( null, keyz );
 var keyzmax = Math.max.apply( null, keyz );
-var fullrange = range(keyzmin, keyzmax, 10);
+var fullrange = range(keyzmin -10, keyzmax + 20, 10);
 for (var key in fullrange) {
     data[fullrange[key.toString()]] = data[fullrange[key.toString()]] ? data[fullrange[key.toString()]] : 0;
 }
