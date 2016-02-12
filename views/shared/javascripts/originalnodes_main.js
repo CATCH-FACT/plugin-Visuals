@@ -97,7 +97,7 @@ var search_proxy = 'proxy';
 var show_facets = ["item_type", "subject",
                     "collector", "creator", "date",
                     "subgenre", "type", "language", "literary", "extreme",
-                    "tags", "named_entity","named_entity_location", "place_of_action", "motif", 
+                    "tag", "named_entity","named_entity_location", "place_of_action", "motif", 
                     "word_count_group", "locality", "administrative_area_level_1"];
 var facet_addition = "&facet=true&facet.mincount=1&wt=json&rows=0&facet.field=" + show_facets.join("&facet.field=")
 
@@ -119,7 +119,7 @@ var metadatas_to_query = [  {key: "title",          score_value: 1,     selected
                             {key: "named_entity_location",	score_value: 1,     selected: true},
                             {key: "place_of_action",   score_value: 1,     selected: true},
                             {key: "corpus",	        score_value: 1,     selected: false},
-                            {key: "tags",           score_value: 1,     selected: true},
+                            {key: "tag",           score_value: 1,     selected: true},
                             {key: "word_count",      score_value: 1,     selected: false},
                             {key: "word_count_group",  score_value: 1,     selected: true},
                             {key: "location",	    score_value: 1,     selected: true},
@@ -136,7 +136,7 @@ var metadatas_to_query = [  {key: "title",          score_value: 1,     selected
 var metadatas_to_show = ["identifier", "title", "item_type", "subject",
                         "collector", "creator", "contributor", "date",
                         "subgenre", "type", "language", "literary", "extreme",
-                        "tags", "named_entity","named_entity_location","place_of_action", "motif", 
+                        "tag", "named_entity","named_entity_location","place_of_action", "motif", 
                         "corpus","word_count","word_count_group", "locality", "description", "main_text"];
 
 function makeid(n){
@@ -754,7 +754,7 @@ function get_solr_id_list(url, solr_params){
     var search_string = "";
     console.log("solr_params in get_solr_id_list:");
     console.log(solr_params);
-    jQuery.ajax({
+    $.ajax({
         url: url,
         data: solr_params,
         method: 'POST',
@@ -774,46 +774,6 @@ function get_solr_id_list(url, solr_params){
     });
     return search_string;
 }
-
-
-/*function get_vb_id_list(vb_link){
-    var search_string;
-    page = 0;
-    all_items_found = false;
-    items_found = 0;
-    vb_link = vb_link + "&output=json";
-    search_ids = [];
-    while (!all_items_found){
-        page++;
-        vb_link = vb_link + "&page=" + page;
-        console.log(vb_link);
-        $.ajax({
-            url: vb_link,
-            async: false, // meh
-            dataType: "json",
-            success: function(response) {
-                if (response.total_results > 0){ //if there is a response
-                    total_results = response.total_results;
-                    for (i in response.items){
-                        items_found++;
-                        if (response.items[i].modelid){
-                            setTimeout(search_ids.push(response.items[i].modelid),1000)
-//                            search_ids.push(response.items[i].modelid);
-                        }
-                    }
-                }
-                if (items_found >= response.total_results - 1){
-                    all_items_found = true;
-                }
-            },
-            error: function(){
-                all_items_found = true; //or it will just keep going!
-            }
-        });
-    }
-    search_string = search_ids.join(",");
-    return search_string;
-}*/
 
 function search(_for, _in) {
     var r;
