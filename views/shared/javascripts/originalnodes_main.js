@@ -94,7 +94,7 @@ var search_proxy = 'proxy';
 //var neighbor_search_proxy = 'data_proxy_post.php';
 //var facet_proxy = 'data_proxy_post.php'
 
-var show_facets = ["item_type", "subject",
+var show_facets = ["itemtype", "subject",
                     "collector", "creator", "date",
                     "subgenre", "type", "language", "literary", "extreme",
                     "tag", "named_entity","named_entity_location", "place_of_action", "motif", 
@@ -133,7 +133,7 @@ var metadatas_to_query = [  {key: "title",          score_value: 1,     selected
                         ];
 
 
-var metadatas_to_show = ["identifier", "title", "item_type", "subject",
+var metadatas_to_show = ["identifier", "title", "itemtype", "subject",
                         "collector", "creator", "contributor", "date",
                         "subgenre", "type", "language", "literary", "extreme",
                         "tag", "named_entity","named_entity_location","place_of_action", "motif", 
@@ -371,12 +371,12 @@ subgenres = ["broodjeaapverhaal",
 
 subgenre_colors = array_color_generator(subgenres);
 
-item_types = [  "Volksverhaal",
+itemtypes = [  "Volksverhaal",
                 "Volksverhaaltype",
                 "Lexicon item",
                 "Persoon",
                 "other" ];
-item_type_colors = array_color_generator(item_types);
+itemtype_colors = array_color_generator(itemtypes);
 
 extreme_colors = { "ja": {class_code: "ABCDEFGH", color: "#FF0000"},
                     "nee": {class_code: "BCDEFGHI", color: "#00FF00"},
@@ -390,7 +390,7 @@ literary_colors = { "ja": {class_code: "XABCDEFGH", color: "#FF0000"},
                     "nee (bewerkt)": {class_code: "XDEFGHIJK", color: "#AAFFAA"},
                     "other": {class_code: "XEFGHIJKL", color: "#FFFFE0"}};
 
-legendOptionValues = ["subgenre", "type", "language", "literary", "extreme", "word_count_group", "item_type"];
+legendOptionValues = ["subgenre", "type", "language", "literary", "extreme", "word_count_group", "itemtype"];
 selectedLegendOptionValue = ["subgenre"];
 
 legend_colors = {"subgenre":        subgenre_colors, 
@@ -399,7 +399,7 @@ legend_colors = {"subgenre":        subgenre_colors,
                 "literary":         literary_colors, 
                 "extreme":          extreme_colors, 
                 "word_count_group": word_count_group_colors,
-                "item_type":        item_type_colors};
+                "itemtype":         itemtype_colors};
 
 ///this should all be generated on the fly, with the languages present in the retrieved set of items
 

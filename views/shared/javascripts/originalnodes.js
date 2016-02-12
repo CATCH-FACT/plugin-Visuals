@@ -189,8 +189,8 @@ function NodeViewer(vm){
             else if (vm.selectedLegendOptionValue() == "type"){
                 return (d.type ? "node " + legend_colors[vm.selectedLegendOptionValue()][d.type[0]].class_code : "node other");
             }
-            else if (vm.selectedLegendOptionValue() == "item_type"){
-                return (d.item_type ? "node " + legend_colors[vm.selectedLegendOptionValue()][d.item_type].class_code : "node other");
+            else if (vm.selectedLegendOptionValue() == "itemtype"){
+                return (d.itemtype ? "node " + legend_colors[vm.selectedLegendOptionValue()][d.itemtype].class_code : "node other");
             }
             else if (vm.selectedLegendOptionValue() == "literary"){
                 return (d.literary ? "node " + legend_colors[vm.selectedLegendOptionValue()][d.literary].class_code : "node other");
@@ -240,10 +240,10 @@ function NodeViewer(vm){
                     return legend_colors[vm.selectedLegendOptionValue()][d.type].color;
                 }
             }
-            if (vm.selectedLegendOptionValue() == "item_type"){
-                if (d.item_type){
-                    console.log(d.item_type);
-                    return legend_colors[vm.selectedLegendOptionValue()][d.item_type].color;
+            if (vm.selectedLegendOptionValue() == "itemtype"){
+                if (d.itemtype){
+                    console.log(d.itemtype);
+                    return legend_colors[vm.selectedLegendOptionValue()][d.itemtype].color;
                 }
             }
             if (vm.selectedLegendOptionValue() == "literary"){
