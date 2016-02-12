@@ -7,10 +7,17 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
  
-queue_css_file('cloud');
 queue_js_file('d3.min');
 queue_js_file('d3.layout.cloud');
+
+queue_css_file('cloud');
 queue_css_file('results');
+
+if (!is_admin_theme()) { 
+    queue_css_file('results');
+}
+
+
 
 echo head(array('title' => __('Browse Wordcloud'),
                 'bodyid'=>'cloud',

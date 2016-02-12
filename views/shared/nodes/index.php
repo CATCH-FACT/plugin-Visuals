@@ -19,63 +19,33 @@ queue_js_file('originalnodes');
 queue_js_file('dynamic_pie_charts');
 queue_js_file('originalnodes_main');
 
+queue_css_file(array('iconfonts','style', 'skeleton', 'jquery-ui'));
+#queue_css_file('media/960min', 'only screen and (min-width: 960px)');
+#queue_css_file('media/768min', 'only screen and (min-width: 768px) and (max-width: 959px)');
+#queue_css_file('media/767max', 'only screen and (max-width: 767px)');
+#queue_css_file('media/479max', 'only screen and (max-width: 479px)');
+queue_css_url('//fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic|Cabin:400,700,400italic,700italic');
+
 queue_css_file('jquery-ui');
 queue_css_file('nodes_style');
 
-?>
+queue_js_file(array('vendor/respond', 'vendor/modernizr'));
+queue_js_file('vendor/selectivizr', 'javascripts', array('conditional' => '(gte IE 6)&(lte IE 8)'));
+queue_js_file('globals');
 
-<?php
-    queue_css_file(array('iconfonts','style', 'skeleton', 'jquery-ui'));
-    queue_css_file('media/960min', 'only screen and (min-width: 960px)');
-    queue_css_file('media/768min', 'only screen and (min-width: 768px) and (max-width: 959px)');
-    queue_css_file('media/767max', 'only screen and (max-width: 767px)');
-    queue_css_file('media/479max', 'only screen and (max-width: 479px)');
-    queue_css_url('//fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic|Cabin:400,700,400italic,700italic');
-
-    queue_js_file(array('vendor/respond', 'vendor/modernizr'));
-    queue_js_file('vendor/selectivizr', 'javascripts', array('conditional' => '(gte IE 6)&(lte IE 8)'));
-    queue_js_file('globals');
 ?>
 
 
-<?php //echo head(array('title' => __('Nodes Network')));?>
+<?php #echo head(array('title' => __('Nodes Network')));?>
 
 <!-- Plugin Stuff -->
-<?php fire_plugin_hook('admin_head', array('view'=>$this)); ?>
+<?php #fire_plugin_hook('admin_head', array('view'=>$this)); ?>
 
 <!-- Stylesheets -->
 <?php echo head_css(); ?>
 
 <!-- JavaScripts -->
 <?php echo head_js(); ?>
-
-<header>
-    <div class="container">
-        <div id="site-title" class="two columns">
-            <?php echo link_to_home_page(option('site_title'), array('target' => '_blank')); ?>
-        </div>
-
-        <nav>
-            <?php echo common('global-nav'); ?>
-            
-            <ul id="user-nav">
-            <?php if ($user = current_user()): ?>
-                <?php
-                    $name = html_escape($user->name);
-                    if (is_allowed($user, 'edit')) {
-                        $userLink = '<a href="' . html_escape(url('users/edit/' . $user->id)) . '">' . $name . '</a>';
-                    } else {
-                        $userLink = $name;
-                    }
-                ?>
-                <li><?php echo __('Welcome, %s', $userLink); ?></li>
-                <li><a href="<?php echo html_escape(url('users/logout'));?>" id="logout"><?php echo __('Log Out'); ?></a></li>
-            <?php endif; ?>
-            </ul>
-        </nav>
-    </div>
-</header>
-
 
     <div id="nodemain" style="height: 800px">
         <div class="toplayer viewer" id="waitWindow"><br><center>Please <br> wait..</center></div>

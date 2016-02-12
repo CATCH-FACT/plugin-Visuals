@@ -733,17 +733,19 @@ function MapViewer(vm){
             });
             //show subscriptions
             vm.show_locations.subscribe( function (){
-                vm.doLocationSearch() //more data expensive
+                vm.doSearch() //more data expensive
 //                updateLocations(vm.location_results());   
             });
             vm.show_creators.subscribe( function (){
-                updateCreators(vm.creator_results());
+                vm.doSearch() //more data expensive
+//                updateCreators(vm.creator_results());
             });
             vm.show_collectors.subscribe( function (){
-                updateCollectors(vm.collector_results());
+                vm.doSearch() //more data expensive
+//                updateCollectors(vm.collector_results());
             });
             vm.show_ne_locations.subscribe( function (){
-                updateNELocations(vm.ne_location_results());                        
+//                updateNELocations(vm.ne_location_results());                        
             });
             
             //cloud

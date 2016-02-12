@@ -7,16 +7,17 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
  
-queue_css_file('labella');
-
 queue_js_file('d3.min');
 queue_js_file('labella.min');
 queue_js_file('d3kit.min');
 queue_js_file('d3kit-timeline.min');
 queue_js_file('verhalen_timeline');
 
+queue_css_file('labella');
 queue_css_file('verhalen_timeline');
-queue_css_file('results');
+if (!is_admin_theme()) { 
+    queue_css_file('results');
+}
 
 echo head(array('title' => __('Browse Timeline'),
                 'bodyid'=>'timeline',
@@ -153,16 +154,13 @@ $applied_facets = SolrSearch_Helpers_Facet::parseFacets();
 
 <!-- Facets. -->
 <?php 
-
 $facet_order = get_option("solr_search_display_facets_order");
 
 if ($facet_order) {
     $order = preg_split("/[\r\n]+/", $facet_order);
 } else {
     $order = array();
-}
-
-?>
+}?>
 
 <div id="solr-facets">
 
@@ -170,7 +168,6 @@ if ($facet_order) {
   <!-- In order from the settings -->
   <?php foreach ($order as $facet_name): ?>
    <?php foreach ($results->facet_counts->facet_fields as $name => $facets): ?>
-    <!-- Does the facet have any hits? -->
     <?php if (count(get_object_vars($facets)) && ($name == $facet_name )): ?>
       <!-- Facet label. -->
       <div class="facet">

@@ -18,6 +18,56 @@ window.onload = function () {
     var menuman = new MenuViewer(vm);
     menuman.init();
 
+    // Get the `query` GET parameter
+    var q = getUrlParameter("q");
+    // Get the `facet` GET parameter
+    var facet = getUrlParameter("facet");
+    // Get the `free` GET parameter
+    var free = getUrlParameter("free");
+    
+    if (typeof facet !== 'undefined'){
+        facet = decodeURI(facet).replace(/%3A/g, ':').replace(/\+/g, ' ');
+    }
+    else{
+        facet = "";
+    }
+    
+    if (typeof free !== 'undefined'){
+        free = decodeURI(free).replace(/%3A/g, ':').replace(/\+/g, ' ');
+    }
+    else{
+        free = "";
+    }
+    
+    var final_query = '';
+    var and = '';
+    
+    if ((typeof q == 'undefined') || (q == '')) {
+    }
+    else{
+        final_query = q.replace(':', ' ').replace('[', "").replace(']', "");
+        and = " AND "
+    }
+    if ((typeof facet == 'undefined') || (facet == '')){
+    }
+    else{
+        final_query += and + "(" + facet.replace(/"/g, '\\"') + ")";
+        and = " AND "
+    }
+    if ((typeof free == 'undefined') || (free == '')){
+    }
+    else{
+        //remove {} here for proper return URL
+        final_query += and + "(" + free.replace(/\{/g, '').replace(/\}/g, '').replace(/"/g, '\\"').replace(/-/g, ' ') + ")";
+    }
+    
+//    vm.location_q(q);
+//    vm.location_facet(facet);
+//    vm.location_free(free);
+//    vm.location_query(final_query);
+    
+    vm.location_query(q);
+    
     vm.doSearch();
 }
 
@@ -78,6 +128,21 @@ var collection_main_locations = "collection_id:202";
 var collection_ne_locations = "collection_id:201";
 
 var search_query = location_proxy + initial_location_query;
+
+/*
+*   Getting URL parameters and returning them in a for loop
+*
+*/
+function getUrlParameter(sParam){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam){
+            return sParameterName[1];
+        }
+    }
+}
 
 function ViewModel() {
     
@@ -203,6 +268,7 @@ function ViewModel() {
         }
         if (self.show_locations()){
             setTimeout(function(){ //easy now!
+                console.log("location update");
                 UpdateLocationData(omni_proxy, self.location_query() + " AND " + collection_folktales, self);
             },10);
         }
@@ -210,17 +276,18 @@ function ViewModel() {
             setTimeout(function(){
                 UpdateCollectorData(collector_proxy + self.collector_query() + " AND " + collection_collectors, self);
             },20);
-        }
+        }*/
         if (self.show_creators){
             setTimeout(function(){
-                UpdateCreatorData(creator_proxy + self.creator_query() + " AND " + collection_creators, self);
+                console.log("creator update");
+                UpdateCreatorData(omni_proxy, self.creator_query() + " AND " + collection_creators, self);
             },30);
-        }*/
-        if (self.show_ne_locations){ //the future comes soon
+        }
+/*        if (self.show_ne_locations){ //the future comes soon
             setTimeout(function(){
                 UpdateNELocationData(ne_location_proxy + self.ne_location_query() + " AND " + collection_ne_locations, self);
             },40);
-        }
+        }*/
 //        UpdateLocationData(location_proxy + self.location_query(), self);
         UpdateFacetData(omni_proxy, self.location_query() + " AND " + collection_folktales, facet_addition, self);
 //        UpdateFacetData(omni_proxy, self.location_query() + " AND " + collection_folktales + facet_addition, self);
@@ -397,7 +464,37 @@ function UpdateLocationData(proxy, location_query, vm){
     });
 }
 
-function UpdateCreatorData(creator_query, vm){
+function UpdateCreatorData(proxy, creator_query, vm){
+        vm.waiting(true);
+        vm.waiting.valueHasMutated();
+
+        creator_query = creator_query.replace(/"/g, '\\"');
+        arg = create_search_arguments_and_return_locationdata(creator_query);
+        arg = {"rj": stringify(arg)};
+
+        console.log(arg);
+        console.log(proxy);
+
+        jQuery.ajax({
+            url: proxy,
+            data: arg,
+            method: 'POST',
+            async: true, // meh
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                nested_results = d3.nest()
+                    .key(function(d) { return [d.latitude, d.longitude]; })
+                    .entries(response.response.docs);
+                vm.creator_results(nested_results);
+                vm.creator_results.valueHasMutated();
+                vm.waiting(false);
+                vm.waiting.valueHasMutated();
+            }
+        });
+}
+
+function UpdateCreatorDataOLD(creator_query, vm){
 //    console.log("CREATORS:" + creator_query);
     $.getJSON(creator_query, function(response) {
 //        var jq_results = vm.creator_results;

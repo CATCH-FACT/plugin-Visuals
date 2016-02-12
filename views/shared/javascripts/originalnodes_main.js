@@ -772,23 +772,6 @@ function get_solr_id_list(url, solr_params){
             }
         }
     });
-/*    
-    $.ajax({
-        url: url,
-        data: solr_params,
-        async: false, // meh
-        dataType: "json",
-        success: function(response) {
-            console.log(response);
-            if (response.response.docs.length > 0){ //if there is a response
-                found_nodes = response.response.docs;
-                for (node in found_nodes){
-                    search_ids.push(found_nodes[node].modelid);
-                }
-                search_string = search_ids.join(",");
-            }
-        },
-    });*/
     return search_string;
 }
 
@@ -942,7 +925,7 @@ function create_search_arguments_from_item_id_return(item, max_neighbor_results,
         start: 0,
 //        fq: "id:" + retrieve_existing_ids_from_pool(vm),
         rows: max_neighbor_results,
-        fl: "score,id",
+        fl: "score,modelid",
         q: neighbor_search_query
     }
 
@@ -978,7 +961,7 @@ function create_comparison_search_argument_from_item(item, id, vm){
 //    var neighbor_search_command = neighbor_search_proxy + neighbor_search_query + fq_id_addition;
     var neighbor_search_arguments = {
         q: neighbor_search_query,
-        fq: "id:" + id,
+        fq: "modelid:" + id,
         
     };
 //    console.log(neighbor_search_command);
@@ -991,16 +974,24 @@ function ConnectNeighbors(vm){
     node_ids = returnNodeIds(existing_network_graph.nodes);
     existing_network_graph.links = []; //complete refresh
     changed = false;
-    
+
     for (var i = 0; i < existing_network_graph.nodes.length; i++) {
 //        var neighbor_search_command = create_search_command_from_item_id_return(existing_network_graph.nodes[i], 100, vm);
         var neighbor_search_arguments = create_search_arguments_from_item_id_return(existing_network_graph.nodes[i], 100, vm);
+        
         console.log("neighbor_search_arguments");
-        console.log(neighbor_search_arguments);
+//        console.log(neighbor_search_arguments);
+
+        args = {"rj": stringify(neighbor_search_arguments)};
+        
+        console.log(vm.search_proxy());
+        console.log(args);
+        
         $.ajax({
             url: vm.search_proxy(),
-            data: neighbor_search_arguments,
+            data: args,
             async: false, // meh
+            method: 'POST',
             dataType: "json",
             success: function(response) {
                 console.log(response);

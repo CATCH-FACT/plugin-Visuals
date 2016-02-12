@@ -7,12 +7,12 @@ function TimelineViewer(vm){
 
             var dates = all_dates(vm.location_results());
 
-            console.log(dates);
+//            console.log(dates);
 
             //assign counts to unique dates
             var counts = datescounts(dates);
 
-            console.log(counts);
+//            console.log(counts);
             
             drawTimeline( "Verhalen timeline", counts, "#timeWindow", "", 800, 200, true);
 //            console.log("timeline re-added");
