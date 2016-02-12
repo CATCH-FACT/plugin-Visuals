@@ -627,7 +627,8 @@ function ViewModel() {
         ids = self.id_search_query().split(/,[ \n]*/);
         for (id in ids){
             var arguments = {
-                "fl": "score,*",
+                "fl": "score,modelid," + self.metadatas_to_show().join(","),
+//                "fl": "score,*",
                 "q": "modelid:" + ids[id],
                 "rows": self.max_nodes_to_load()
             };
@@ -885,7 +886,8 @@ function create_search_arguments_from_item_id_return(item, max_neighbor_results,
         start: 0,
 //        fq: "id:" + retrieve_existing_ids_from_pool(vm),
         rows: max_neighbor_results,
-        fl: "score,modelid",
+        "fl": "score,modelid," + self.metadatas_to_show().join(","),
+//        fl: "score,modelid",
         q: neighbor_search_query
     }
 
