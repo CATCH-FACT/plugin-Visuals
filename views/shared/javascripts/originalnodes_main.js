@@ -129,7 +129,7 @@ var metadatas_to_query = [  {key: "title",          score_value: 1,     selected
                             {key: "administrative_area_level_2",	score_value: 1,     selected: false},
                             {key: "administrative_area_level_3",	score_value: 1,     selected: false},
                             {key: "country",        score_value: 1,     selected: false},
-                            {key: "text",           score_value: 1,     selected: false}
+                            {key: "main_text",           score_value: 1,     selected: false}
                         ];
 
 
@@ -137,7 +137,7 @@ var metadatas_to_show = ["identifier", "title", "item_type", "subject",
                         "collector", "creator", "contributor", "date",
                         "subgenre", "type", "language", "literary", "extreme",
                         "tags", "named_entity","named_entity_location","place_of_action", "motif", 
-                        "corpus","word_count","word_count_group", "locality", "description", "text"];
+                        "corpus","word_count","word_count_group", "locality", "description", "main_text"];
 
 function makeid(n){
     var text = "";
