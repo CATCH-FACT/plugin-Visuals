@@ -658,3 +658,455 @@ INFO  - 2015-10-28 13:15:49.387; org.apache.solr.core.CachingDirectoryFactory; l
 INFO  - 2015-10-28 13:15:49.388; org.apache.solr.core.CachingDirectoryFactory; Closing directory: /Applications/MAMP/solr4.6/omeka/data
 INFO  - 2015-10-28 13:15:49.388; org.apache.solr.core.CachingDirectoryFactory; looking to close /Applications/MAMP/solr4.6/omeka/data/index [CachedDir<<refCount=0;path=/Applications/MAMP/solr4.6/omeka/data/index;done=false>>]
 INFO  - 2015-10-28 13:15:49.388; org.apache.solr.core.CachingDirectoryFactory; Closing directory: /Applications/MAMP/solr4.6/omeka/data/index
+INFO  - 2016-02-15 12:54:25.228; org.apache.solr.servlet.SolrDispatchFilter; SolrDispatchFilter.init()
+INFO  - 2016-02-15 12:54:25.267; org.apache.solr.core.SolrResourceLoader; Using JNDI solr.home: /Applications/MAMP/solr4.6
+INFO  - 2016-02-15 12:54:25.271; org.apache.solr.core.SolrResourceLoader; new SolrResourceLoader for directory: '/Applications/MAMP/solr4.6/'
+INFO  - 2016-02-15 12:54:25.578; org.apache.solr.core.ConfigSolr; Loading container configuration from /Applications/MAMP/solr4.6/solr.xml
+INFO  - 2016-02-15 12:54:25.596; org.apache.solr.core.ConfigSolr; /Applications/MAMP/solr4.6/solr.xml does not exist, using default configuration
+INFO  - 2016-02-15 12:54:25.792; org.apache.solr.core.CoreContainer; New CoreContainer 1262698624
+INFO  - 2016-02-15 12:54:25.792; org.apache.solr.core.CoreContainer; Loading cores into CoreContainer [instanceDir=/Applications/MAMP/solr4.6/]
+INFO  - 2016-02-15 12:54:25.812; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting socketTimeout to: 0
+INFO  - 2016-02-15 12:54:25.813; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting urlScheme to: http://
+INFO  - 2016-02-15 12:54:25.813; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting connTimeout to: 0
+INFO  - 2016-02-15 12:54:25.813; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting maxConnectionsPerHost to: 20
+INFO  - 2016-02-15 12:54:25.813; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting corePoolSize to: 0
+INFO  - 2016-02-15 12:54:25.814; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting maximumPoolSize to: 2147483647
+INFO  - 2016-02-15 12:54:25.815; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting maxThreadIdleTime to: 5
+INFO  - 2016-02-15 12:54:25.815; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting sizeOfQueue to: -1
+INFO  - 2016-02-15 12:54:25.815; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting fairnessPolicy to: false
+INFO  - 2016-02-15 12:54:26.054; org.apache.solr.logging.LogWatcher; SLF4J impl is org.slf4j.impl.Log4jLoggerFactory
+INFO  - 2016-02-15 12:54:26.055; org.apache.solr.logging.LogWatcher; Registering Log Listener [Log4j (org.slf4j.impl.Log4jLoggerFactory)]
+INFO  - 2016-02-15 12:54:26.137; org.apache.solr.core.CoreContainer; Creating SolrCore 'collection1' using instanceDir: /Applications/MAMP/solr4.6/collection1
+INFO  - 2016-02-15 12:54:26.138; org.apache.solr.core.SolrResourceLoader; new SolrResourceLoader for directory: '/Applications/MAMP/solr4.6/collection1/'
+INFO  - 2016-02-15 12:54:26.227; org.apache.solr.core.SolrConfig; Adding specified lib dirs to ClassLoader
+WARN  - 2016-02-15 12:54:26.229; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../contrib/extraction/lib (resolved as: /Applications/MAMP/solr4.6/collection1/../../../contrib/extraction/lib).
+WARN  - 2016-02-15 12:54:26.232; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../dist/ (resolved as: /Applications/MAMP/solr4.6/collection1/../../../dist).
+WARN  - 2016-02-15 12:54:26.232; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../contrib/clustering/lib/ (resolved as: /Applications/MAMP/solr4.6/collection1/../../../contrib/clustering/lib).
+WARN  - 2016-02-15 12:54:26.232; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../dist/ (resolved as: /Applications/MAMP/solr4.6/collection1/../../../dist).
+WARN  - 2016-02-15 12:54:26.232; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../contrib/langid/lib/ (resolved as: /Applications/MAMP/solr4.6/collection1/../../../contrib/langid/lib).
+WARN  - 2016-02-15 12:54:26.233; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../dist/ (resolved as: /Applications/MAMP/solr4.6/collection1/../../../dist).
+WARN  - 2016-02-15 12:54:26.233; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../contrib/velocity/lib (resolved as: /Applications/MAMP/solr4.6/collection1/../../../contrib/velocity/lib).
+WARN  - 2016-02-15 12:54:26.233; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../dist/ (resolved as: /Applications/MAMP/solr4.6/collection1/../../../dist).
+INFO  - 2016-02-15 12:54:26.452; org.apache.solr.update.SolrIndexConfig; IndexWriter infoStream solr logging is enabled
+INFO  - 2016-02-15 12:54:26.467; org.apache.solr.core.SolrConfig; Using Lucene MatchVersion: LUCENE_46
+INFO  - 2016-02-15 12:54:27.166; org.apache.solr.core.SolrConfig; Loaded SolrConfig: solrconfig.xml
+INFO  - 2016-02-15 12:54:27.175; org.apache.solr.schema.IndexSchema; Reading Solr Schema from schema.xml
+INFO  - 2016-02-15 12:54:27.314; org.apache.solr.schema.IndexSchema; [collection1] Schema name=example
+INFO  - 2016-02-15 12:54:28.530; org.apache.solr.schema.IndexSchema; unique key field: id
+INFO  - 2016-02-15 12:54:28.787; org.apache.solr.schema.FileExchangeRateProvider; Reloading exchange rates from file currency.xml
+INFO  - 2016-02-15 12:54:28.803; org.apache.solr.schema.FileExchangeRateProvider; Reloading exchange rates from file currency.xml
+INFO  - 2016-02-15 12:54:28.980; org.apache.solr.core.SolrCore; solr.NRTCachingDirectoryFactory
+INFO  - 2016-02-15 12:54:28.991; org.apache.solr.core.SolrCore; [collection1] Opening new SolrCore at /Applications/MAMP/solr4.6/collection1/, dataDir=/Applications/MAMP/solr4.6/collection1/data/
+INFO  - 2016-02-15 12:54:28.995; org.apache.solr.core.JmxMonitoredMap; JMX monitoring is enabled. Adding Solr mbeans to JMX Server: com.sun.jmx.mbeanserver.JmxMBeanServer@53d8d10a
+INFO  - 2016-02-15 12:54:29.045; org.apache.solr.core.SolrCore; [collection1] Added SolrEventListener for newSearcher: org.apache.solr.core.QuerySenderListener{queries=[]}
+INFO  - 2016-02-15 12:54:29.046; org.apache.solr.core.SolrCore; [collection1] Added SolrEventListener for firstSearcher: org.apache.solr.core.QuerySenderListener{queries=[{q=static firstSearcher warming in solrconfig.xml}]}
+INFO  - 2016-02-15 12:54:29.070; org.apache.solr.core.CachingDirectoryFactory; return new directory for /Applications/MAMP/solr4.6/collection1/data
+INFO  - 2016-02-15 12:54:29.072; org.apache.solr.core.SolrCore; New index directory detected: old=null new=/Applications/MAMP/solr4.6/collection1/data/index/
+INFO  - 2016-02-15 12:54:29.073; org.apache.solr.core.CachingDirectoryFactory; return new directory for /Applications/MAMP/solr4.6/collection1/data/index
+INFO  - 2016-02-15 12:54:29.094; org.apache.solr.core.SolrCore; created json: solr.JSONResponseWriter
+INFO  - 2016-02-15 12:54:29.095; org.apache.solr.core.SolrCore; adding lazy queryResponseWriter: solr.VelocityResponseWriter
+INFO  - 2016-02-15 12:54:29.095; org.apache.solr.core.SolrCore; created velocity: solr.VelocityResponseWriter
+INFO  - 2016-02-15 12:54:29.100; org.apache.solr.core.SolrCore; created xslt: solr.XSLTResponseWriter
+INFO  - 2016-02-15 12:54:29.100; org.apache.solr.response.XSLTResponseWriter; xsltCacheLifetimeSeconds=5
+INFO  - 2016-02-15 12:54:29.266; org.apache.solr.core.SolrCore; no updateRequestProcessorChain defined as default, creating implicit default
+INFO  - 2016-02-15 12:54:29.284; org.apache.solr.core.RequestHandlers; created /select: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.285; org.apache.solr.core.RequestHandlers; created /query: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.290; org.apache.solr.core.RequestHandlers; created /get: solr.RealTimeGetHandler
+INFO  - 2016-02-15 12:54:29.291; org.apache.solr.core.RequestHandlers; created /browse: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.303; org.apache.solr.core.RequestHandlers; created /update: solr.UpdateRequestHandler
+WARN  - 2016-02-15 12:54:29.306; org.apache.solr.core.SolrResourceLoader; Solr loaded a deprecated plugin/analysis class [solr.JsonUpdateRequestHandler]. Please consult documentation how to replace it accordingly.
+INFO  - 2016-02-15 12:54:29.307; org.apache.solr.core.RequestHandlers; created /update/json: solr.JsonUpdateRequestHandler
+WARN  - 2016-02-15 12:54:29.310; org.apache.solr.core.SolrResourceLoader; Solr loaded a deprecated plugin/analysis class [solr.CSVRequestHandler]. Please consult documentation how to replace it accordingly.
+INFO  - 2016-02-15 12:54:29.311; org.apache.solr.core.RequestHandlers; created /update/csv: solr.CSVRequestHandler
+INFO  - 2016-02-15 12:54:29.312; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.extraction.ExtractingRequestHandler
+INFO  - 2016-02-15 12:54:29.313; org.apache.solr.core.RequestHandlers; created /update/extract: solr.extraction.ExtractingRequestHandler
+INFO  - 2016-02-15 12:54:29.313; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.FieldAnalysisRequestHandler
+INFO  - 2016-02-15 12:54:29.314; org.apache.solr.core.RequestHandlers; created /analysis/field: solr.FieldAnalysisRequestHandler
+INFO  - 2016-02-15 12:54:29.314; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.DocumentAnalysisRequestHandler
+INFO  - 2016-02-15 12:54:29.314; org.apache.solr.core.RequestHandlers; created /analysis/document: solr.DocumentAnalysisRequestHandler
+INFO  - 2016-02-15 12:54:29.317; org.apache.solr.core.RequestHandlers; created /admin/: solr.admin.AdminHandlers
+INFO  - 2016-02-15 12:54:29.321; org.apache.solr.core.RequestHandlers; created /admin/ping: solr.PingRequestHandler
+INFO  - 2016-02-15 12:54:29.324; org.apache.solr.core.RequestHandlers; created /debug/dump: solr.DumpRequestHandler
+INFO  - 2016-02-15 12:54:29.364; org.apache.solr.core.RequestHandlers; created /replication: solr.ReplicationHandler
+INFO  - 2016-02-15 12:54:29.364; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.364; org.apache.solr.core.RequestHandlers; created /spell: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.364; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.365; org.apache.solr.core.RequestHandlers; created /tvrh: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.365; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: org.apache.solr.handler.js.JavaScriptRequestHandler
+INFO  - 2016-02-15 12:54:29.365; org.apache.solr.core.RequestHandlers; created /js: org.apache.solr.handler.js.JavaScriptRequestHandler
+INFO  - 2016-02-15 12:54:29.365; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.365; org.apache.solr.core.RequestHandlers; created /terms: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.366; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.366; org.apache.solr.core.RequestHandlers; created /elevate: solr.SearchHandler
+INFO  - 2016-02-15 12:54:29.403; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2016-02-15 12:54:29.409; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2016-02-15 12:54:29.410; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2016-02-15 12:54:29.461; org.apache.solr.update.CommitTracker; Hard AutoCommit: if uncommited for 15000ms; 
+INFO  - 2016-02-15 12:54:29.461; org.apache.solr.update.CommitTracker; Soft AutoCommit: disabled
+INFO  - 2016-02-15 12:54:29.557; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onInit: commits: num=1
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/Applications/MAMP/solr4.6/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@56910a65; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_1,generation=1}
+INFO  - 2016-02-15 12:54:29.558; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 1
+INFO  - 2016-02-15 12:54:29.573; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@33cee9a7 main
+INFO  - 2016-02-15 12:54:29.582; org.apache.solr.handler.component.SpellCheckComponent; Initializing spell checkers
+INFO  - 2016-02-15 12:54:29.591; org.apache.solr.spelling.DirectSolrSpellChecker; init: {name=default,field=text,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+INFO  - 2016-02-15 12:54:29.602; org.apache.solr.handler.component.SpellCheckComponent; No queryConverter defined, using default converter
+INFO  - 2016-02-15 12:54:29.606; org.apache.solr.handler.component.QueryElevationComponent; Loading QueryElevation from: /Applications/MAMP/solr4.6/collection1/conf/elevate.xml
+INFO  - 2016-02-15 12:54:29.668; org.apache.solr.handler.ReplicationHandler; Commits will be reserved for  10000
+INFO  - 2016-02-15 12:54:29.669; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@33cee9a7 main{StandardDirectoryReader(segments_1:1:nrt)}
+INFO  - 2016-02-15 12:54:29.756; org.apache.solr.core.SolrCore; [collection1] webapp=null path=null params={q=static+firstSearcher+warming+in+solrconfig.xml&distrib=false&event=firstSearcher} hits=0 status=0 QTime=82 
+INFO  - 2016-02-15 12:54:29.757; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2016-02-15 12:54:29.757; org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener; Loading spell index for spellchecker: default
+INFO  - 2016-02-15 12:54:29.758; org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener; Loading spell index for spellchecker: wordbreak
+INFO  - 2016-02-15 12:54:29.760; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@33cee9a7 main{StandardDirectoryReader(segments_1:1:nrt)}
+INFO  - 2016-02-15 12:54:29.763; org.apache.solr.core.CoreContainer; registering core: collection1
+INFO  - 2016-02-15 12:54:29.766; org.apache.solr.servlet.SolrDispatchFilter; user.dir=/Applications/MAMP/htdocs/vb2.2.2/plugins/Visuals
+INFO  - 2016-02-15 12:54:29.766; org.apache.solr.servlet.SolrDispatchFilter; SolrDispatchFilter.init() done
+INFO  - 2016-02-15 12:54:32.178; org.apache.solr.servlet.SolrDispatchFilter; [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1455537272145} status=0 QTime=2 
+INFO  - 2016-02-15 12:54:32.438; org.apache.solr.servlet.SolrDispatchFilter; [admin] webapp=null path=/admin/info/system params={wt=json&_=1455537272365} status=0 QTime=47 
+INFO  - 2016-02-15 12:54:34.894; org.apache.solr.servlet.SolrDispatchFilter; [admin] webapp=null path=/admin/cores params={wt=json&_=1455537274843} status=0 QTime=4 
+INFO  - 2016-02-15 12:54:35.095; org.apache.solr.servlet.SolrDispatchFilter; [admin] webapp=null path=/admin/cores params={wt=json&_=1455537274960} status=0 QTime=1 
+INFO  - 2016-02-15 12:54:42.557; org.apache.solr.core.CoreContainer; Creating SolrCore 'omka' using instanceDir: /Applications/MAMP/solr4.6/omeka
+INFO  - 2016-02-15 12:54:42.558; org.apache.solr.core.SolrResourceLoader; new SolrResourceLoader for directory: '/Applications/MAMP/solr4.6/omeka/'
+INFO  - 2016-02-15 12:54:42.606; org.apache.solr.core.SolrConfig; Adding specified lib dirs to ClassLoader
+WARN  - 2016-02-15 12:54:42.607; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../contrib/extraction/lib (resolved as: /Applications/MAMP/solr4.6/omeka/../../../contrib/extraction/lib).
+WARN  - 2016-02-15 12:54:42.608; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../dist/ (resolved as: /Applications/MAMP/solr4.6/omeka/../../../dist).
+WARN  - 2016-02-15 12:54:42.608; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../contrib/clustering/lib/ (resolved as: /Applications/MAMP/solr4.6/omeka/../../../contrib/clustering/lib).
+WARN  - 2016-02-15 12:54:42.608; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../dist/ (resolved as: /Applications/MAMP/solr4.6/omeka/../../../dist).
+WARN  - 2016-02-15 12:54:42.608; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../contrib/langid/lib/ (resolved as: /Applications/MAMP/solr4.6/omeka/../../../contrib/langid/lib).
+WARN  - 2016-02-15 12:54:42.609; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../dist/ (resolved as: /Applications/MAMP/solr4.6/omeka/../../../dist).
+WARN  - 2016-02-15 12:54:42.609; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../contrib/velocity/lib (resolved as: /Applications/MAMP/solr4.6/omeka/../../../contrib/velocity/lib).
+WARN  - 2016-02-15 12:54:42.610; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: ../../../dist/ (resolved as: /Applications/MAMP/solr4.6/omeka/../../../dist).
+INFO  - 2016-02-15 12:54:42.721; org.apache.solr.update.SolrIndexConfig; IndexWriter infoStream solr logging is enabled
+INFO  - 2016-02-15 12:54:42.723; org.apache.solr.core.SolrConfig; Using Lucene MatchVersion: LUCENE_46
+INFO  - 2016-02-15 12:54:42.783; org.apache.solr.core.SolrConfig; Loaded SolrConfig: solrconfig.xml
+INFO  - 2016-02-15 12:54:42.784; org.apache.solr.schema.IndexSchema; Reading Solr Schema from schema.xml
+INFO  - 2016-02-15 12:54:42.812; org.apache.solr.schema.IndexSchema; [omka] Schema name=SolrSearch
+INFO  - 2016-02-15 12:54:43.881; org.apache.solr.schema.IndexSchema; unique key field: id
+INFO  - 2016-02-15 12:54:44.160; org.apache.solr.schema.FileExchangeRateProvider; Reloading exchange rates from file currency.xml
+INFO  - 2016-02-15 12:54:44.168; org.apache.solr.schema.FileExchangeRateProvider; Reloading exchange rates from file currency.xml
+INFO  - 2016-02-15 12:54:44.209; org.apache.solr.core.SolrCore; solr.NRTCachingDirectoryFactory
+INFO  - 2016-02-15 12:54:44.209; org.apache.solr.core.SolrCore; [omka] Opening new SolrCore at /Applications/MAMP/solr4.6/omeka/, dataDir=/Applications/MAMP/solr4.6/omeka/data/
+INFO  - 2016-02-15 12:54:44.209; org.apache.solr.core.JmxMonitoredMap; JMX monitoring is enabled. Adding Solr mbeans to JMX Server: com.sun.jmx.mbeanserver.JmxMBeanServer@53d8d10a
+INFO  - 2016-02-15 12:54:44.211; org.apache.solr.core.SolrCore; [omka] Added SolrEventListener for newSearcher: org.apache.solr.core.QuerySenderListener{queries=[]}
+INFO  - 2016-02-15 12:54:44.211; org.apache.solr.core.SolrCore; [omka] Added SolrEventListener for firstSearcher: org.apache.solr.core.QuerySenderListener{queries=[{q=static firstSearcher warming in solrconfig.xml}]}
+INFO  - 2016-02-15 12:54:44.211; org.apache.solr.core.CachingDirectoryFactory; return new directory for /Applications/MAMP/solr4.6/omeka/data
+INFO  - 2016-02-15 12:54:44.212; org.apache.solr.core.SolrCore; New index directory detected: old=null new=/Applications/MAMP/solr4.6/omeka/data/index/
+INFO  - 2016-02-15 12:54:44.213; org.apache.solr.core.CachingDirectoryFactory; return new directory for /Applications/MAMP/solr4.6/omeka/data/index
+INFO  - 2016-02-15 12:54:44.214; org.apache.solr.core.SolrCore; created json: solr.JSONResponseWriter
+INFO  - 2016-02-15 12:54:44.214; org.apache.solr.core.SolrCore; adding lazy queryResponseWriter: solr.VelocityResponseWriter
+INFO  - 2016-02-15 12:54:44.214; org.apache.solr.core.SolrCore; created velocity: solr.VelocityResponseWriter
+INFO  - 2016-02-15 12:54:44.214; org.apache.solr.core.SolrCore; created xslt: solr.XSLTResponseWriter
+INFO  - 2016-02-15 12:54:44.214; org.apache.solr.response.XSLTResponseWriter; xsltCacheLifetimeSeconds=5
+INFO  - 2016-02-15 12:54:44.217; org.apache.solr.core.SolrCore; no updateRequestProcessorChain defined as default, creating implicit default
+INFO  - 2016-02-15 12:54:44.217; org.apache.solr.core.RequestHandlers; created /select: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.224; org.apache.solr.core.RequestHandlers; created /query: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.225; org.apache.solr.core.RequestHandlers; created /get: solr.RealTimeGetHandler
+INFO  - 2016-02-15 12:54:44.226; org.apache.solr.core.RequestHandlers; created /browse: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.227; org.apache.solr.core.RequestHandlers; created /update: solr.UpdateRequestHandler
+INFO  - 2016-02-15 12:54:44.227; org.apache.solr.core.RequestHandlers; created /update/json: solr.JsonUpdateRequestHandler
+INFO  - 2016-02-15 12:54:44.228; org.apache.solr.core.RequestHandlers; created /update/csv: solr.CSVRequestHandler
+INFO  - 2016-02-15 12:54:44.228; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.extraction.ExtractingRequestHandler
+INFO  - 2016-02-15 12:54:44.229; org.apache.solr.core.RequestHandlers; created /update/extract: solr.extraction.ExtractingRequestHandler
+INFO  - 2016-02-15 12:54:44.229; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.FieldAnalysisRequestHandler
+INFO  - 2016-02-15 12:54:44.229; org.apache.solr.core.RequestHandlers; created /analysis/field: solr.FieldAnalysisRequestHandler
+INFO  - 2016-02-15 12:54:44.229; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.DocumentAnalysisRequestHandler
+INFO  - 2016-02-15 12:54:44.230; org.apache.solr.core.RequestHandlers; created /analysis/document: solr.DocumentAnalysisRequestHandler
+INFO  - 2016-02-15 12:54:44.230; org.apache.solr.core.RequestHandlers; created /admin/: solr.admin.AdminHandlers
+INFO  - 2016-02-15 12:54:44.230; org.apache.solr.core.RequestHandlers; created /admin/ping: solr.PingRequestHandler
+INFO  - 2016-02-15 12:54:44.233; org.apache.solr.core.RequestHandlers; created /debug/dump: solr.DumpRequestHandler
+INFO  - 2016-02-15 12:54:44.234; org.apache.solr.core.RequestHandlers; created /replication: solr.ReplicationHandler
+INFO  - 2016-02-15 12:54:44.234; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.234; org.apache.solr.core.RequestHandlers; created /spell: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.235; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.235; org.apache.solr.core.RequestHandlers; created /tvrh: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.235; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: org.apache.solr.handler.js.JavaScriptRequestHandler
+INFO  - 2016-02-15 12:54:44.235; org.apache.solr.core.RequestHandlers; created /js: org.apache.solr.handler.js.JavaScriptRequestHandler
+INFO  - 2016-02-15 12:54:44.235; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.235; org.apache.solr.core.RequestHandlers; created /terms: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.236; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.236; org.apache.solr.core.RequestHandlers; created /elevate: solr.SearchHandler
+INFO  - 2016-02-15 12:54:44.238; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2016-02-15 12:54:44.239; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2016-02-15 12:54:44.242; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2016-02-15 12:54:44.264; org.apache.solr.update.CommitTracker; Hard AutoCommit: if uncommited for 15000ms; 
+INFO  - 2016-02-15 12:54:44.264; org.apache.solr.update.CommitTracker; Soft AutoCommit: disabled
+INFO  - 2016-02-15 12:54:44.301; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onInit: commits: num=1
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/Applications/MAMP/solr4.6/omeka/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@f15533a; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_b6n,generation=14495}
+INFO  - 2016-02-15 12:54:44.301; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 14495
+INFO  - 2016-02-15 12:54:44.377; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@345244cd main
+INFO  - 2016-02-15 12:54:44.383; org.apache.solr.handler.component.SpellCheckComponent; Initializing spell checkers
+INFO  - 2016-02-15 12:54:44.383; org.apache.solr.spelling.DirectSolrSpellChecker; init: {name=default,field=text,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+INFO  - 2016-02-15 12:54:44.384; org.apache.solr.handler.component.SpellCheckComponent; No queryConverter defined, using default converter
+INFO  - 2016-02-15 12:54:44.385; org.apache.solr.handler.component.QueryElevationComponent; Loading QueryElevation from: /Applications/MAMP/solr4.6/omeka/conf/elevate.xml
+INFO  - 2016-02-15 12:54:44.394; org.apache.solr.handler.ReplicationHandler; Commits will be reserved for  10000
+INFO  - 2016-02-15 12:54:44.396; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@345244cd main{StandardDirectoryReader(segments_b6n:54573:nrt _k9p(4.6):C45032)}
+INFO  - 2016-02-15 12:54:44.445; org.apache.solr.core.SolrCore; [omka] webapp=null path=null params={q=static+firstSearcher+warming+in+solrconfig.xml&distrib=false&event=firstSearcher} hits=36687 status=0 QTime=49 
+INFO  - 2016-02-15 12:54:44.475; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2016-02-15 12:54:44.475; org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener; Loading spell index for spellchecker: default
+INFO  - 2016-02-15 12:54:44.475; org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener; Loading spell index for spellchecker: wordbreak
+INFO  - 2016-02-15 12:54:44.476; org.apache.solr.core.SolrCore; [omka] Registered new searcher Searcher@345244cd main{StandardDirectoryReader(segments_b6n:54573:nrt _k9p(4.6):C45032)}
+INFO  - 2016-02-15 12:54:44.477; org.apache.solr.core.CoreContainer; registering core: omka
+INFO  - 2016-02-15 12:54:44.478; org.apache.solr.servlet.SolrDispatchFilter; [admin] webapp=null path=/admin/cores params={schema=schema.xml&dataDir=data&name=omka&indexInfo=false&action=CREATE&collection=&shard=&wt=json&instanceDir=omeka&config=solrconfig.xml&_=1455537282521} status=0 QTime=1933 
+INFO  - 2016-02-15 12:54:44.505; org.apache.solr.servlet.SolrDispatchFilter; [admin] webapp=null path=/admin/cores params={wt=json&_=1455537284483} status=0 QTime=2 
+INFO  - 2016-02-15 12:54:47.592; org.apache.solr.servlet.SolrDispatchFilter; [admin] webapp=null path=/admin/cores params={wt=json&_=1455537287559} status=0 QTime=1 
+INFO  - 2016-02-15 12:54:54.824; org.apache.solr.core.CoreContainer; registering core: omeka
+INFO  - 2016-02-15 12:54:54.826; org.apache.solr.servlet.SolrDispatchFilter; [admin] webapp=null path=/admin/cores params={core=omka&other=omeka&indexInfo=false&action=RENAME&wt=json&_=1455537294802} status=0 QTime=5 
+INFO  - 2016-02-15 12:54:54.881; org.apache.solr.servlet.SolrDispatchFilter; [admin] webapp=null path=/admin/cores params={wt=json&_=1455537294846} status=0 QTime=2 
+INFO  - 2016-02-15 12:55:29.964; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=modelid:40567&fl=score,modelid,identifier,title,itemtype,subject,collector,creator,contributor,date,subgenre,type,language,literary,extreme,tag,named_entity,named_entity_location,place_of_action,motif,corpus,word_count,word_count_group,locality,description,main_text&rows=800} hits=1 status=0 QTime=12 
+ERROR - 2016-02-15 12:55:39.440; org.apache.solr.common.SolrException; org.apache.solr.common.SolrException: org.apache.solr.search.SyntaxError: Cannot parse 'title:^1 OR subgenre:mop^1 OR type:boek^1 OR tag:behoefte^1 OR tag:bidden^1 OR tag:biecht^1 OR tag:dagelijks brood^1 OR tag:gebed^1 OR tag:lichaam^1 OR tag:nooddruft^1 OR tag:onderhoud^1 OR tag:toelichting^1 OR tag:uitlegging^1 OR tag:vrijer^1 OR word_count_group:25-100^1': Encountered " "^" "^ "" at line 1, column 6.
+Was expecting one of:
+    <BAREOPER> ...
+    "(" ...
+    "*" ...
+    <QUOTED> ...
+    <TERM> ...
+    <PREFIXTERM> ...
+    <WILDTERM> ...
+    <REGEXPTERM> ...
+    "[" ...
+    "{" ...
+    <LPARAMS> ...
+    <NUMBER> ...
+    
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:171)
+	at org.apache.solr.handler.component.SearchHandler.handleRequestBody(SearchHandler.java:187)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:135)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:1859)
+	at org.apache.solr.servlet.SolrDispatchFilter.execute(SolrDispatchFilter.java:721)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:417)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:201)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:927)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1001)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:579)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.solr.search.SyntaxError: Cannot parse 'title:^1 OR subgenre:mop^1 OR type:boek^1 OR tag:behoefte^1 OR tag:bidden^1 OR tag:biecht^1 OR tag:dagelijks brood^1 OR tag:gebed^1 OR tag:lichaam^1 OR tag:nooddruft^1 OR tag:onderhoud^1 OR tag:toelichting^1 OR tag:uitlegging^1 OR tag:vrijer^1 OR word_count_group:25-100^1': Encountered " "^" "^ "" at line 1, column 6.
+Was expecting one of:
+    <BAREOPER> ...
+    "(" ...
+    "*" ...
+    <QUOTED> ...
+    <TERM> ...
+    <PREFIXTERM> ...
+    <WILDTERM> ...
+    <REGEXPTERM> ...
+    "[" ...
+    "{" ...
+    <LPARAMS> ...
+    <NUMBER> ...
+    
+	at org.apache.solr.parser.SolrQueryParserBase.parse(SolrQueryParserBase.java:157)
+	at org.apache.solr.search.LuceneQParser.parse(LuceneQParser.java:50)
+	at org.apache.solr.search.QParser.getQuery(QParser.java:142)
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:142)
+	... 21 more
+Caused by: org.apache.solr.parser.ParseException: Encountered " "^" "^ "" at line 1, column 6.
+Was expecting one of:
+    <BAREOPER> ...
+    "(" ...
+    "*" ...
+    <QUOTED> ...
+    <TERM> ...
+    <PREFIXTERM> ...
+    <WILDTERM> ...
+    <REGEXPTERM> ...
+    "[" ...
+    "{" ...
+    <LPARAMS> ...
+    <NUMBER> ...
+    
+	at org.apache.solr.parser.QueryParser.generateParseException(QueryParser.java:651)
+	at org.apache.solr.parser.QueryParser.jj_consume_token(QueryParser.java:533)
+	at org.apache.solr.parser.QueryParser.Clause(QueryParser.java:217)
+	at org.apache.solr.parser.QueryParser.Query(QueryParser.java:108)
+	at org.apache.solr.parser.QueryParser.TopLevelQuery(QueryParser.java:97)
+	at org.apache.solr.parser.SolrQueryParserBase.parse(SolrQueryParserBase.java:153)
+	... 24 more
+
+INFO  - 2016-02-15 12:55:39.442; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=title:^1+OR+subgenre:mop^1+OR+type:boek^1+OR+tag:behoefte^1+OR+tag:bidden^1+OR+tag:biecht^1+OR+tag:dagelijks+brood^1+OR+tag:gebed^1+OR+tag:lichaam^1+OR+tag:nooddruft^1+OR+tag:onderhoud^1+OR+tag:toelichting^1+OR+tag:uitlegging^1+OR+tag:vrijer^1+OR+word_count_group:25-100^1&fl=score,*&start=0&rows=25} status=400 QTime=4 
+INFO  - 2016-02-15 12:55:50.357; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={} hits=0 status=0 QTime=0 
+INFO  - 2016-02-15 12:55:53.899; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={} hits=0 status=0 QTime=2 
+INFO  - 2016-02-15 12:55:57.077; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=modelid:40567&fl=score,modelid,identifier,title,itemtype,subject,collector,creator,contributor,date,subgenre,type,language,literary,extreme,tag,named_entity,named_entity_location,place_of_action,motif,corpus,word_count,word_count_group,locality,description,main_text&rows=800} hits=1 status=0 QTime=0 
+INFO  - 2016-02-15 12:56:01.035; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=modelid:40567&fl=score,modelid,identifier,title,itemtype,subject,collector,creator,contributor,date,subgenre,type,language,literary,extreme,tag,named_entity,named_entity_location,place_of_action,motif,corpus,word_count,word_count_group,locality,description,main_text&rows=800} hits=1 status=0 QTime=1 
+ERROR - 2016-02-15 12:56:02.220; org.apache.solr.common.SolrException; org.apache.solr.common.SolrException: org.apache.solr.search.SyntaxError: Cannot parse 'title:^1 OR subgenre:mop^1 OR type:boek^1 OR tag:behoefte^1 OR tag:bidden^1 OR tag:biecht^1 OR tag:dagelijks brood^1 OR tag:gebed^1 OR tag:lichaam^1 OR tag:nooddruft^1 OR tag:onderhoud^1 OR tag:toelichting^1 OR tag:uitlegging^1 OR tag:vrijer^1 OR word_count_group:25-100^1': Encountered " "^" "^ "" at line 1, column 6.
+Was expecting one of:
+    <BAREOPER> ...
+    "(" ...
+    "*" ...
+    <QUOTED> ...
+    <TERM> ...
+    <PREFIXTERM> ...
+    <WILDTERM> ...
+    <REGEXPTERM> ...
+    "[" ...
+    "{" ...
+    <LPARAMS> ...
+    <NUMBER> ...
+    
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:171)
+	at org.apache.solr.handler.component.SearchHandler.handleRequestBody(SearchHandler.java:187)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:135)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:1859)
+	at org.apache.solr.servlet.SolrDispatchFilter.execute(SolrDispatchFilter.java:721)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:417)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:201)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:927)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1001)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:579)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.solr.search.SyntaxError: Cannot parse 'title:^1 OR subgenre:mop^1 OR type:boek^1 OR tag:behoefte^1 OR tag:bidden^1 OR tag:biecht^1 OR tag:dagelijks brood^1 OR tag:gebed^1 OR tag:lichaam^1 OR tag:nooddruft^1 OR tag:onderhoud^1 OR tag:toelichting^1 OR tag:uitlegging^1 OR tag:vrijer^1 OR word_count_group:25-100^1': Encountered " "^" "^ "" at line 1, column 6.
+Was expecting one of:
+    <BAREOPER> ...
+    "(" ...
+    "*" ...
+    <QUOTED> ...
+    <TERM> ...
+    <PREFIXTERM> ...
+    <WILDTERM> ...
+    <REGEXPTERM> ...
+    "[" ...
+    "{" ...
+    <LPARAMS> ...
+    <NUMBER> ...
+    
+	at org.apache.solr.parser.SolrQueryParserBase.parse(SolrQueryParserBase.java:157)
+	at org.apache.solr.search.LuceneQParser.parse(LuceneQParser.java:50)
+	at org.apache.solr.search.QParser.getQuery(QParser.java:142)
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:142)
+	... 21 more
+Caused by: org.apache.solr.parser.ParseException: Encountered " "^" "^ "" at line 1, column 6.
+Was expecting one of:
+    <BAREOPER> ...
+    "(" ...
+    "*" ...
+    <QUOTED> ...
+    <TERM> ...
+    <PREFIXTERM> ...
+    <WILDTERM> ...
+    <REGEXPTERM> ...
+    "[" ...
+    "{" ...
+    <LPARAMS> ...
+    <NUMBER> ...
+    
+	at org.apache.solr.parser.QueryParser.generateParseException(QueryParser.java:651)
+	at org.apache.solr.parser.QueryParser.jj_consume_token(QueryParser.java:533)
+	at org.apache.solr.parser.QueryParser.Clause(QueryParser.java:217)
+	at org.apache.solr.parser.QueryParser.Query(QueryParser.java:108)
+	at org.apache.solr.parser.QueryParser.TopLevelQuery(QueryParser.java:97)
+	at org.apache.solr.parser.SolrQueryParserBase.parse(SolrQueryParserBase.java:153)
+	... 24 more
+
+INFO  - 2016-02-15 12:56:02.220; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=title:^1+OR+subgenre:mop^1+OR+type:boek^1+OR+tag:behoefte^1+OR+tag:bidden^1+OR+tag:biecht^1+OR+tag:dagelijks+brood^1+OR+tag:gebed^1+OR+tag:lichaam^1+OR+tag:nooddruft^1+OR+tag:onderhoud^1+OR+tag:toelichting^1+OR+tag:uitlegging^1+OR+tag:vrijer^1+OR+word_count_group:25-100^1&fl=score,*&start=0&rows=25} status=400 QTime=1 
+ERROR - 2016-02-15 12:56:04.523; org.apache.solr.common.SolrException; org.apache.solr.common.SolrException: org.apache.solr.search.SyntaxError: Cannot parse 'title:^1 OR subgenre:mop^1 OR type:boek^1 OR tag:behoefte^1 OR tag:bidden^1 OR tag:biecht^1 OR tag:dagelijks brood^1 OR tag:gebed^1 OR tag:lichaam^1 OR tag:nooddruft^1 OR tag:onderhoud^1 OR tag:toelichting^1 OR tag:uitlegging^1 OR tag:vrijer^1 OR word_count_group:25-100^1': Encountered " "^" "^ "" at line 1, column 6.
+Was expecting one of:
+    <BAREOPER> ...
+    "(" ...
+    "*" ...
+    <QUOTED> ...
+    <TERM> ...
+    <PREFIXTERM> ...
+    <WILDTERM> ...
+    <REGEXPTERM> ...
+    "[" ...
+    "{" ...
+    <LPARAMS> ...
+    <NUMBER> ...
+    
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:171)
+	at org.apache.solr.handler.component.SearchHandler.handleRequestBody(SearchHandler.java:187)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:135)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:1859)
+	at org.apache.solr.servlet.SolrDispatchFilter.execute(SolrDispatchFilter.java:721)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:417)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:201)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:927)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1001)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:579)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.solr.search.SyntaxError: Cannot parse 'title:^1 OR subgenre:mop^1 OR type:boek^1 OR tag:behoefte^1 OR tag:bidden^1 OR tag:biecht^1 OR tag:dagelijks brood^1 OR tag:gebed^1 OR tag:lichaam^1 OR tag:nooddruft^1 OR tag:onderhoud^1 OR tag:toelichting^1 OR tag:uitlegging^1 OR tag:vrijer^1 OR word_count_group:25-100^1': Encountered " "^" "^ "" at line 1, column 6.
+Was expecting one of:
+    <BAREOPER> ...
+    "(" ...
+    "*" ...
+    <QUOTED> ...
+    <TERM> ...
+    <PREFIXTERM> ...
+    <WILDTERM> ...
+    <REGEXPTERM> ...
+    "[" ...
+    "{" ...
+    <LPARAMS> ...
+    <NUMBER> ...
+    
+	at org.apache.solr.parser.SolrQueryParserBase.parse(SolrQueryParserBase.java:157)
+	at org.apache.solr.search.LuceneQParser.parse(LuceneQParser.java:50)
+	at org.apache.solr.search.QParser.getQuery(QParser.java:142)
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:142)
+	... 21 more
+Caused by: org.apache.solr.parser.ParseException: Encountered " "^" "^ "" at line 1, column 6.
+Was expecting one of:
+    <BAREOPER> ...
+    "(" ...
+    "*" ...
+    <QUOTED> ...
+    <TERM> ...
+    <PREFIXTERM> ...
+    <WILDTERM> ...
+    <REGEXPTERM> ...
+    "[" ...
+    "{" ...
+    <LPARAMS> ...
+    <NUMBER> ...
+    
+	at org.apache.solr.parser.QueryParser.generateParseException(QueryParser.java:651)
+	at org.apache.solr.parser.QueryParser.jj_consume_token(QueryParser.java:533)
+	at org.apache.solr.parser.QueryParser.Clause(QueryParser.java:217)
+	at org.apache.solr.parser.QueryParser.Query(QueryParser.java:108)
+	at org.apache.solr.parser.QueryParser.TopLevelQuery(QueryParser.java:97)
+	at org.apache.solr.parser.SolrQueryParserBase.parse(SolrQueryParserBase.java:153)
+	... 24 more
+
+INFO  - 2016-02-15 12:56:04.524; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=title:^1+OR+subgenre:mop^1+OR+type:boek^1+OR+tag:behoefte^1+OR+tag:bidden^1+OR+tag:biecht^1+OR+tag:dagelijks+brood^1+OR+tag:gebed^1+OR+tag:lichaam^1+OR+tag:nooddruft^1+OR+tag:onderhoud^1+OR+tag:toelichting^1+OR+tag:uitlegging^1+OR+tag:vrijer^1+OR+word_count_group:25-100^1&fl=score,*&start=0&rows=25} status=400 QTime=2 
+INFO  - 2016-02-15 12:56:08.262; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=modelid:40562&fl=score,modelid,identifier,title,itemtype,subject,collector,creator,contributor,date,subgenre,type,language,literary,extreme,tag,named_entity,named_entity_location,place_of_action,motif,corpus,word_count,word_count_group,locality,description,main_text&rows=800} hits=1 status=0 QTime=6 
+INFO  - 2016-02-15 12:56:09.728; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=title:De+verdwenen+oorbel^1+OR+subject:SINSAG+0450^1+OR+subgenre:broodjeaapverhaal^1+OR+named_entity:Paula+Ligtvoet^1+OR+named_entity:Witsenkamer^1+OR+named_entity:Marie+Witsen-Schorr^1+OR+named_entity:Willem+Witsen^1+OR+named_entity:Jessica+Voeten^1+OR+named_entity:Bert+Voeten^1+OR+named_entity:Marga+Minco^1+OR+named_entity:Willem+Kloos^1+OR+named_entity:Paul+Verlaine^1+OR+named_entity:Gerard+Reve^1+OR+named_entity:Hanny+Michaelis^1+OR+named_entity:Nescio^1+OR+named_entity:Jan+Kal^1+OR+named_entity:Anneke+Brassinga^1+OR+named_entity:Thomas+Rosenboom^1+OR+named_entity_location:Witsenmuseum^1+OR+type:krant^1+OR+tag:13+april+1943^1+OR+tag:afscheid^1+OR+tag:angst^1+OR+tag:arm^1+OR+tag:armalstig^1+OR+tag:beschikbaar^1+OR+tag:bewoner^1+OR+tag:deur^1+OR+tag:dolen^1+OR+tag:dood^1+OR+tag:duwen^1+OR+tag:excentriek^1+OR+tag:foto^1+OR+tag:geest^1+OR+tag:geluid^1+OR+tag:groen^1+OR+tag:hand^1+OR+tag:huis^1+OR+tag:ijsingwekkend^1+OR+tag:kaars^1+OR+tag:kamer^1+OR+tag:kimono^1+OR+tag:kleinood^1+OR+tag:kosteloos^1+OR+tag:liefde^1+OR+tag:middenin^1+OR+tag:missen^1+OR+tag:onverklaarbaar^1+OR+tag:onvindbaar^1+OR+tag:onzichtbaar^1+OR+tag:oorbel^1+OR+tag:schilderij^1+OR+tag:schrijfster^1+OR+tag:schrijver^1+OR+tag:serfdag^1+OR+tag:serven^1+OR+tag:spokerij^1+OR+tag:spook^1+OR+tag:spookhuis^1+OR+tag:stellen^1+OR+tag:terug^1+OR+tag:terugkeer^1+OR+tag:testamnet^1+OR+tag:verdwijnen^1+OR+tag:verdwijning^1+OR+tag:verlangen^1+OR+tag:vinden^1+OR+tag:visitekaartje^1+OR+tag:vloerkleed^1+OR+tag:voetstap^1+OR+tag:wonen^1+OR+tag:zichtbaar^1+OR+tag:ziek^1+OR+tag:zoeken^1+OR+word_count_group:500-1000^1&fl=score,*&start=0&rows=25} hits=24077 status=0 QTime=87 
+INFO  - 2016-02-15 12:56:11.628; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=title:De+verdwenen+oorbel^1+OR+subject:SINSAG+0450^1+OR+subgenre:broodjeaapverhaal^1+OR+named_entity:Paula+Ligtvoet^1+OR+named_entity:Witsenkamer^1+OR+named_entity:Marie+Witsen-Schorr^1+OR+named_entity:Willem+Witsen^1+OR+named_entity:Jessica+Voeten^1+OR+named_entity:Bert+Voeten^1+OR+named_entity:Marga+Minco^1+OR+named_entity:Willem+Kloos^1+OR+named_entity:Paul+Verlaine^1+OR+named_entity:Gerard+Reve^1+OR+named_entity:Hanny+Michaelis^1+OR+named_entity:Nescio^1+OR+named_entity:Jan+Kal^1+OR+named_entity:Anneke+Brassinga^1+OR+named_entity:Thomas+Rosenboom^1+OR+named_entity_location:Witsenmuseum^1+OR+type:krant^1+OR+tag:13+april+1943^1+OR+tag:afscheid^1+OR+tag:angst^1+OR+tag:arm^1+OR+tag:armalstig^1+OR+tag:beschikbaar^1+OR+tag:bewoner^1+OR+tag:deur^1+OR+tag:dolen^1+OR+tag:dood^1+OR+tag:duwen^1+OR+tag:excentriek^1+OR+tag:foto^1+OR+tag:geest^1+OR+tag:geluid^1+OR+tag:groen^1+OR+tag:hand^1+OR+tag:huis^1+OR+tag:ijsingwekkend^1+OR+tag:kaars^1+OR+tag:kamer^1+OR+tag:kimono^1+OR+tag:kleinood^1+OR+tag:kosteloos^1+OR+tag:liefde^1+OR+tag:middenin^1+OR+tag:missen^1+OR+tag:onverklaarbaar^1+OR+tag:onvindbaar^1+OR+tag:onzichtbaar^1+OR+tag:oorbel^1+OR+tag:schilderij^1+OR+tag:schrijfster^1+OR+tag:schrijver^1+OR+tag:serfdag^1+OR+tag:serven^1+OR+tag:spokerij^1+OR+tag:spook^1+OR+tag:spookhuis^1+OR+tag:stellen^1+OR+tag:terug^1+OR+tag:terugkeer^1+OR+tag:testamnet^1+OR+tag:verdwijnen^1+OR+tag:verdwijning^1+OR+tag:verlangen^1+OR+tag:vinden^1+OR+tag:visitekaartje^1+OR+tag:vloerkleed^1+OR+tag:voetstap^1+OR+tag:wonen^1+OR+tag:zichtbaar^1+OR+tag:ziek^1+OR+tag:zoeken^1+OR+word_count_group:500-1000^1&fl=score,*&start=0&rows=25} hits=24077 status=0 QTime=6 
+INFO  - 2016-02-15 12:56:18.163; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=title:De+verdwenen+oorbel^1+OR+subject:SINSAG+0450^1+OR+subgenre:broodjeaapverhaal^1+OR+named_entity:Paula+Ligtvoet^1+OR+named_entity:Witsenkamer^1+OR+named_entity:Marie+Witsen-Schorr^1+OR+named_entity:Willem+Witsen^1+OR+named_entity:Jessica+Voeten^1+OR+named_entity:Bert+Voeten^1+OR+named_entity:Marga+Minco^1+OR+named_entity:Willem+Kloos^1+OR+named_entity:Paul+Verlaine^1+OR+named_entity:Gerard+Reve^1+OR+named_entity:Hanny+Michaelis^1+OR+named_entity:Nescio^1+OR+named_entity:Jan+Kal^1+OR+named_entity:Anneke+Brassinga^1+OR+named_entity:Thomas+Rosenboom^1+OR+named_entity_location:Witsenmuseum^1+OR+type:krant^1+OR+tag:13+april+1943^1+OR+tag:afscheid^1+OR+tag:angst^1+OR+tag:arm^1+OR+tag:armalstig^1+OR+tag:beschikbaar^1+OR+tag:bewoner^1+OR+tag:deur^1+OR+tag:dolen^1+OR+tag:dood^1+OR+tag:duwen^1+OR+tag:excentriek^1+OR+tag:foto^1+OR+tag:geest^1+OR+tag:geluid^1+OR+tag:groen^1+OR+tag:hand^1+OR+tag:huis^1+OR+tag:ijsingwekkend^1+OR+tag:kaars^1+OR+tag:kamer^1+OR+tag:kimono^1+OR+tag:kleinood^1+OR+tag:kosteloos^1+OR+tag:liefde^1+OR+tag:middenin^1+OR+tag:missen^1+OR+tag:onverklaarbaar^1+OR+tag:onvindbaar^1+OR+tag:onzichtbaar^1+OR+tag:oorbel^1+OR+tag:schilderij^1+OR+tag:schrijfster^1+OR+tag:schrijver^1+OR+tag:serfdag^1+OR+tag:serven^1+OR+tag:spokerij^1+OR+tag:spook^1+OR+tag:spookhuis^1+OR+tag:stellen^1+OR+tag:terug^1+OR+tag:terugkeer^1+OR+tag:testamnet^1+OR+tag:verdwijnen^1+OR+tag:verdwijning^1+OR+tag:verlangen^1+OR+tag:vinden^1+OR+tag:visitekaartje^1+OR+tag:vloerkleed^1+OR+tag:voetstap^1+OR+tag:wonen^1+OR+tag:zichtbaar^1+OR+tag:ziek^1+OR+tag:zoeken^1+OR+word_count_group:500-1000^1&fl=score,*&start=0&rows=25} hits=24077 status=0 QTime=4 
+INFO  - 2016-02-15 12:56:18.452; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=title:De+geest+van+de+monnik^1+OR+subject:SINSAG+0450^1+OR+subgenre:broodjeaapverhaal^1+OR+named_entity:Han+Reiziger^1+OR+named_entity:Peter+Lohr^1+OR+named_entity:Jaap+van+Luin^1+OR+named_entity:Adèle+Boemendaal^1+OR+named_entity:Donald+Jones^1+OR+named_entity:Jasperina^1+OR+named_entity:Rol+van+Reijn^1+OR+named_entity:Seth+Gaaikema^1+OR+named_entity:Hugo+van+Montfrans^1+OR+named_entity:Wil+Meilink^1+OR+named_entity:Pastorie-bar^1+OR+named_entity:Weeshuis^1+OR+named_entity_location:Spinhuissteeg^1+OR+named_entity_location:ASVO-school^1+OR+named_entity_location:Radisson+SAS+Hotel^1+OR+named_entity_location:Rusland^1+OR+named_entity_location:Spinhuissteeg^1+OR+type:krant^1+OR+tag:angst^1+OR+tag:bewoner^1+OR+tag:bigband^1+OR+tag:brand^1+OR+tag:branden^1+OR+tag:directeur^1+OR+tag:dolen^1+OR+tag:dood^1+OR+tag:gebedenboek^1+OR+tag:geest^1+OR+tag:hand^1+OR+tag:hoedenatelier^1+OR+tag:hotel^1+OR+tag:huis^1+OR+tag:huisbaas^1+OR+tag:huur^1+OR+tag:jazzmuziek^1+OR+tag:kaars^1+OR+tag:kamer^1+OR+tag:kat^1+OR+tag:katholiek^1+OR+tag:liefdesverdriet^1+OR+tag:lobby^1+OR+tag:mompelen^1+OR+tag:monnik^1+OR+tag:nacht^1+OR+tag:onverklaarbaar^1+OR+tag:onzichtbaar^1+OR+tag:ophangen^1+OR+tag:poppenkastfiguren^1+OR+tag:priester^1+OR+tag:priesterhuis^1+OR+tag:raam^1+OR+tag:schuilkerk^1+OR+tag:spokerij^1+OR+tag:spook^1+OR+tag:spookhuis^1+OR+tag:trap^1+OR+tag:uitwaaien^1+OR+tag:verhangen^1+OR+tag:verhuizen^1+OR+tag:verklaren^1+OR+tag:verschijning^1+OR+tag:vliegen^1+OR+tag:voetstappen^1+OR+tag:wierook^1+OR+tag:wijwaterkwast^1+OR+tag:windvlaag^1+OR+tag:zolder^1+OR+tag:zweven^1+OR+word_count_group:500-1000^1&fl=score,*&start=0&rows=25} hits=43692 status=0 QTime=68 
+INFO  - 2016-02-15 12:56:58.944; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={} hits=0 status=0 QTime=1 
+INFO  - 2016-02-15 12:57:00.653; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={} hits=0 status=0 QTime=0 
+INFO  - 2016-02-15 12:57:21.259; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=modelid:40562&fl=score,modelid,identifier,title,itemtype,subject,collector,creator,contributor,date,subgenre,type,language,literary,extreme,tag,named_entity,named_entity_location,place_of_action,motif,corpus,word_count,word_count_group,locality,description,main_text&rows=800} hits=1 status=0 QTime=1 
+INFO  - 2016-02-15 12:57:26.824; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=title:De+verdwenen+oorbel^1+OR+subject:SINSAG+0450^1+OR+subgenre:broodjeaapverhaal^1+OR+named_entity:Paula+Ligtvoet^1+OR+named_entity:Witsenkamer^1+OR+named_entity:Marie+Witsen-Schorr^1+OR+named_entity:Willem+Witsen^1+OR+named_entity:Jessica+Voeten^1+OR+named_entity:Bert+Voeten^1+OR+named_entity:Marga+Minco^1+OR+named_entity:Willem+Kloos^1+OR+named_entity:Paul+Verlaine^1+OR+named_entity:Gerard+Reve^1+OR+named_entity:Hanny+Michaelis^1+OR+named_entity:Nescio^1+OR+named_entity:Jan+Kal^1+OR+named_entity:Anneke+Brassinga^1+OR+named_entity:Thomas+Rosenboom^1+OR+named_entity_location:Witsenmuseum^1+OR+type:krant^1+OR+tag:13+april+1943^1+OR+tag:afscheid^1+OR+tag:angst^1+OR+tag:arm^1+OR+tag:armalstig^1+OR+tag:beschikbaar^1+OR+tag:bewoner^1+OR+tag:deur^1+OR+tag:dolen^1+OR+tag:dood^1+OR+tag:duwen^1+OR+tag:excentriek^1+OR+tag:foto^1+OR+tag:geest^1+OR+tag:geluid^1+OR+tag:groen^1+OR+tag:hand^1+OR+tag:huis^1+OR+tag:ijsingwekkend^1+OR+tag:kaars^1+OR+tag:kamer^1+OR+tag:kimono^1+OR+tag:kleinood^1+OR+tag:kosteloos^1+OR+tag:liefde^1+OR+tag:middenin^1+OR+tag:missen^1+OR+tag:onverklaarbaar^1+OR+tag:onvindbaar^1+OR+tag:onzichtbaar^1+OR+tag:oorbel^1+OR+tag:schilderij^1+OR+tag:schrijfster^1+OR+tag:schrijver^1+OR+tag:serfdag^1+OR+tag:serven^1+OR+tag:spokerij^1+OR+tag:spook^1+OR+tag:spookhuis^1+OR+tag:stellen^1+OR+tag:terug^1+OR+tag:terugkeer^1+OR+tag:testamnet^1+OR+tag:verdwijnen^1+OR+tag:verdwijning^1+OR+tag:verlangen^1+OR+tag:vinden^1+OR+tag:visitekaartje^1+OR+tag:vloerkleed^1+OR+tag:voetstap^1+OR+tag:wonen^1+OR+tag:zichtbaar^1+OR+tag:ziek^1+OR+tag:zoeken^1+OR+word_count_group:500-1000^1&fl=score,*&start=0&rows=25} hits=24077 status=0 QTime=3 
+INFO  - 2016-02-15 12:57:38.030; org.apache.solr.core.SolrCore; [omeka] webapp=/solr path=/query params={q=title:De+verdwenen+oorbel^1+OR+subject:SINSAG+0450^1+OR+subgenre:broodjeaapverhaal^1+OR+named_entity:Paula+Ligtvoet^1+OR+named_entity:Witsenkamer^1+OR+named_entity:Marie+Witsen-Schorr^1+OR+named_entity:Willem+Witsen^1+OR+named_entity:Jessica+Voeten^1+OR+named_entity:Bert+Voeten^1+OR+named_entity:Marga+Minco^1+OR+named_entity:Willem+Kloos^1+OR+named_entity:Paul+Verlaine^1+OR+named_entity:Gerard+Reve^1+OR+named_entity:Hanny+Michaelis^1+OR+named_entity:Nescio^1+OR+named_entity:Jan+Kal^1+OR+named_entity:Anneke+Brassinga^1+OR+named_entity:Thomas+Rosenboom^1+OR+named_entity_location:Witsenmuseum^1+OR+type:krant^1+OR+tag:13+april+1943^1+OR+tag:afscheid^1+OR+tag:angst^1+OR+tag:arm^1+OR+tag:armalstig^1+OR+tag:beschikbaar^1+OR+tag:bewoner^1+OR+tag:deur^1+OR+tag:dolen^1+OR+tag:dood^1+OR+tag:duwen^1+OR+tag:excentriek^1+OR+tag:foto^1+OR+tag:geest^1+OR+tag:geluid^1+OR+tag:groen^1+OR+tag:hand^1+OR+tag:huis^1+OR+tag:ijsingwekkend^1+OR+tag:kaars^1+OR+tag:kamer^1+OR+tag:kimono^1+OR+tag:kleinood^1+OR+tag:kosteloos^1+OR+tag:liefde^1+OR+tag:middenin^1+OR+tag:missen^1+OR+tag:onverklaarbaar^1+OR+tag:onvindbaar^1+OR+tag:onzichtbaar^1+OR+tag:oorbel^1+OR+tag:schilderij^1+OR+tag:schrijfster^1+OR+tag:schrijver^1+OR+tag:serfdag^1+OR+tag:serven^1+OR+tag:spokerij^1+OR+tag:spook^1+OR+tag:spookhuis^1+OR+tag:stellen^1+OR+tag:terug^1+OR+tag:terugkeer^1+OR+tag:testamnet^1+OR+tag:verdwijnen^1+OR+tag:verdwijning^1+OR+tag:verlangen^1+OR+tag:vinden^1+OR+tag:visitekaartje^1+OR+tag:vloerkleed^1+OR+tag:voetstap^1+OR+tag:wonen^1+OR+tag:zichtbaar^1+OR+tag:ziek^1+OR+tag:zoeken^1+OR+word_count_group:500-1000^1&fl=score,*&start=0&rows=25} hits=24077 status=0 QTime=4 

@@ -617,7 +617,16 @@ function NodeViewer(vm){
                 });
         }
 
-
+        vm.network_graph.subscribe( function() {
+            
+            console.log("network graph updated");
+            pinging = [];
+            ping();
+            pinging_link = [];
+            ping_link();
+            
+        });
+            
         vm.node_params.subscribe( function(){
             force.linkDistance(vm.node_params()["linkDistance"].value())
 //                .(vm.node_params()["linkStrength"].value())
