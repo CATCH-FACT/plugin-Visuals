@@ -6,6 +6,8 @@
     $request_json = isset($_POST['rj']) ? $_POST['rj'] : false;
     $get_parameters = isset($_SERVER["QUERY_STRING"]) ? $_SERVER["QUERY_STRING"] : false;
 
+//    print $get_parameters;
+
     $results = false;
     
     $url = "";

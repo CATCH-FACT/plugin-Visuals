@@ -13,7 +13,7 @@ function PieViewer(vm){
         vm.facets_results.subscribe( function (){
             d3.selectAll("#pie_chart_2").selectAll("svg").remove(); // resetting the information screen
             vm.facets_results().forEach(function(d){
-                drawPie(d.key, d.value, "#pie_chart_2 .chart", colors, 10, 100, 20, 1, vm);
+                drawPie(d.key, d.value, "#pie_chart_2 .chart", colors, 10, 80, 20, 1, vm);
             });
         });
     }

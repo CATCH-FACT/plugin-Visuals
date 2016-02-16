@@ -242,7 +242,7 @@ function NodeViewer(vm){
             }
             if (vm.selectedLegendOptionValue() == "itemtype"){
                 if (d.itemtype){
-                    console.log(d.itemtype);
+//                    console.log(d.itemtype);
                     return legend_colors[vm.selectedLegendOptionValue()][d.itemtype].color;
                 }
             }
@@ -414,7 +414,7 @@ function NodeViewer(vm){
 
         function right_click_node(item_data, index) {
             //handle right click
-            console.log("right_clicking: " + index);
+//            console.log("right_clicking: " + index);
             //stop showing browser menu            
             d3.event.preventDefault();
 //            dragstop(item_data);
@@ -435,7 +435,7 @@ function NodeViewer(vm){
         // Toggle children on click.
         function left_click_link(item_data) {
             d3.event.preventDefault();
-            console.log(item_data);
+//            console.log(item_data);
             
             var even = true;
             
@@ -563,7 +563,7 @@ function NodeViewer(vm){
         }
 
         function dbl_click(d) {
-            console.log("dblclick");
+//            console.log("dblclick");
             d3.event.preventDefault();
 //            d3.select(this).classed("fixed", d.fixed = false);
         }
@@ -575,7 +575,7 @@ function NodeViewer(vm){
 
         function dragstart(d) {
 //            d3.event.preventDefault();
-            console.log("dragstart");
+//            console.log("dragstart");
             d3.select(this).classed("fixed", d.fixed = true);
         }
 
@@ -619,7 +619,7 @@ function NodeViewer(vm){
 
         vm.network_graph.subscribe( function() {
             
-            console.log("network graph updated");
+//            console.log("network graph updated");
             pinging = [];
             ping();
             pinging_link = [];

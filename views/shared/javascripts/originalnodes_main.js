@@ -1,7 +1,6 @@
 $ = jQuery;
 
 window.onload = function () {
-    console.log("loading main");
 
     ko.bindingHandlers.slider = {
       init: function (element, valueAccessor, allBindingsAccessor) {
@@ -26,12 +25,10 @@ window.onload = function () {
       }
     };
     
-    console.log("loading vm");
     var vm = new ViewModel();
-    console.log("applying bindings");
+
     ko.applyBindings(vm);
 
-    console.log("loading nodeman");
     var nodeman = new NodeViewer(vm);
     nodeman.init();
 
@@ -41,8 +38,8 @@ window.onload = function () {
     var menuman = new MenuViewer(vm);
     menuman.init();
 
-//    var pieman = new PieViewer(vm);
-//    pieman.init();
+    var pieman = new PieViewer(vm);
+    pieman.init();
 
     // url parameter check
     if (getUrlParameter("minscore")){
@@ -101,7 +98,7 @@ var show_facets = ["itemtype", "subject",
                     "word_count_group", "locality", "administrative_area_level_1"];
 var facet_addition = "&facet=true&facet.mincount=1&wt=json&rows=0&facet.field=" + show_facets.join("&facet.field=")
 
-var metadatas_to_query = [  {key: "title",          score_value: 1,     selected: true},
+var metadatas_to_query = [  {key: "title",          score_value: 0.1,     selected: true},
                             {key: "subject",        score_value: 1,     selected: true},
                             {key: "creator",	    score_value: 1,     selected: false},
                             {key: "contributor",	score_value: 1,     selected: false},
@@ -122,7 +119,7 @@ var metadatas_to_query = [  {key: "title",          score_value: 1,     selected
                             {key: "tag",           score_value: 1,     selected: true},
                             {key: "word_count",      score_value: 1,     selected: false},
                             {key: "word_count_group",  score_value: 1,     selected: true},
-                            {key: "location",	    score_value: 1,     selected: true},
+                            {key: "location",	    score_value: 1,     selected: false},
                             {key: "sublocality",	score_value: 1,     selected: false},
                             {key: "locality",	    score_value: 1,     selected: false},
                             {key: "administrative_area_level_1",	score_value: 1,     selected: false},
@@ -539,7 +536,7 @@ function ViewModel() {
     //internal check variables
     
     self.testFunction = function(){
-        console.log("clicked!");
+//        console.log("clicked!");
     }
     
     self.removeNode = function(index){
@@ -547,7 +544,7 @@ function ViewModel() {
         removed_item = self.network_graph().nodes.splice(index, 1);
         //remove links
         removeLinks(removed_item[0], self);
-        console.log(self.network_graph());
+//        console.log(self.network_graph());
         self.network_graph.valueHasMutated();
     };
 
@@ -612,7 +609,7 @@ function ViewModel() {
 //        arg = create_search_arguments_and_return_facets(facet_query);
         args = {"rj": stringify(args)};
         
-        console.log(args);
+//        console.log(args);
         
         search_these = get_solr_id_list(self.search_proxy(), args);
         
@@ -622,7 +619,7 @@ function ViewModel() {
     };
 
     self.doIdSearch = function () {
-        console.log("ID SEARCH");
+//        console.log("ID SEARCH");
         self.clearData();
         ids = self.id_search_query().split(/,[ \n]*/);
         for (id in ids){
@@ -649,15 +646,16 @@ function ViewModel() {
         var or = "";
         if (self.selected_nodes()){
                 $.each(self.selected_nodes(), function(index, value) {
-                    facet_query += or + "modelid" + ':"' + value.modelid + '"';
+                    facet_query += or + "modelid" + ':' + value.modelid + '';
+                    or = " OR ";
                 });
-                or = " OR ";
         }
+//        console.log(facet_query);
         UpdateFacetData(facet_query, self);
     }
 
     self.doIdAdd = function () {
-        console.log("searching id number");
+//        console.log("searching id number");
         UpdateNetworkData(id_search_proxy + self.id_search_query(), true, self);
     };
 
@@ -741,7 +739,7 @@ function ViewModel() {
 
 
 function removeLinks(item, vm){
-    console.log("removing links: " + item.node_id);
+//    console.log("removing links: " + item.node_id);
     for (link in vm.network_graph().links){
 //        console.log(vm.network_graph().links[link]);
         if ((vm.network_graph().links[link].source.modelid == item.modelid) || (vm.network_graph().links[link].target.modelid == item.modelid)) {
@@ -753,8 +751,8 @@ function removeLinks(item, vm){
 function get_solr_id_list(url, solr_params){
     var search_ids = [];
     var search_string = "";
-    console.log("solr_params in get_solr_id_list:");
-    console.log(solr_params);
+//    console.log("solr_params in get_solr_id_list:");
+//    console.log(solr_params);
     $.ajax({
         url: url,
         data: solr_params,
@@ -762,8 +760,8 @@ function get_solr_id_list(url, solr_params){
         async: false, // meh
         dataType: "json",
         success: function(response) {
-            console.log("solr_params in get_solr_id_list RESPONSE:");
-            console.log(response);
+//            console.log("solr_params in get_solr_id_list RESPONSE:");
+//            console.log(response);
             if (response.response.docs.length > 0){ //if there is a response
                 found_nodes = response.response.docs;
                 for (node in found_nodes){
@@ -799,7 +797,7 @@ function search_id(needle, haystack) {
     }
     for (var child in haystack.children){
         // look for the entry with a matching `code` value
-        console.log(haystack.children[child].modelid);
+//        console.log(haystack.children[child].modelid);
         if (haystack.children[child].modelid == needle){
             // we found it
             return haystack.children[child];
@@ -810,7 +808,7 @@ function search_id(needle, haystack) {
             }
         }
     }
-    console.log(needle + " not found");
+//    console.log(needle + " not found");
     return null; //nope
 }
 
@@ -819,9 +817,9 @@ function NeighborNeighborSelected(n, max_neighbor_results, min_neighbor_score, v
         existing_network_graph = vm.network_graph();
         selected_nodes = vm.selected_nodes();
         for (var i = 0; i < n ; i++) {
-            console.log("expanding all nodes - " + i);
+//            console.log("expanding all nodes - " + i);
             for (item in selected_nodes){
-                console.log(item);
+//                console.log(item);
                 NeighborSearch(existing_network_graph.nodes[item], max_neighbor_results, min_neighbor_score, vm)
             }
         }
@@ -833,7 +831,7 @@ function NeighborNeighbor(n, max_neighbor_results, min_neighbor_score, vm){
     if (vm.network_graph().nodes.length < 150){ //saving your computer
         existing_network_graph = vm.network_graph();
         for (var i = 0; i < n ; i++) {
-            console.log("expanding all nodes - " + i);
+//            console.log("expanding all nodes - " + i);
             for (item in existing_network_graph.nodes){
                 NeighborSearch(existing_network_graph.nodes[item], max_neighbor_results, min_neighbor_score, vm)
             }
@@ -1137,23 +1135,25 @@ function d3_format_facets(raw_facets){
 
 function UpdateFacetData(search_query, vm){
     
-    var arg = "{" + search_query + '"facet":"true","facet.mincount":"1","wt":"json","rows"0","facet.field":' + show_facets.join(',"facet.field":') + "}";
+    var arg = '{"q":"' + search_query + '","facet":"true","facet.mincount":"1","wt":"json","rows":"0"}';
+//    '"facet.field":' + show_facets.join('","facet.field":"') + '"}';
     arg = {"rj": arg};
     
-    console.log("facet query:");
-    console.log(arg);
+    suppl_proxy = vm.search_proxy() + "?" + show_facets.join('&facet.field=');
     
     $.ajax({
-      type: "POST",
-      url: vm.search_proxy(),
-      data: arg,
-      success: function(response) {
+        method: 'POST',
+        async: false, // meh
+        dataType: "json",
+//      type: "POST",
+        url: suppl_proxy,
+        data: arg,
+        success: function(response) {
             var this_facets_results = vm.facets_results;
             formatted_response = d3_format_facets(response.facet_counts.facet_fields);
             vm.facets_results(formatted_response);
             vm.facets_results.valueHasMutated();
-          },
-      dataType: "json"
+        }
     });
     /*
 //    console.log(facet_query);
@@ -1188,6 +1188,8 @@ function NeighborSearch(item, max_neighbor_results, min_neighbor_score, vm){
     
     existing_network_graph = vm.network_graph();
     amount_nodes = existing_network_graph.nodes.length;
+
+    //restrict the amount of metadata here with fl!
 
     $.ajax({
         url: vm.search_proxy(),
