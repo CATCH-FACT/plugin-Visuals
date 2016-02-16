@@ -1183,8 +1183,8 @@ function NeighborSearch(item, max_neighbor_results, min_neighbor_score, vm){
 
     arg = {"rj": stringify(arg)};
     
-    console.log(arg);
-    console.log(vm.search_proxy());
+//    console.log(arg);
+//    console.log(vm.search_proxy());
     
     existing_network_graph = vm.network_graph();
     amount_nodes = existing_network_graph.nodes.length;
