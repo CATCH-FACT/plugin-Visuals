@@ -929,7 +929,7 @@ function create_comparison_search_argument_from_item(item, id, vm){
 }
 
 function ConnectNeighbors(vm){
-    console.log("connecting nodes");
+//    console.log("connecting nodes");
     existing_network_graph = vm.network_graph();
     node_ids = returnNodeIds(existing_network_graph.nodes);
     existing_network_graph.links = []; //complete refresh
@@ -939,13 +939,13 @@ function ConnectNeighbors(vm){
 //        var neighbor_search_command = create_search_command_from_item_id_return(existing_network_graph.nodes[i], 100, vm);
         var neighbor_search_arguments = create_search_arguments_from_item_id_return(existing_network_graph.nodes[i], 100, vm);
         
-        console.log("neighbor_search_arguments");
+//        console.log("neighbor_search_arguments");
 //        console.log(neighbor_search_arguments);
 
         args = {"rj": stringify(neighbor_search_arguments)};
         
-        console.log(vm.search_proxy());
-        console.log(args);
+//        console.log(vm.search_proxy());
+//        console.log(args);
         
         $.ajax({
             url: vm.search_proxy(),
@@ -954,7 +954,7 @@ function ConnectNeighbors(vm){
             method: 'POST',
             dataType: "json",
             success: function(response) {
-                console.log(response);
+//                console.log(response);
                 if (response.response.docs.length > 0){ //if there is a response
                     changed = true;
                     found_nodes = response.response.docs;
@@ -1004,7 +1004,7 @@ function RemoveSelectedNodes(vm){
     existing_network_graph = vm.network_graph();
 
     //first identify:
-    console.log(existing_network_graph);
+//    console.log(existing_network_graph);
     for (var q = 0; q < selected_nodes.length; q++) { //not surewhy, but this has to be repeated a bunch of times
         for (var i = 0; i < existing_network_graph.nodes.length; i++) {
             for (var j = 0; j < selected_nodes.length; j++) {
@@ -1202,12 +1202,12 @@ function NeighborSearch(item, max_neighbor_results, min_neighbor_score, vm){
 //            console.log(resp.success());
         },
         success: function(response) {
-            console.log("success!!!!!!!!!!!");
-            console.log(response);
+//            console.log("success!!!!!!!!!!!");
+//            console.log(response);
             for (i in response.response.docs){
-                console.log(response.response.docs[i]);
+//                console.log(response.response.docs[i]);
                 if ((!inNodesList(response.response.docs[i], existing_network_graph.nodes)) && (response.response.docs[i].score > vm.min_neighbor_score())){
-                    console.log(response.response.docs[i]);
+//                    console.log(response.response.docs[i]);
                     pre_node = response.response.docs[i];
                     pre_node["node_id"] = amount_nodes; //extra id for flattening
                     existing_network_graph.nodes.push(pre_node);
@@ -1216,7 +1216,7 @@ function NeighborSearch(item, max_neighbor_results, min_neighbor_score, vm){
                     amount_nodes += 1;
                 }
             }
-            console.log(existing_network_graph);
+//            console.log(existing_network_graph);
             vm.network_graph(existing_network_graph);
         }
     });
@@ -1226,7 +1226,7 @@ function UpdateNetworkDataPOST(arg, add, vm){
     var existing_network_graph = vm.network_graph();
     arg = {"rj": stringify(arg)};
     
-    console.log(arg);
+//    console.log(arg);
 //    console.log(vm.search_proxy());
     
     $.ajax({
@@ -1320,8 +1320,8 @@ function MenuViewer(vm){
             console.log(param);
             return function(e, ui) {
                 $(this).closest('li').find('.value').text(ui.value);
-                console.log(param);
-                console.log(vm.node_params()[param].value());
+//                console.log(param);
+//                console.log(vm.node_params()[param].value());
                 vm.node_params()[param].value(ui.value);
                 vm.node_params.valueHasMutated();
             };
