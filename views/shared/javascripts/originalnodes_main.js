@@ -1195,7 +1195,7 @@ function NeighborSearch(item, max_neighbor_results, min_neighbor_score, vm){
         url: vm.search_proxy(),
         data: arg,
         method: 'POST',
-        async: false, // meh
+        async: true, // meh
         dataType: "json",
         complete: function(resp){
 //            console.log(resp);
