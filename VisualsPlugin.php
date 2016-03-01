@@ -29,15 +29,36 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
             'admin_head',
             );
 
+    private function itemShowNetwork(){
+
+        $view = get_view();
+        if(isset($view->item)) {
+            $recordid = $view->item->id;
+        }
+
+        $nodenetwork_url = url(array('module'=>'visuals','controller'=>'nodes'), 
+                                'default',
+                                array(  "ids" => $recordid,
+//                                        "reconnect" => true,
+                                        "minscore" => "1.2",
+                                        "depth" => 2)
+                                );
+        
+        $return_html = '     <h2 style="margin:0px">' . __("Vergelijkbare verhalen") . '</h2>';
+        $return_html .= '     <a href="' . $nodenetwork_url . '" target="network">Naar geavanceerde netwerkvisualisatie</a>';
+
+        return $return_html;
+    }
+
     public function hookAdminItemsShow($args){
         print '<div id="item-nodes" class="element" style="border-style:solid;border-width:5px;">';
-        print '     <h2>' . __("Vergelijkbare verhalen") . '</h2>';
+        print $this->itemShowNetwork();
         print "</div>";
     }
 
     public function hookPublicItemsShowSidebarUltimateTop($args){
         print '<div id="item-nodes" class="element" style="padding:0px">';
-        print '     <h2 style="margin:0px">' . __("Vergelijkbare verhalen") . '</h2>';
+        print $this->itemShowNetwork();
         print "</div>";
     }
 
