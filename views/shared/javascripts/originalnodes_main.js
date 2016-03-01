@@ -98,6 +98,7 @@ var show_facets = ["itemtype", "subject",
                     "word_count_group", "locality", "administrative_area_level_1"];
 var facet_addition = "&facet=true&facet.mincount=1&wt=json&rows=0&facet.field=" + show_facets.join("&facet.field=")
 
+/* //original score settings
 var metadatas_to_query = [  {key: "title",          score_value: 0.1,     selected: true},
                             {key: "subject",        score_value: 1,     selected: true},
                             {key: "creator",	    score_value: 1,     selected: false},
@@ -119,6 +120,37 @@ var metadatas_to_query = [  {key: "title",          score_value: 0.1,     select
                             {key: "tag",           score_value: 1,     selected: true},
                             {key: "word_count",      score_value: 1,     selected: false},
                             {key: "word_count_group",  score_value: 1,     selected: true},
+                            {key: "location",	    score_value: 1,     selected: false},
+                            {key: "sublocality",	score_value: 1,     selected: false},
+                            {key: "locality",	    score_value: 1,     selected: false},
+                            {key: "administrative_area_level_1",	score_value: 1,     selected: false},
+                            {key: "administrative_area_level_2",	score_value: 1,     selected: false},
+                            {key: "administrative_area_level_3",	score_value: 1,     selected: false},
+                            {key: "country",        score_value: 1,     selected: false},
+                            {key: "main_text",           score_value: 1,     selected: false}
+                        ];
+*/
+var metadatas_to_query = [  {key: "title",          score_value: 1,     selected: false},
+                            {key: "subject",        score_value: 20,     selected: true},
+                            {key: "creator",	    score_value: 1,     selected: false},
+                            {key: "contributor",	score_value: 1,     selected: false},
+                            {key: "collector",	    score_value: 1,     selected: false},
+                            {key: "language",	    score_value: 1,     selected: false},
+                            {key: "source",	        score_value: 1,     selected: false},
+                            {key: "date",	        score_value: 1,     selected: false},
+                            {key: "format",	        score_value: 1,     selected: false},
+                            {key: "type",	        score_value: 1,     selected: false},
+                            {key: "subgenre",	    score_value: 1,     selected: true},
+                            {key: "motif",	        score_value: 1,     selected: true},
+                            {key: "literary",	    score_value: 1,     selected: true},
+                            {key: "extreme",	    score_value: 1,     selected: true},
+                            {key: "named_entity",	score_value: 1,     selected: true},
+                            {key: "named_entity_location",	score_value: 1,     selected: true},
+                            {key: "place_of_action",   score_value: 1,     selected: true},
+                            {key: "corpus",	        score_value: 1,     selected: false},
+                            {key: "word_count",	    score_value: 1,     selected: false},      //NEW
+                            {key: "word_count_group",   score_value: 1,     selected: false},      //NEW
+                            {key: "tag",            score_value: 0.7,     selected: true},
                             {key: "location",	    score_value: 1,     selected: false},
                             {key: "sublocality",	score_value: 1,     selected: false},
                             {key: "locality",	    score_value: 1,     selected: false},
