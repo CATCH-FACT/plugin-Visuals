@@ -100,7 +100,6 @@ queue_js_file('globals');
                     <br>
                     <br>
                     <label><input type="checkbox" data-bind="checked: title_in_node" />Title in node</label><br>
-                    <label><input type="checkbox" data-bind="checked: show_dragbubbles" />Show Dragbubbles</label><br>
 
                     <h4>Advanced options</h4>
                     <ul class="controls">

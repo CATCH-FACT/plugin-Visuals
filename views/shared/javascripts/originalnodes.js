@@ -126,6 +126,26 @@ function NodeViewer(vm){
                     .attr("x2", function(d) { return Math.max(0, Math.min(w, d.target.x)); })
                     .attr("y2", function(d) { return Math.max(20, Math.min(h, d.target.y)); })
                     .style("stroke-width", stroke_width);
+                link_ping.transition().duration(150)
+                    .style("stroke-width", 40)
+                    .transition().duration(220)
+                    .style("stroke-width", 10)
+                    .transition().duration(300)
+                    .remove();
+                setTimeout(ping_link, 1500);
+            }
+        }
+
+        function ping_linkOLD(){
+            if (pinging_link.length > 0){
+                var link_ping = svg.selectAll("line.ping").data(pinging_link)
+                    .enter().append("svg:line", "g")
+                    .classed("ping", true)
+                    .attr("x1", function(d) { return Math.max(0, Math.min(w, d.source.x)); })
+                    .attr("y1", function(d) { return Math.max(20, Math.min(h, d.source.y)); })
+                    .attr("x2", function(d) { return Math.max(0, Math.min(w, d.target.x)); })
+                    .attr("y2", function(d) { return Math.max(20, Math.min(h, d.target.y)); })
+                    .style("stroke-width", stroke_width);
                 link_ping.transition().duration(600)
                     .ease("quad-out")
                     .style("stroke-width", 40)
@@ -134,8 +154,25 @@ function NodeViewer(vm){
                 setTimeout(ping_link, 1600);
             }
         }
-
+        
         function ping() {
+            if (pinging.length > 0) {
+        		var pings = svg.selectAll("circle.ping").data(pinging)
+        			.enter().append("svg:circle", "g")
+        			.classed("ping", true)
+        			.attr("cx", function(d) { return d.x; })
+        			.attr("cy", function(d) { return d.y; })
+        			.attr("r", function(d) { 
+        			        console.log(node_size(d));
+        			        return node_size(d);
+        			    });
+        		pings.transition().duration(300)
+        			.remove();
+        		setTimeout(ping, 1500);
+        	}
+	    }
+        
+        function pingOLD() { //costly
             if (pinging.length > 0) {
         		var pings = svg.selectAll("circle.ping").data(pinging)
         			.enter().append("svg:circle", "g")
@@ -210,7 +247,8 @@ function NodeViewer(vm){
         function node_text(d) {
             //make this react to metadata show choice in index
             if (vm.title_in_node()){
-                return (d.identifier ? d.identifier + ": " : "") + (d.title ? d.title : ""); 
+                return (d.title ? d.title : ""); 
+//                return (d.identifier ? d.identifier + ": " : "") + (d.title ? d.title : ""); 
             }
             else{
                 return "";

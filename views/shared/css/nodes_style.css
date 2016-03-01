@@ -199,9 +199,9 @@ li {
 
 #accordion-resizer {
     position: absolute;
-    height: 85%;
+    height: 100%;
     width: 250px;
-	max-height: 95%;
+	max-height: 98%;
 	padding-bottom: 12px;
 }
 
