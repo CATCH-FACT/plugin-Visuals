@@ -79,8 +79,14 @@ class VisualsPlugin extends Omeka_Plugin_AbstractPlugin
         
         $data_proxy =  js_escape(url('/visuals/proxy'));
         
-        //only queue when in item view:
-        if(isset($view->item)) {
+        $request = Zend_Controller_Front::getInstance()->getRequest();
+        $module = $request->getModuleName();
+        $controller = $request->getControllerName();
+        $action = $request->getActionName();
+        
+        //only queue when in item-show view AND when Item present:
+        if (($controller == 'items' && $action == 'show') && (isset($view->item))) {
+            
             $js_code = "window.onload = function () {
 
                 var search_proxy = " . $data_proxy . ";

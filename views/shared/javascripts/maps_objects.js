@@ -283,9 +283,14 @@ function MapViewer(vm){
                 return results;
             }
 
+            
+
             function transform2(d) {
                 var lat_lon = d.key.split(",");
-                if (lat_lon[0] == ""){ lat_lon = [52.655694, 3.913930]}
+                if (lat_lon[0] == ""){ 
+                    lat_lon = [52.655694, 3.913930];
+                    d.nolocation = true;
+                    } //somewhere in the water!!
                 d.lat_lon = lat_lon;
                 x = new google.maps.LatLng(lat_lon[0], lat_lon[1]);
                 x = projection.fromLatLngToDivPixel(x);
@@ -299,7 +304,7 @@ function MapViewer(vm){
             function transformRect(d, size) {
                 size = 10;
                 var lat_lon = d.key.split(",");
-                if (lat_lon[0] == ""){ lat_lon = [52.655694, 3.913930]}
+                if (lat_lon[0] == ""){ lat_lon = [52.655694, 3.913930]} //somewhere in the water!!
                 d.lat_lon = lat_lon;
                 d = new google.maps.LatLng(lat_lon[0], lat_lon[1]);
                 d = projection.fromLatLngToDivPixel(d); 
@@ -722,7 +727,7 @@ function MapViewer(vm){
                     .each(transform2)
                     .attr("class", "location")
                     .attr("r", 0)
-                    .attr("fill", object_colors["locality"])
+//                    .attr("fill", object_colors["locality"])
                     .on("mouseover", function(d){
                         map.setOptions({draggableCursor:'crosshair'});
                         d3.select(this)
@@ -795,6 +800,7 @@ function MapViewer(vm){
                                 return d3.rgb(255, 255 - (Math.log(d.values.length) * 35), 155 - (Math.log(d.values.length) * 35));
 //                                return d3.rgb((Math.log(d.values.length) * 35), 155 - (Math.log(d.values.length) * 35), 155 - (Math.log(d.values.length) * 35));
                         }
+                        console.log(d);
                         return object_colors["locality"];
                     });
                     
